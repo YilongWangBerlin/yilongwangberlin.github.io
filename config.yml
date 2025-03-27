@@ -130,9 +130,14 @@ params:
   # icon: icon.png
   # iconHeight: 35
 
-  # analytics:
+  #analytics:
   #     google:
   #         SiteVerificationTag: "XYZabc"
+
+  analytics:
+    google:
+      ID: G-96T3G6TNZH
+
 
   assets:
     disableHLJS: true
