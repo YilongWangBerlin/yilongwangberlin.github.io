@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Guide on PaperMod</title>
+    <link>https://yilongwangberlin.github.io/tags/guide/</link>
+    <description>Recent content in Guide on PaperMod</description>
+    <image>
+      <title>PaperMod</title>
+      <url>https://yilongwangberlin.github.io/images/papermod-cover.png</url>
+      <link>https://yilongwangberlin.github.io/images/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- 0.145.0</generator>
+    <language>en</language>
+    <copyright>PaperMod Contributors</copyright>
+    <lastBuildDate>Fri, 27 Sep 2024 12:00:00 +0200</lastBuildDate>
+    <atom:link href="https://yilongwangberlin.github.io/tags/guide/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TU Berlin Informatik Survival Manual</title>
+      <link>https://yilongwangberlin.github.io/posts/01/</link>
+      <pubDate>Fri, 27 Sep 2024 12:00:00 +0200</pubDate>
+      <guid>https://yilongwangberlin.github.io/posts/01/</guid>
+      <description>Helping Erstis at TU Berlin navigate course selection and university life.</description>
+    </item>
+  </channel>
+</rss>

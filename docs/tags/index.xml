@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on PaperMod</title>
+    <link>https://yilongwangberlin.github.io/tags/</link>
+    <description>Recent content in Tags on PaperMod</description>
+    <image>
+      <title>PaperMod</title>
+      <url>https://yilongwangberlin.github.io/images/papermod-cover.png</url>
+      <link>https://yilongwangberlin.github.io/images/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- 0.145.0</generator>
+    <language>en</language>
+    <copyright>PaperMod Contributors</copyright>
+    <lastBuildDate>Fri, 27 Sep 2024 12:00:00 +0200</lastBuildDate>
+    <atom:link href="https://yilongwangberlin.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Guide</title>
+      <link>https://yilongwangberlin.github.io/tags/guide/</link>
+      <pubDate>Fri, 27 Sep 2024 12:00:00 +0200</pubDate>
+      <guid>https://yilongwangberlin.github.io/tags/guide/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Student Life</title>
+      <link>https://yilongwangberlin.github.io/tags/student-life/</link>
+      <pubDate>Fri, 27 Sep 2024 12:00:00 +0200</pubDate>
+      <guid>https://yilongwangberlin.github.io/tags/student-life/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>TU Berlin</title>
+      <link>https://yilongwangberlin.github.io/tags/tu-berlin/</link>
+      <pubDate>Fri, 27 Sep 2024 12:00:00 +0200</pubDate>
+      <guid>https://yilongwangberlin.github.io/tags/tu-berlin/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

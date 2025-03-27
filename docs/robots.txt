@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://yilongwangberlin.github.io/sitemap.xml
