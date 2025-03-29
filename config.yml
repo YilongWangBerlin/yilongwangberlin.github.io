@@ -45,6 +45,9 @@ languages:
         - name: Tags
           url: tags/
           weight: 10
+        - name: About
+          url: about/
+          weight: 15  
         - name: Github
           url: https://github.com/YilongWangBerlin
 
