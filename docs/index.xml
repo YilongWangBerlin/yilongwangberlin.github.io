@@ -45,22 +45,28 @@
 &lt;br/&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;-about-me&#34;&gt;🚀 About Me&lt;/h3&gt;
-&lt;table&gt;
-  &lt;tr&gt;
-    &lt;td&gt;
-&lt;p&gt;&lt;strong&gt;🎓 B.Sc. in Industrial Engineering and Management&lt;/strong&gt;&lt;br&gt;
-📍 TU Berlin | 2022 – 2025 (expected)&lt;br&gt;
-🧭 Covered close to 200 ECTS during the first five semesters.&lt;br&gt;&lt;br&gt;
-&lt;strong&gt;📌 Research Interests:&lt;/strong&gt;&lt;br&gt;
-• Deep Learning (DL), Machine Learning (ML)&lt;br&gt;
-• Natural Language Processing (NLP), Large Language Models (LLMs)&lt;br&gt;
-• Generative Models, Multimodal Learning, Embodied AI
-&lt;/td&gt;
-&lt;td align=&#34;center&#34; width=&#34;180&#34;&gt;
-&lt;img src=&#34;https://raw.githubusercontent.com/YilongWangBerlin/YilongWangBerlin/main/me4.png&#34; alt=&#34;My Photo&#34; width=&#34;160&#34; style=&#34;border-radius: 40%;&#34;&gt;&lt;br&gt;
-&lt;/td&gt;&lt;/p&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
+&lt;div style=&#34;display: flex; flex-direction: column-reverse; flex-wrap: wrap; align-items: center; justify-content: space-between;&#34;&gt;
+  &lt;div style=&#34;flex: 1 1 300px; min-width: 250px; text-align: left;&#34;&gt;
+    &lt;strong&gt;🎓 B.Sc. in Industrial Engineering and Management&lt;/strong&gt;&lt;br&gt;
+    📍 TU Berlin | 2022 – 2025 (expected)&lt;br&gt;
+    🧭 Covered close to 200 ECTS during the first five semesters.&lt;br&gt;&lt;br&gt;
+    &lt;strong&gt;📌 Research Interests:&lt;/strong&gt;&lt;br&gt;
+    • Deep Learning (DL), Machine Learning (ML)&lt;br&gt;
+    • Natural Language Processing (NLP), Large Language Models (LLMs)&lt;br&gt;
+    • Generative Models, Multimodal Learning, Embodied AI
+  &lt;/div&gt;
+  &lt;div style=&#34;flex: 0 0 180px; text-align: center; margin-bottom: 20px;&#34;&gt;
+    &lt;img src=&#34;https://raw.githubusercontent.com/YilongWangBerlin/YilongWangBerlin/main/me4.png&#34; alt=&#34;My Photo&#34; width=&#34;160&#34; style=&#34;border-radius: 45%;&#34;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;style&gt;
+@media (min-width: 768px) {
+  div[style*=&#34;flex-direction: column-reverse&#34;] {
+    flex-direction: row !important;
+  }
+}
+&lt;/style&gt;
+&lt;hr&gt;
 &lt;table&gt;
   &lt;tr&gt;
       &lt;td&gt;

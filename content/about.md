@@ -51,24 +51,35 @@ showReadingTime: true
 
 ### 🚀 About Me
 
+<div style="display: flex; flex-direction: column-reverse; flex-wrap: wrap; align-items: center; justify-content: space-between;">
 
-<table>
-  <tr>
-    <td>
+  <div style="flex: 1 1 300px; min-width: 250px; text-align: left;">
+    <strong>🎓 B.Sc. in Industrial Engineering and Management</strong><br>
+    📍 TU Berlin | 2022 – 2025 (expected)<br>
+    🧭 Covered close to 200 ECTS during the first five semesters.<br><br>
+    <strong>📌 Research Interests:</strong><br>
+    • Deep Learning (DL), Machine Learning (ML)<br>
+    • Natural Language Processing (NLP), Large Language Models (LLMs)<br>
+    • Generative Models, Multimodal Learning, Embodied AI
+  </div>
 
-<strong>🎓 B.Sc. in Industrial Engineering and Management</strong><br>
-📍 TU Berlin | 2022 – 2025 (expected)<br>
-🧭 Covered close to 200 ECTS during the first five semesters.<br><br>
-<strong>📌 Research Interests:</strong><br>
-• Deep Learning (DL), Machine Learning (ML)<br>
-• Natural Language Processing (NLP), Large Language Models (LLMs)<br>
-• Generative Models, Multimodal Learning, Embodied AI
-    </td>
-    <td align="center" width="180">
-      <img src="https://raw.githubusercontent.com/YilongWangBerlin/YilongWangBerlin/main/me4.png" alt="My Photo" width="160" style="border-radius: 40%;"><br>
-    </td>
-  </tr>
-</table>
+  <div style="flex: 0 0 180px; text-align: center; margin-bottom: 20px;">
+    <img src="https://raw.githubusercontent.com/YilongWangBerlin/YilongWangBerlin/main/me4.png" alt="My Photo" width="160" style="border-radius: 45%;">
+  </div>
+
+</div>
+
+<style>
+@media (min-width: 768px) {
+  div[style*="flex-direction: column-reverse"] {
+    flex-direction: row !important;
+  }
+}
+</style>
+
+
+
+---
 
 <table>
   <tr>
