@@ -60,7 +60,7 @@
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;style&gt;
-@media (min-width: 768px) {
+@media (min-width: 500px) {
   div[style*=&#34;flex-direction: column-reverse&#34;] {
     flex-direction: row !important;
   }

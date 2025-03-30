@@ -70,7 +70,7 @@ showReadingTime: true
 </div>
 
 <style>
-@media (min-width: 768px) {
+@media (min-width: 500px) {
   div[style*="flex-direction: column-reverse"] {
     flex-direction: row !important;
   }
