@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yilong Wang</title>
+  <meta name="description" content="Academic homepage of Yilong Wang" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#f7f5ef;--grid:rgba(0,0,0,.055);--text:#222;--muted:#666055;--line:#9a9489;--soft-line:#d8d2c7;--accent:#eadf96;--link:#6a87ad;--btn:#f8f6f1;--btn-border:#c8c1b4;--max:780px}
+    *{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
+    body{font-family:'IBM Plex Sans',sans-serif;color:var(--text);background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px, transparent 1px),linear-gradient(90deg,var(--grid) 1px, transparent 1px);background-size:24px 24px;line-height:1.75;font-size:16px}
+    a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{width:min(calc(100% - 40px), var(--max));margin:0 auto;padding:42px 0 80px}
+    .name{font-family:'Patrick Hand',cursive;font-size:60px;line-height:.9;letter-spacing:.5px;margin-bottom:10px}
+    .subtitle{
+      font-size:14px;
+      color:var(--muted);
+      letter-spacing:0.14em;
+      margin-top:20px;
+      margin-bottom:14px;
+    }
+    .rule{border:none;border-top:2px solid var(--line);margin:0 0 24px}
+    .intro {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .avatar {
+      width: 150px;
+      height: 200px;
+      overflow: hidden;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+    }
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border: none;
+      border-radius: 0;
+    }
+    .bio p{margin-bottom:12px}
+    .highlight-box{
+      display:block;
+      margin-top:4px;
+      padding:8px 12px;
+      background:#e9dd93;
+      border-left:6px solid #c9ad2f;
+      font-weight:550;
+      line-height:1.75;
+      width:fit-content;
+      max-width:100%;
+    }
+    .links{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 10px}.btn{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:9px 14px;border:2px solid var(--btn-border);background:var(--btn);color:#3c3933;font-size:14px}
+    .btn:hover{background:#f1eee7;text-decoration:none} section{margin-top:36px} h2{font-family:'Patrick Hand',cursive;font-size:33px;margin-bottom:12px}
+    .list{border-top:1px solid var(--soft-line)} .item{display:grid;grid-template-columns:94px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid var(--soft-line)}
+    .date{font-size:13px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;padding-top:2px}
+    .block{padding:14px 0;border-top:1px solid var(--soft-line)} .block:last-child{border-bottom:1px solid var(--soft-line)}
+    .interest-tag{
+      font-family: "Georgia", "Times New Roman", serif;
+      font-style: italic;
+      font-weight: 500;
+      color: #2f2b25;
+    }
+.avatar{
+  width:150px;
+  height:200px;
+  overflow:hidden;
+  border:none;
+  border-radius:0;
+  background:transparent;
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
+
+@media (max-width:640px){
+  .intro{
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+
+  .avatar{
+    width:120px;
+    height:160px;
+    margin:0 auto;
+  }
+
+  .bio{
+    text-align:left;
+  }
+}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1 class="name">Yilong Wang</h1>
+<p class="subtitle">Student Researcher · Multilingual NLP · Mechanistic Interpretation · On-Policy Distillation</p>
+<hr class="rule" />
+<section class="intro" aria-label="Introduction">
+  <div class="avatar"><img src="../image/image.jpg" alt="Portrait of Yilong Wang" /></div>
+  <div class="bio">
+    <p>
+      I am a master's student at TU Berlin, currently supervised by
+      <a href="https://home.qiaw99.workers.dev/" target="_blank" rel="noopener noreferrer">Qianli Wang</a>. Previously, I was supervised by
+      <a href="https://home.qiaw99.workers.dev/" target="_blank" rel="noopener noreferrer">Qianli Wang</a>
+      and
+      <a href="https://nfelnlp.github.io/" target="_blank" rel="noopener noreferrer">Nils Feldhus</a>
+      on my bachelor's thesis. My research interests include
+      <span class="interest-tag">multilingual NLP</span>,
+      <span class="interest-tag">mechanistic interpretation</span>,
+      <span class="interest-tag">counterfactual</span>,
+      <span class="interest-tag">on-policy distillation</span>,
+      <span class="interest-tag">reinforcement learning</span>,
+      <span class="interest-tag">AI memory</span>, and
+      <span class="interest-tag">modality priors</span>.
+    </p>
+          <div class="highlight-box">
+            I am currently seeking internship and PhD position opportunities. Feel free to contact me via email.
+          </div>
+        </div>
+      </section>
+      <hr class="rule" style="margin-top:20px" />
+      <div class="links" aria-label="External links">
+        <a class="btn" href="mailto:yilong.wang.berlin@gmail.com">✉ Email</a>
+        <a class="btn" href="https://scholar.google.com/citations?user=nwUJ_P8AAAAJ" target="_blank" rel="noopener noreferrer">🎓 Scholar</a>
+        <a class="btn" href="https://github.com/YilongWangBerlin" target="_blank" rel="noopener noreferrer">⌘ GitHub</a>
+        <a class="btn" href="#news">✎ News</a>
+        <a class="btn" href="#publications">☰ Publications</a>
+      </div>
+      <hr class="rule" />
+    </header>
+    <section id="news">
+      <h2>News</h2>
+      <div class="list">
+        <article class="item">
+          <div class="date">May 2026</div>
+          <p>One paper on multilingual interpretability is currently under submission.</p>
+        </article>
+        <article class="item">
+          <div class="date">Jan 2026</div>
+          <p>One paper on counterfactual generation was submitted earlier this year.</p>
+        </article>
+      </div>
+    </section>
+<section id="publications">
+  <h2>Selected Publications</h2>
+
+  <div class="block">
+    <p>
+      <strong>
+        <a href="https://arxiv.org/abs/2601.01446" target="_blank" rel="noopener noreferrer">
+          iFlip: Iterative Feedback-driven Counterfactual Example Refinement
+        </a>
+      </strong><br>
+      <strong>Yilong Wang*</strong>, Qianli Wang*, Nils Feldhus.<br>
+      In submission, 2026.<br>
+      <span class="pub-note">* equal contribution.</span>
+    </p>
+  </div>
+
+  <div class="block">
+    <p>
+      <strong>
+        <a href="https://arxiv.org/abs/2605.11632" target="_blank" rel="noopener noreferrer">
+          Enhancing Multilingual Counterfactual Generation through Alignment-as-Preference Optimization
+        </a>
+      </strong><br>
+      <strong>Yilong Wang*</strong>, Qianli Wang*, Bohao Chu, Yihong Liu, Jing Yang, Simon Ostermann.<br>
+      In submission, 2026.<br>
+      <span class="pub-note">* equal contribution.</span>
+    </p>
+  </div>
+</section>
+  </main>
+</body>
+</html>
