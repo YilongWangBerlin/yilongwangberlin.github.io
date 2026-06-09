@@ -114,6 +114,117 @@
     text-align:left;
   }
 }
+
+  .oss-card{
+  border-top:1px solid var(--soft-line);
+  border-bottom:1px solid var(--soft-line);
+  padding:18px 0 16px;
+}
+
+.oss-header{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  margin-bottom:10px;
+}
+
+.oss-logo{
+  width:38px;
+  height:38px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.oss-title-wrap{
+  flex:1;
+  min-width:0;
+}
+
+.oss-project-name{
+  font-family:'Patrick Hand',cursive;
+  font-size:25px;
+  line-height:1.15;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.oss-project-name a{
+  color:var(--text);
+}
+
+.oss-project-name a:hover{
+  color:var(--link);
+  text-decoration:underline;
+}
+
+.oss-badge{
+  display:inline-block;
+  font-family:'IBM Plex Sans',sans-serif;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:2px 8px;
+  background:#e9dd93;
+  color:#584b12;
+  border:1px solid #cfbb55;
+}
+
+.oss-sub{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.oss-desc{
+  margin:10px 0 10px;
+}
+
+.oss-list{
+  margin:8px 0 0 20px;
+}
+
+.oss-list li{
+  margin:4px 0;
+}
+
+.oss-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
+}
+
+.oss-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  min-height:36px;
+  padding:7px 12px;
+  border:1.5px solid var(--btn-border);
+  background:var(--btn);
+  color:#3c3933;
+  font-size:13px;
+}
+
+.oss-link:hover{
+  background:#f1eee7;
+  text-decoration:none;
+}
+
+@media (max-width:640px){
+  .oss-header{
+    gap:12px;
+  }
+
+  .oss-project-name{
+    font-size:22px;
+  }
+}
   </style>
 </head>
 <!-- Google tag (gtag.js) -->
@@ -184,7 +295,7 @@
     <p>
       <strong>
         <a href="https://arxiv.org/abs/2605.11632" target="_blank" rel="noopener noreferrer">
-          Enhancing Multilingual Counterfactual Generation through Alignment-as-Preference Optimization
+          Macro: Enhancing Multilingual Counterfactual Explanations through Alignment-as-Preference Optimization
         </a>
       </strong><br>
       <strong>Yilong Wang*</strong>, Qianli Wang*, Bohao Chu, Yihong Liu, Jing Yang, Simon Ostermann.<br>
@@ -208,6 +319,51 @@
 
   
 </section>
+<section id="opensource">
+  <h2>Open Source Projects</h2>
+
+  <div class="oss-card">
+    <div class="oss-header">
+      <div class="oss-logo">
+        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="38" height="38" fill="#f0ede3"/>
+          <path d="M7 30 L19 8 L31 30 Z" stroke="#c9ad2f" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+          <path d="M12 22 L26 22" stroke="#c9ad2f" stroke-width="1.8"/>
+          <circle cx="19" cy="8" r="2" fill="#c9ad2f"/>
+        </svg>
+      </div>
+
+      <div class="oss-title-wrap">
+        <div class="oss-project-name">
+          <a href="https://github.com/apache/systemds" target="_blank" rel="noopener noreferrer">
+            Apache SystemDS
+          </a>
+          <span class="oss-badge">Ongoing</span>
+        </div>
+        <div class="oss-sub">
+          Contributor · 2026.05 – Present ·
+          <a href="https://issues.apache.org/jira/browse/SYSTEMDS-3942" target="_blank" rel="noopener noreferrer">
+            SYSTEMDS-3942
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="oss-desc">
+      I am contributing to an open-source project in Apache SystemDS on
+      <strong>LLM-assisted generation of data augmentation pipelines</strong>.
+      Our work focuses on building a flexible pipeline for comparing published augmentation baselines
+      with LLM-generated strategies across datasets with different modalities.
+    </p>
+
+
+    <div class="oss-links">
+      <a class="oss-link" href="https://github.com/apache/systemds" target="_blank" rel="noopener noreferrer">⌘ Repository</a>
+
+    </div>
+  </div>
+</section>
+
   </main>
 </body>
 </html>
