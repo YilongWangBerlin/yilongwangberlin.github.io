@@ -1,0 +1,648 @@
+/* =========================================================================
+   Content page: the readable one.
+
+   White ground, Newsreader body, JetBrains Mono labels. The pixel identity
+   from the landing page survives in small doses only: Silkscreen section
+   titles, hard 2px borders and offset shadows, steps() timing, the
+   seven-band rail on the left edge, and no border-radius. Everything long
+   enough to actually read is set in faces built for reading.
+
+   The seven colours are the darker cut of the landing palette, because the
+   bright ones dissolve on white.
+
+   One variable is written from JS as the reader moves:
+     --read  whole-page scroll progress, 0 to 1, for the rail
+   ========================================================================= */
+
+:root{
+  --bg:#fcfcfa;
+  --fg:#191a20;
+  --fg-2:#4c4e59;
+  --fg-3:#83858f;
+  --rule:#c9c9c1;
+  --rule-2:#e7e6e0;
+  --surface:#f4f3ee;
+
+  --c-1:#d6402b;
+  --c-2:#d97b23;
+  --c-3:#b8901c;
+  --c-4:#3e9455;
+  --c-5:#2a6fc4;
+  --c-6:#4941a8;
+  --c-7:#8a3fa6;
+
+  --measure:720px;
+  --rail:96px;
+  --gap:40px;
+  --shell:calc(var(--measure) + var(--rail) + var(--gap));
+
+  --display:'Silkscreen',monospace;
+  --serif:'Newsreader',Georgia,'Times New Roman',serif;
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+
+  --steps:steps(4,end);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--serif);
+  font-size:17.5px;
+  line-height:1.72;
+  font-optical-sizing:auto;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+::selection{background:var(--fg);color:var(--bg)}
+
+a{color:inherit;text-decoration:none}
+
+:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+
+[hidden]{display:none !important}
+
+/* ---------- the spectrum rail ----------
+   Scroll position, read off the left edge: seven hard bands, no blending,
+   lit from the top as far as the reader has gone. */
+
+.rail{
+  position:fixed;
+  top:0;left:0;bottom:0;
+  z-index:35;
+  width:4px;
+  pointer-events:none;
+  background:var(--rule-2);
+}
+.rail::after{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;
+  height:calc(var(--read,0) * 100%);
+  background:linear-gradient(180deg,
+    var(--c-1) 0 14.28%,
+    var(--c-2) 0 28.57%,
+    var(--c-3) 0 42.85%,
+    var(--c-4) 0 57.14%,
+    var(--c-5) 0 71.42%,
+    var(--c-6) 0 85.71%,
+    var(--c-7) 0 100%);
+  background-size:100% 100vh;
+}
+@media (max-width:900px){ .rail{display:none} }
+
+/* ---------- nav ---------- */
+
+.nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:40;
+  display:flex;
+  align-items:center;
+  gap:28px;
+  height:58px;
+  padding:0 clamp(18px,4vw,44px);
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  background:var(--bg);
+  border-bottom:2px solid transparent;
+  transition:border-color .2s var(--steps);
+}
+.nav.is-stuck{border-bottom-color:var(--rule-2)}
+
+.nav-brand{
+  margin-right:auto;
+  font-family:var(--display);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+.nav-list{display:flex;gap:22px;color:var(--fg-2)}
+.nav-list a{padding:4px 2px;transition:color .15s var(--steps),background-color .15s var(--steps)}
+.nav-list a:hover{
+  color:var(--bg);
+  background:var(--fg);
+  box-shadow:0 0 0 3px var(--fg);
+}
+.nav-back{color:var(--fg-3)}
+
+@media (max-width:760px){
+  .nav-list{gap:14px}
+  .nav-list a:not(.nav-back){display:none}
+}
+
+/* ---------- masthead ----------
+   A quiet opening: the name in the reading face, the role underneath. */
+
+.mast{
+  width:min(100% - 36px,var(--shell));
+  margin:0 auto;
+  padding:clamp(56px,10vh,96px) 0 clamp(30px,5vh,48px);
+}
+.mast-name{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(34px,5vw,52px);
+  line-height:1.05;
+  letter-spacing:-.015em;
+  margin-bottom:10px;
+}
+.mast-role{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--fg-3);
+}
+
+/* ---------- sections ---------- */
+
+main{position:relative;z-index:2;padding-top:58px}
+
+.band{
+  width:min(100% - 36px,var(--shell));
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:var(--rail) 1fr;
+  gap:var(--gap);
+  padding:clamp(56px,9vh,100px) 0;
+  border-top:2px solid var(--rule-2);
+  scroll-margin-top:70px;
+}
+
+.band-mark{
+  position:sticky;top:100px;
+  align-self:start;
+  text-align:right;
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--fg-2);
+  padding-top:.7em;
+}
+.band-mark::after{
+  content:"";
+  display:block;
+  width:24px;height:4px;
+  margin:10px 0 0 auto;
+  background:var(--rule);
+}
+
+.band-body{min-width:0}
+
+/* Titles live in the reading face, same as the text they introduce. The
+   small square in front is the section's band of the spectrum, and the
+   only pixel each title keeps. */
+.band-title{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(24px,3vw,31px);
+  line-height:1.15;
+  letter-spacing:-.01em;
+  margin-bottom:24px;
+}
+.band-title::before{
+  content:"";
+  display:inline-block;
+  width:11px;height:11px;
+  margin-right:14px;
+  transform:translateY(-2px);
+  background:var(--sc,var(--fg));
+}
+.band-intro{color:var(--fg-3);font-size:16.5px;margin-bottom:28px}
+.band-title:last-child{margin-bottom:30px}
+
+@media (max-width:760px){
+  .band{grid-template-columns:1fr;gap:14px;padding:clamp(44px,7vh,64px) 0}
+  .band-mark{position:static;text-align:left;padding-top:0}
+  .band-mark::after{margin:9px auto 0 0}
+}
+
+/* ---------- about ---------- */
+
+.about{
+  display:grid;
+  grid-template-columns:190px 1fr;
+  gap:38px;
+  align-items:start;
+}
+
+.portrait{margin:0}
+.portrait img{
+  display:block;
+  width:100%;height:auto;
+  border:2px solid var(--fg);
+}
+
+.about-body p{margin-bottom:16px}
+.about-body p:last-child{margin-bottom:0}
+.about-body a{
+  border-bottom:2px solid var(--rule);
+  transition:border-color .15s var(--steps),background-color .15s var(--steps),color .15s var(--steps);
+}
+.about-body a:hover{background:var(--fg);color:var(--bg);border-bottom-color:var(--fg)}
+
+.seeking{
+  margin-top:28px;
+  padding:16px 20px;
+  border:2px solid var(--fg);
+  box-shadow:6px 6px 0 var(--rule-2);
+  background:var(--surface);
+}
+.seeking p:last-child{
+  margin-bottom:0;
+  font-size:16px;
+  line-height:1.62;
+  color:var(--fg-2);
+}
+.seeking strong{color:var(--fg);font-weight:500}
+
+@media (max-width:760px){
+  .about{grid-template-columns:1fr;gap:26px}
+  .portrait{max-width:190px}
+}
+
+/* ---------- news ---------- */
+
+.news{list-style:none}
+.news li{
+  display:grid;
+  grid-template-columns:104px 1fr;
+  gap:22px;
+  padding:14px 0;
+  border-top:2px solid var(--rule-2);
+}
+.news li:first-child{border-top:none;padding-top:0}
+.news time{
+  font-family:var(--mono);
+  font-size:11.5px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--fg-3);
+  padding-top:.45em;
+}
+.news p{font-size:16.5px;line-height:1.6}
+
+@media (max-width:560px){
+  .news li{grid-template-columns:1fr;gap:4px}
+  .news time{padding-top:0}
+}
+
+/* ---------- publications ---------- */
+
+.paper{
+  display:grid;
+  grid-template-columns:158px 1fr;
+  gap:32px;
+  padding:34px 0;
+  border-top:2px solid var(--rule-2);
+}
+.paper:first-of-type{border-top:none;padding-top:0}
+.paper-body{min-width:0}
+
+/* A figure in a frame. Hover lifts it one notch, the way a pixel button
+   would. The figures are white paper on a white page, so the border does
+   the separating, not a dimming filter. */
+.paper-thumb{
+  display:grid;
+  place-items:center;
+  align-self:start;
+  min-height:110px;
+  padding:0;
+  border:2px solid var(--rule);
+  background:#fff;
+  cursor:zoom-in;
+  overflow:hidden;
+  transition:transform .15s var(--steps),box-shadow .15s var(--steps),border-color .15s var(--steps);
+}
+.paper-thumb img{
+  display:block;
+  width:100%;height:auto;
+  max-height:236px;
+  object-fit:contain;
+}
+.paper-thumb:hover,
+.paper-thumb:focus-visible{
+  border-color:var(--fg);
+  transform:translate(-3px,-3px);
+  box-shadow:5px 5px 0 var(--rule-2);
+}
+
+@media (max-width:700px){
+  .paper{grid-template-columns:1fr;gap:20px}
+  .paper-thumb{max-width:190px}
+}
+
+.paper-venue{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--fg-3);
+  margin-bottom:10px;
+}
+
+.paper-title{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(20px,2.3vw,24px);
+  line-height:1.3;
+  letter-spacing:-.01em;
+  margin-bottom:10px;
+}
+.paper-title a,
+.oss-name a{
+  border-bottom:2px solid var(--rule);
+  transition:background-color .15s var(--steps),color .15s var(--steps),border-color .15s var(--steps);
+}
+.paper-title a:hover,
+.oss-name a:hover{background:var(--fg);color:var(--bg);border-bottom-color:var(--fg)}
+
+.paper-authors{font-size:15.5px;line-height:1.6;color:var(--fg-2);margin-bottom:14px}
+.paper-authors .me{color:var(--fg);font-weight:500}
+.paper-note{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.08em;
+  color:var(--fg-3);
+  white-space:nowrap;
+}
+.paper-note::before{
+  content:"·";
+  margin:0 10px 0 6px;
+  color:var(--fg-3);
+}
+
+/* The excerpt is the paper's own opening, verbatim, never a rewrite */
+.abstract{
+  padding-left:16px;
+  border-left:4px solid var(--rule);
+  margin-bottom:18px;
+}
+.abstract-label{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--fg-3);
+  margin-bottom:6px;
+}
+.abstract p:last-child{
+  font-size:16px;
+  line-height:1.62;
+  color:var(--fg-2);
+}
+.abstract .cut{color:var(--fg-3)}
+
+.chips{display:flex;flex-wrap:wrap;gap:12px}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 14px;
+  border:2px solid var(--rule);
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--fg-2);
+  background:transparent;
+  transition:transform .15s var(--steps),box-shadow .15s var(--steps),
+             color .15s var(--steps),border-color .15s var(--steps);
+}
+.chip:hover,.chip:focus-visible{
+  color:var(--fg);
+  border-color:var(--fg);
+  transform:translate(-2px,-2px);
+  box-shadow:4px 4px 0 var(--rule-2);
+}
+.chip:active{transform:none;box-shadow:none}
+
+/* a chip that happens to be a <button>, for the BibTeX copy action */
+button.chip{
+  background:transparent;
+  cursor:pointer;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.12em;
+}
+button.chip.copied{color:var(--c-4);border-color:var(--c-4)}
+
+/* ---------- research: the same seven colours ---------- */
+
+.themes{list-style:none}
+.themes li{
+  position:relative;
+  padding:16px 0 16px 22px;
+  border-top:2px solid var(--rule-2);
+  border-left:6px solid var(--c);
+  margin-left:-28px;
+  transition:background-color .15s var(--steps);
+}
+.themes li:first-child{border-top:none;padding-top:0}
+
+/* Pointing at a row lets its band flood in from the left, with a hard
+   edge. Light does not feather here either. */
+.themes li::before{
+  content:"";
+  position:absolute;
+  inset:0 0 0 -6px;
+  z-index:-1;
+  background:linear-gradient(90deg,
+    color-mix(in srgb,var(--c) 12%,transparent) 0 42%,
+    transparent 42%);
+  opacity:0;
+  transition:opacity .15s var(--steps);
+  pointer-events:none;
+}
+.themes li:hover::before{opacity:1}
+
+.theme-term{
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--c);
+  margin-bottom:6px;
+}
+.themes li:hover .theme-term::before{content:"> "}
+.theme-gloss{font-size:16.5px;line-height:1.6;color:var(--fg-2)}
+
+@media (max-width:560px){
+  .themes li{margin-left:0}
+}
+
+/* ---------- photographs ---------- */
+
+.photos{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  gap:16px;
+}
+.photo{margin:0;cursor:zoom-in}
+.photo img{
+  display:block;width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border:2px solid var(--rule-2);
+  transition:border-color .15s var(--steps);
+}
+.photo:hover img{border-color:var(--fg)}
+.photo figcaption{
+  margin-top:8px;
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--fg-3);
+}
+
+/* ---------- open source ---------- */
+
+.oss-meta{
+  display:flex;flex-wrap:wrap;
+  gap:8px 18px;align-items:center;
+  font-family:var(--mono);
+  font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--fg-3);
+  margin-bottom:12px;
+}
+/* .live for work still running, .done for work that has shipped. This
+   section is meant to accumulate projects, so both states stay available. */
+.live,.done{display:inline-flex;align-items:center;gap:8px;color:var(--fg-2)}
+.live::before,.done::before{
+  content:"";width:8px;height:8px;
+}
+.live::before{
+  background:var(--c-4);
+  animation:blink 1.2s steps(1) infinite;
+}
+.done::before{border:2px solid var(--fg-2)}
+@keyframes blink{50%{opacity:0}}
+
+.oss-name{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(20px,2.3vw,24px);
+  margin-bottom:12px;
+}
+.oss p{margin-bottom:20px;color:var(--fg-2)}
+.oss strong{color:var(--fg);font-weight:500}
+
+/* ---------- contact ---------- */
+
+.mailto{
+  display:inline-block;
+  margin-bottom:26px;
+  font-family:var(--serif);
+  font-size:clamp(22px,3vw,30px);
+  font-weight:300;
+  letter-spacing:-.01em;
+  border-bottom:4px solid;
+  border-image:linear-gradient(90deg,
+    var(--c-1) 0 14.28%,
+    var(--c-2) 0 28.57%,
+    var(--c-3) 0 42.85%,
+    var(--c-4) 0 57.14%,
+    var(--c-5) 0 71.42%,
+    var(--c-6) 0 85.71%,
+    var(--c-7) 0 100%) 1;
+  transition:color .15s var(--steps);
+}
+.mailto:hover{color:var(--c-5)}
+
+/* ---------- footer ---------- */
+
+.site-foot{
+  width:min(100% - 36px,var(--shell));
+  margin:0 auto;
+  padding:26px 0 48px;
+  border-top:2px solid var(--rule-2);
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--fg-3);
+}
+
+/* ---------- lightbox ---------- */
+
+.lightbox{
+  position:fixed;inset:0;z-index:100;
+  display:none;align-items:center;justify-content:center;
+  padding:clamp(20px,5vw,60px);
+  background:rgba(252,252,250,.95);
+  cursor:zoom-out;
+}
+.lightbox[open]{display:flex}
+.lightbox-frame{margin:0;max-width:100%;text-align:center}
+.lightbox img{
+  max-width:100%;max-height:84vh;
+  border:2px solid var(--fg);
+  box-shadow:8px 8px 0 var(--rule-2);
+  cursor:default;
+}
+.lightbox figcaption{
+  margin-top:16px;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--fg-3);
+}
+.lightbox-close{
+  position:absolute;top:20px;right:24px;
+  background:var(--bg);
+  border:2px solid var(--rule);
+  padding:4px 10px;
+  color:var(--fg-2);
+  font-family:var(--mono);
+  font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;cursor:pointer;
+}
+.lightbox-close:hover{color:var(--bg);background:var(--fg);border-color:var(--fg)}
+
+/* ---------- reveal ----------
+   Sections do not fade in; they arrive in four frames. Quieter than the
+   landing page, same accent. */
+
+main .rise > *{
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity .45s var(--steps),transform .45s var(--steps);
+}
+main .rise.shown > *{opacity:1;transform:none}
+main .rise.shown > :nth-child(2){transition-delay:80ms}
+main .rise.shown > :nth-child(3){transition-delay:160ms}
+main .rise.shown > :nth-child(4){transition-delay:240ms}
+main .rise.shown > :nth-child(5){transition-delay:320ms}
+
+main .rise.shown .themes > li,
+main .rise.shown .news > li{
+  animation:settle .4s var(--steps) both;
+  animation-delay:calc(140ms + var(--n,0) * 60ms);
+}
+@keyframes settle{
+  from{opacity:0;transform:translateX(-8px)}
+  to{opacity:1;transform:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  main .rise > *{opacity:1;transform:none;transition:none}
+  main .rise.shown .themes > li,
+  main .rise.shown .news > li{animation:none}
+  .live::before{animation:none}
+  .paper-thumb,.chip{transform:none !important}
+  *{transition-duration:.01ms !important}
+}

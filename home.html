@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yilong Wang</title>
+  <meta name="description" content="Yilong Wang, MSc student at TU Berlin, working on the interpretability of multilingual language models. Publications, research interests, and contact." />
+  <meta name="author" content="Yilong Wang" />
+  <meta property="og:title" content="Yilong Wang" />
+  <meta property="og:description" content="Student researcher at TU Berlin. Interpretability, multilingual NLP, counterfactual explanations." />
+  <meta property="og:type" content="profile" />
+  <meta name="theme-color" content="#fcfcfa" />
+
+  <!-- the prism as a stepped pixel pyramid, swapped for the tab bar's theme -->
+  <link rel="icon" media="(prefers-color-scheme: light)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' shape-rendering='crispEdges'%3E%3Cpath fill='%23181818' d='M13 6h6v6h5v6h5v8H3v-8h5v-6h5z'/%3E%3C/svg%3E" />
+  <link rel="icon" media="(prefers-color-scheme: dark)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' shape-rendering='crispEdges'%3E%3Cpath fill='%23f0f0ec' d='M13 6h6v6h5v6h5v8H3v-8h5v-6h5z'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/home.css" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-96T3G6TNZH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-96T3G6TNZH');
+  </script>
+</head>
+
+<!-- =====================================================================
+     The readable page. White ground, serif body, no scanlines: this is
+     where the actual reading happens. The pixel identity survives only in
+     small doses (the Silkscreen titles, the hard borders, the seven-band
+     rail), so the poster at index.html and this page are recognisably the
+     same site. -->
+<body>
+  <div class="rail" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <a class="nav-brand" href="index.html" title="Back to the prism">Yilong Wang</a>
+    <div class="nav-list">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-back" href="index.html">◂ Prism</a>
+    </div>
+  </nav>
+
+  <main id="content">
+    <!-- ============================ masthead ============================ -->
+    <header class="mast">
+      <h1 class="mast-name">Yilong Wang</h1>
+      <p class="mast-role">Student researcher · TU Berlin</p>
+    </header>
+
+    <!-- ============================ about ============================
+         Each section carries one band of the spectrum in --sc; the small
+         square in front of its title is where that band shows up. -->
+    <section class="band" id="about" style="--sc:var(--c-1)">
+      <p class="band-mark">About</p>
+      <div class="band-body rise">
+        <div class="about">
+          <figure class="portrait">
+            <img src="image/image.jpg" alt="Portrait of Yilong Wang" width="1097" height="1434" />
+          </figure>
+          <div class="about-body">
+            <p>
+              I am a master's student in computer science at <strong>TU Berlin</strong>,
+              supervised by
+              <a href="https://home.qiaw99.workers.dev/" target="_blank" rel="noopener noreferrer">Qianli Wang</a>.
+              I wrote my bachelor's thesis with Qianli Wang and
+              <a href="https://nfelnlp.github.io/" target="_blank" rel="noopener noreferrer">Nils Feldhus</a>.
+            </p>
+            <p>
+              My recent research focuses on the interpretability of
+              multilingual language models: whether a concept is represented
+              consistently across languages, and what a model actually relies
+              on when it makes a prediction. Much of my work uses counterfactual
+              explanations, minimal edits to an input that flip a model's
+              prediction. Lately I have also been working with sparse
+              autoencoders, and my recent papers improve self-generated
+              counterfactuals through preference optimization in the
+              multilingual setting and through iterative feedback at
+              inference time.
+            </p>
+            <div class="seeking">
+              <p>
+                Looking for <strong>internship</strong> and <strong>PhD</strong>
+                positions starting in 2027. Feel free to reach out by
+                <a href="mailto:yilong.wang.berlin@gmail.com">email</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ news ============================ -->
+    <section class="band" id="news" style="--sc:var(--c-2)">
+      <p class="band-mark">News</p>
+      <div class="band-body rise">
+        <h2 class="band-title">Recently</h2>
+        <ul class="news">
+          <li>
+            <time datetime="2026-07">Jul 2026</time>
+            <p>Completed my contribution to Apache SystemDS.</p>
+          </li>
+          <li>
+            <time datetime="2026-05">May 2026</time>
+            <p>One paper on multilingual counterfactual explanations is in submission.</p>
+          </li>
+          <li>
+            <time datetime="2026-01">Jan 2026</time>
+            <p>One paper on counterfactual generation is in submission.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================ research ============================ -->
+    <section class="band" id="research" style="--sc:var(--c-3)">
+      <p class="band-mark">Research</p>
+      <div class="band-body rise">
+        <h2 class="band-title">Research interests</h2>
+        <ul class="themes">
+          <li style="--c:var(--c-1)">
+            <p class="theme-term">Multilingual NLP</p>
+            <p class="theme-gloss">Whether a concept lives in the same place inside a model, no matter which language asks for it.</p>
+          </li>
+          <li style="--c:var(--c-2)">
+            <p class="theme-term">Interpretability</p>
+            <p class="theme-gloss">Pulling a dense representation apart into sparse, individually legible features, most often with a sparse autoencoder.</p>
+          </li>
+          <li style="--c:var(--c-3)">
+            <p class="theme-term">Counterfactuals</p>
+            <p class="theme-gloss">The smallest edit that flips a prediction, and everything that edit gives away.</p>
+          </li>
+          <li style="--c:var(--c-4)">
+            <p class="theme-term">On-policy distillation</p>
+            <p class="theme-gloss">Teaching a small model on the trajectories it actually walks, rather than the ones its teacher would have.</p>
+          </li>
+          <li style="--c:var(--c-5)">
+            <p class="theme-term">Reinforcement learning</p>
+            <p class="theme-gloss">A reward is a rough map. Someone still has to walk the route.</p>
+          </li>
+          <li style="--c:var(--c-6)">
+            <p class="theme-term">Memory</p>
+            <p class="theme-gloss">What a model should carry between turns, and what it is better off forgetting.</p>
+          </li>
+          <li style="--c:var(--c-7)">
+            <p class="theme-term">Modality priors</p>
+            <p class="theme-gloss">Every modality arrives already holding assumptions about what it is looking at.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================ publications ============================
+         Excerpts are the opening of each paper's own abstract, verbatim. -->
+    <section class="band" id="publications" style="--sc:var(--c-4)">
+      <p class="band-mark">Papers</p>
+      <div class="band-body rise">
+        <h2 class="band-title">Publications</h2>
+
+        <article class="paper">
+          <button class="paper-thumb" type="button"
+                  data-full="assets/thumbs/macro-overview.png"
+                  data-cap="Macro · method overview"
+                  aria-label="Enlarge the method overview figure from Macro">
+            <img src="assets/thumbs/macro-overview.png" width="1100" height="779"
+                 alt="Method overview diagram from the Macro paper"
+                 loading="lazy" decoding="async" />
+          </button>
+          <div class="paper-body">
+          <p class="paper-venue">Preprint · under review · 2026</p>
+          <h3 class="paper-title">
+            <a href="https://arxiv.org/abs/2605.11632" target="_blank" rel="noopener noreferrer">Macro: Enhancing Multilingual Counterfactual Explanations through Alignment-as-Preference Optimization</a>
+          </h3>
+          <p class="paper-authors">
+            <span class="me">Yilong Wang</span>*, Qianli Wang*, Bohao Chu, Yihong Liu, Jing Yang, Simon Ostermann
+            <span class="paper-note">* equal contribution</span>
+          </p>
+          <div class="abstract">
+            <p class="abstract-label">From the abstract</p>
+            <p>Self-generated counterfactual explanations (SCEs) are minimally modified inputs (minimality) generated by large language models (LLMs) that flip their own predictions (validity) <span class="cut">[…]</span></p>
+          </div>
+          <div class="chips">
+            <a class="chip" href="https://arxiv.org/abs/2605.11632" target="_blank" rel="noopener noreferrer">arXiv ↗</a>
+            <button class="chip" type="button" data-bibtex="@misc{wang2026macro,&#10;  title={Macro: Enhancing Multilingual Counterfactual Explanations through Alignment-as-Preference Optimization},&#10;  author={Wang, Yilong and Wang, Qianli and Chu, Bohao and Liu, Yihong and Yang, Jing and Ostermann, Simon},&#10;  year={2026},&#10;  eprint={2605.11632},&#10;  archivePrefix={arXiv},&#10;  primaryClass={cs.CL}&#10;}">BibTeX</button>
+          </div>
+          </div>
+        </article>
+
+        <article class="paper">
+          <button class="paper-thumb" type="button"
+                  data-full="assets/thumbs/iflip-overview.png"
+                  data-cap="iFlip · method overview"
+                  aria-label="Enlarge the method overview figure from iFlip">
+            <img src="assets/thumbs/iflip-overview.png" width="1100" height="416"
+                 alt="Method overview diagram from the iFlip paper"
+                 loading="lazy" decoding="async" />
+          </button>
+          <div class="paper-body">
+          <p class="paper-venue">Preprint · under review · 2026</p>
+          <h3 class="paper-title">
+            <a href="https://arxiv.org/abs/2601.01446" target="_blank" rel="noopener noreferrer">iFlip: Iterative Feedback-driven Counterfactual Example Refinement</a>
+          </h3>
+          <p class="paper-authors">
+            <span class="me">Yilong Wang</span>*, Qianli Wang*, Nils Feldhus
+            <span class="paper-note">* equal contribution</span>
+          </p>
+          <div class="abstract">
+            <p class="abstract-label">From the abstract</p>
+            <p>Counterfactual examples are minimal edits to an input that alter a model's prediction. They are widely employed in explainable AI to probe model behavior and in natural language processing (NLP) to augment training data. <span class="cut">[…]</span></p>
+          </div>
+          <div class="chips">
+            <a class="chip" href="https://arxiv.org/abs/2601.01446" target="_blank" rel="noopener noreferrer">arXiv ↗</a>
+            <button class="chip" type="button" data-bibtex="@misc{wang2026iflip,&#10;  title={iFlip: Iterative Feedback-driven Counterfactual Example Refinement},&#10;  author={Wang, Yilong and Wang, Qianli and Feldhus, Nils},&#10;  year={2026},&#10;  eprint={2601.01446},&#10;  archivePrefix={arXiv},&#10;  primaryClass={cs.CL}&#10;}">BibTeX</button>
+          </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================ reports ============================ -->
+    <section class="band" id="reports" style="--sc:var(--c-5)">
+      <p class="band-mark">Report</p>
+      <div class="band-body rise">
+        <h2 class="band-title">Coursework</h2>
+
+        <article class="paper">
+          <button class="paper-thumb" type="button"
+                  data-full="assets/thumbs/aia-report-page.png"
+                  data-cap="Rethinking Feature Quality · first page"
+                  aria-label="Enlarge the first page of the report">
+            <img src="assets/thumbs/aia-report-page.png" width="1081" height="1400"
+                 alt="First page of the report on frozen ViT versus HOG features"
+                 loading="lazy" decoding="async" />
+          </button>
+          <div class="paper-body">
+          <p class="paper-venue">TU Berlin · course report</p>
+          <h3 class="paper-title">
+            <a href="pdf/AIA_Group_18_Rethinking_Feature_Quality__Frozen_VIT_versus_HOG_under_Linear_SVM_and_k_NN_Evaluation_on_STL_10_AIA_Project.pdf" target="_blank" rel="noopener noreferrer">Rethinking Feature Quality: Frozen ViT versus HOG under Linear SVM and k-NN Evaluation on STL-10</a>
+          </h3>
+          <p class="paper-authors">
+            <span class="me">Yilong Wang</span>, Lingxuan Zhu, Mingxin Jiang, Junyi Li
+          </p>
+          <div class="abstract">
+            <p class="abstract-label">From the abstract</p>
+            <p>We study how much labelled data self-supervised pretraining can save on STL-10, comparing a classical HOG baseline against frozen ViT features from DINOv3 under an identical linear SVM evaluation across varying training-data fractions. <span class="cut">[…]</span></p>
+          </div>
+          <div class="chips">
+            <a class="chip" href="pdf/AIA_Group_18_Rethinking_Feature_Quality__Frozen_VIT_versus_HOG_under_Linear_SVM_and_k_NN_Evaluation_on_STL_10_AIA_Project.pdf" target="_blank" rel="noopener noreferrer">PDF ↗</a>
+            <a class="chip" href="https://github.com/YilongWangBerlin/hog-vs-vit-stl10" target="_blank" rel="noopener noreferrer">Code ↗</a>
+          </div>
+          </div>
+        </article>
+
+        <article class="paper">
+          <button class="paper-thumb" type="button"
+                  data-full="assets/thumbs/report-page.png"
+                  data-cap="Sentiment Analysis of Financial News Headlines · first page"
+                  aria-label="Enlarge the first page of the report">
+            <img src="assets/thumbs/report-page.png" width="680" height="879"
+                 alt="First page of the report on financial news headline sentiment"
+                 loading="lazy" decoding="async" />
+          </button>
+          <div class="paper-body">
+          <p class="paper-venue">TU Berlin · course report</p>
+          <h3 class="paper-title">
+            <a href="pdf/Sentiment%20Analysis%20of%20Financial%20News%20Headlines.pdf" target="_blank" rel="noopener noreferrer">Sentiment Analysis of Financial News Headlines</a>
+          </h3>
+          <p class="paper-authors">
+            <span class="me">Yilong Wang</span>*, Linda Li*
+            <span class="paper-note">* equal contribution</span>
+          </p>
+          <div class="abstract">
+            <p class="abstract-label">From the introduction</p>
+            <p>Financial sentiment analysis differs from general opinion mining in a fundamental way: sentiment is rarely conveyed through explicit evaluative words <span class="cut">[…]</span></p>
+          </div>
+          <div class="chips">
+            <a class="chip" href="pdf/Sentiment%20Analysis%20of%20Financial%20News%20Headlines.pdf" target="_blank" rel="noopener noreferrer">PDF ↗</a>
+          </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================ photographs ============================
+         Content lives in assets/js/photos.js. Add a line there, not here.
+         The section stays hidden while that list is empty. -->
+    <section class="band" id="photographs" hidden style="--sc:var(--c-6)">
+      <p class="band-mark">Photographs</p>
+      <div class="band-body rise">
+        <h2 class="band-title">Photographs</h2>
+        <p class="band-intro">Evidence that I occasionally leave the building.</p>
+        <div class="photos" id="photoGrid"></div>
+      </div>
+    </section>
+
+    <!-- ============================ open source ============================ -->
+    <section class="band" id="open-source" style="--sc:var(--c-6)">
+      <p class="band-mark">Code</p>
+      <div class="band-body rise">
+        <h2 class="band-title">Open source</h2>
+        <div class="oss">
+          <p class="oss-meta">
+            <span class="done">Completed</span>
+            <span>Contributor · May to July 2026</span>
+          </p>
+          <h3 class="oss-name">
+            <a href="https://github.com/apache/systemds" target="_blank" rel="noopener noreferrer">Apache SystemDS</a>
+          </h3>
+          <p>
+            I contributed to <strong>LLM-assisted generation of data augmentation
+            pipelines</strong>, building a harness that compared published
+            augmentation baselines against LLM-generated strategies across
+            datasets of different modalities.
+          </p>
+          <div class="chips">
+            <a class="chip" href="https://github.com/apache/systemds" target="_blank" rel="noopener noreferrer">Repository ↗</a>
+            <a class="chip" href="https://issues.apache.org/jira/browse/SYSTEMDS-3942" target="_blank" rel="noopener noreferrer">SYSTEMDS-3942 ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ contact ============================ -->
+    <section class="band" id="contact" style="--sc:var(--c-7)">
+      <p class="band-mark">Contact</p>
+      <div class="band-body rise">
+        <h2 class="band-title">Get in touch</h2>
+        <a class="mailto" href="mailto:yilong.wang.berlin@gmail.com">yilong.wang.berlin@gmail.com</a>
+        <div class="chips">
+          <a class="chip" href="https://scholar.google.com/citations?user=nwUJ_P8AAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a>
+          <a class="chip" href="https://github.com/YilongWangBerlin" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <p>© 2026 Yilong Wang · Berlin</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" type="button">Close ✕</button>
+    <figure class="lightbox-frame">
+      <img id="lightboxImg" src="" alt="" />
+      <figcaption id="lightboxCap"></figcaption>
+    </figure>
+  </div>
+
+  <script src="assets/js/photos.js"></script>
+  <script src="assets/js/home.js"></script>
+</body>
+</html>
