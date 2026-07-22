@@ -9,15 +9,14 @@
   <meta property="og:title" content="Yilong Wang" />
   <meta property="og:description" content="Student researcher at TU Berlin. Interpretability, multilingual NLP, counterfactual explanations." />
   <meta property="og:type" content="profile" />
-  <meta name="theme-color" content="#fcfcfa" />
+  <meta name="theme-color" content="#eae8e2" />
 
-  <!-- the prism as a stepped pixel pyramid, swapped for the tab bar's theme -->
-  <link rel="icon" media="(prefers-color-scheme: light)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' shape-rendering='crispEdges'%3E%3Cpath fill='%23181818' d='M13 6h6v6h5v6h5v8H3v-8h5v-6h5z'/%3E%3C/svg%3E" />
-  <link rel="icon" media="(prefers-color-scheme: dark)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' shape-rendering='crispEdges'%3E%3Cpath fill='%23f0f0ec' d='M13 6h6v6h5v6h5v8H3v-8h5v-6h5z'/%3E%3C/svg%3E" />
+  <!-- minimal monogram: a charcoal tile with a stroked Y, matching the page -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2326272a'/%3E%3Cpath d='M10 9L16 17L22 9M16 17V24' fill='none' stroke='%23eae8e2' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/home.css" />
 
@@ -32,11 +31,11 @@
 </head>
 
 <!-- =====================================================================
-     The readable page. White ground, serif body, no scanlines: this is
-     where the actual reading happens. The pixel identity survives only in
-     small doses (the Silkscreen titles, the hard borders, the seven-band
-     rail), so the poster at index.html and this page are recognisably the
-     same site. -->
+     The readable page. Warm paper, serif body, soft light. The seven-band
+     prism from the landing page survives here as the sky and as the rail
+     on the left edge: still seven colours, still in spectrum order, just
+     repainted and blended rather than stepped. The scenery below is drawn
+     by hand in that same palette. -->
 <body>
   <div class="rail" aria-hidden="true"></div>
 
@@ -44,8 +43,10 @@
     <a class="nav-brand" href="index.html" title="Back to the prism">Yilong Wang</a>
     <div class="nav-list">
       <a href="#about">About</a>
+      <a href="#news">News</a>
       <a href="#research">Research</a>
       <a href="#publications">Publications</a>
+      <a href="#open-source">Code</a>
       <a href="#contact">Contact</a>
       <a class="nav-back" href="index.html">◂ Prism</a>
     </div>
@@ -54,20 +55,57 @@
   <main id="content">
     <!-- ============================ masthead ============================ -->
     <header class="mast">
-      <h1 class="mast-name">Yilong Wang</h1>
-      <p class="mast-role">Student researcher · TU Berlin</p>
+      <figure class="mast-portrait">
+        <img src="image/image.jpg" alt="Portrait of Yilong Wang" width="1097" height="1434" />
+      </figure>
+      <div class="mast-body">
+        <h1 class="mast-name">Yilong Wang</h1>
+        <p class="mast-role">Student researcher · TU Berlin</p>
+        <p class="mast-line">
+          Interpretability · multilingual NLP · counterfactual explanations
+        </p>
+        <!-- Each link carries one band of the spectrum. -->
+        <div class="chips mast-links">
+          <a class="chip" href="mailto:yilong.wang.berlin@gmail.com" style="--k:var(--c-1)">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <rect x="1.6" y="3.4" width="12.8" height="9.2" rx="2.6" />
+              <path d="M2.8 5.6 8 9.2l5.2-3.6" />
+            </svg>
+            Email
+          </a>
+          <a class="chip" href="https://scholar.google.com/citations?user=nwUJ_P8AAAAJ" target="_blank" rel="noopener noreferrer" style="--k:var(--c-5)">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M8 2.4 15 6l-7 3.6L1 6z" />
+              <path d="M4.2 7.6v3.1c0 1.1 1.7 2 3.8 2s3.8-.9 3.8-2V7.6" />
+              <path d="M14.4 6.4v3.8" />
+            </svg>
+            Google Scholar
+          </a>
+          <a class="chip" href="https://github.com/YilongWangBerlin" target="_blank" rel="noopener noreferrer" style="--k:var(--c-7)">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <circle cx="4.6" cy="3.6" r="1.9" />
+              <circle cx="4.6" cy="12.4" r="1.9" />
+              <circle cx="11.6" cy="3.6" r="1.9" />
+              <path d="M4.6 5.5v5" />
+              <path d="M11.6 5.5v1.1c0 2.1-1.9 3.2-4 3.4" />
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
     </header>
 
     <!-- ============================ about ============================
          Each section carries one band of the spectrum in --sc; the small
          square in front of its title is where that band shows up. -->
     <section class="band" id="about" style="--sc:var(--c-1)">
-      <p class="band-mark">About</p>
+      <p class="band-mark" aria-hidden="true"></p>
       <div class="band-body rise">
+        <h2 class="band-title">About</h2>
         <div class="about">
-          <figure class="portrait">
-            <img src="image/image.jpg" alt="Portrait of Yilong Wang" width="1097" height="1434" />
-          </figure>
           <div class="about-body">
             <p>
               I am a master's student in computer science at <strong>TU Berlin</strong>,
@@ -102,7 +140,7 @@
 
     <!-- ============================ news ============================ -->
     <section class="band" id="news" style="--sc:var(--c-2)">
-      <p class="band-mark">News</p>
+      <p class="band-mark" aria-hidden="true"></p>
       <div class="band-body rise">
         <h2 class="band-title">Recently</h2>
         <ul class="news">
@@ -124,7 +162,7 @@
 
     <!-- ============================ research ============================ -->
     <section class="band" id="research" style="--sc:var(--c-3)">
-      <p class="band-mark">Research</p>
+      <p class="band-mark" aria-hidden="true"></p>
       <div class="band-body rise">
         <h2 class="band-title">Research interests</h2>
         <ul class="themes">
@@ -163,7 +201,7 @@
     <!-- ============================ publications ============================
          Excerpts are the opening of each paper's own abstract, verbatim. -->
     <section class="band" id="publications" style="--sc:var(--c-4)">
-      <p class="band-mark">Papers</p>
+      <p class="band-mark" aria-hidden="true"></p>
       <div class="band-body rise">
         <h2 class="band-title">Publications</h2>
 
@@ -229,7 +267,7 @@
 
     <!-- ============================ reports ============================ -->
     <section class="band" id="reports" style="--sc:var(--c-5)">
-      <p class="band-mark">Report</p>
+      <p class="band-mark" aria-hidden="true"></p>
       <div class="band-body rise">
         <h2 class="band-title">Coursework</h2>
 
@@ -295,7 +333,7 @@
          Content lives in assets/js/photos.js. Add a line there, not here.
          The section stays hidden while that list is empty. -->
     <section class="band" id="photographs" hidden style="--sc:var(--c-6)">
-      <p class="band-mark">Photographs</p>
+      <p class="band-mark" aria-hidden="true"></p>
       <div class="band-body rise">
         <h2 class="band-title">Photographs</h2>
         <p class="band-intro">Evidence that I occasionally leave the building.</p>
@@ -305,7 +343,7 @@
 
     <!-- ============================ open source ============================ -->
     <section class="band" id="open-source" style="--sc:var(--c-6)">
-      <p class="band-mark">Code</p>
+      <p class="band-mark" aria-hidden="true"></p>
       <div class="band-body rise">
         <h2 class="band-title">Open source</h2>
         <div class="oss">
@@ -332,7 +370,7 @@
 
     <!-- ============================ contact ============================ -->
     <section class="band" id="contact" style="--sc:var(--c-7)">
-      <p class="band-mark">Contact</p>
+      <p class="band-mark" aria-hidden="true"></p>
       <div class="band-body rise">
         <h2 class="band-title">Get in touch</h2>
         <a class="mailto" href="mailto:yilong.wang.berlin@gmail.com">yilong.wang.berlin@gmail.com</a>

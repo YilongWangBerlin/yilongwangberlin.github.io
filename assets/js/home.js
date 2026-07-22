@@ -169,6 +169,41 @@
     section.hidden = false;
   }
 
+  /* ---------- scroll spy ----------
+     Marks the nav link whose section is currently under the nav bar, and
+     hands that link the section's own band colour through --sc. */
+
+  function watchNav() {
+    var links = document.querySelectorAll('.nav-list a[href^="#"]');
+    if (!links.length) return;
+
+    var targets = [];
+    Array.prototype.forEach.call(links, function (a) {
+      var el = document.getElementById(a.getAttribute('href').slice(1));
+      if (el) targets.push({ link: a, section: el });
+    });
+    if (!targets.length) return;
+
+    function mark() {
+      var line = (window.scrollY || 0) + 90;
+      var here = null;
+
+      targets.forEach(function (t) {
+        if (t.section.offsetTop <= line) here = t;
+      });
+
+      targets.forEach(function (t) {
+        var on = t === here;
+        t.link.classList.toggle('is-here', on);
+        if (on) t.link.style.setProperty('--sc', getComputedStyle(t.section).getPropertyValue('--sc'));
+      });
+    }
+
+    window.addEventListener('scroll', mark, { passive: true });
+    window.addEventListener('resize', mark, { passive: true });
+    mark();
+  }
+
   /* ---------- scroll reveal ---------- */
 
   function watchRisers() {
@@ -192,6 +227,7 @@
     buildPhotos();
     numberRows();
     watchRisers();
+    watchNav();
     wireBibtex();
     wireFigures();
     request();
