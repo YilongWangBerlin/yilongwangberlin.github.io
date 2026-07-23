@@ -45,6 +45,9 @@
       --c-7:#a35bb4;
 
       --sans:'Jost',sans-serif;
+
+      /* one silky deceleration, shared by the whole entrance */
+      --ease:cubic-bezier(.16,1,.3,1);
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -112,46 +115,59 @@
     .beam{filter:drop-shadow(0 0 6px rgba(255,255,255,.55))}
     .glass{filter:drop-shadow(0 0 5px rgba(255,255,255,.3))}
 
-    /* entrance: glass, then light, then colour; then stillness */
+    /* entrance: one continuous gesture — the glass settles, the beam
+       arrives, the core widens, the spectrum blooms, the names land.
+       Everything reveals through opacity, so the blurred layers are
+       never re-rasterised mid-flight and the whole thing stays smooth. */
     .glass{
       opacity:0;
-      animation:appear .9s ease-out .1s forwards;
+      animation:appear 1s var(--ease) .15s forwards;
     }
     .beam-line{
       stroke-dasharray:1;
       stroke-dashoffset:1;
-      animation:draw .9s ease-out .5s forwards;
+      animation:draw 1.05s var(--ease) .5s forwards;
     }
     .cone{
       opacity:0;
-      animation:appear .7s ease-out 1.2s forwards;
+      animation:appear .9s var(--ease) 1.15s forwards;
+    }
+    .glint{
+      opacity:0;
+      animation:appear .9s var(--ease) 1.2s forwards;
     }
     .fan{
-      transform-box:fill-box;
-      transform-origin:left center;
-      transform:scaleX(0);
-      animation:sweep 1.4s cubic-bezier(.22,.9,.3,1) 1.35s forwards;
+      opacity:0;
+      will-change:opacity;
+      animation:appear 1.15s var(--ease) 1.3s forwards;
     }
     .label{
       opacity:0;
-      animation:label-in .8s ease-out 2.5s forwards;
+      animation:label-in .8s var(--ease) forwards;
     }
+    /* the names settle one after another, as if the light reaches each
+       band in turn */
+    .l1{animation-delay:2s}
+    .l2{animation-delay:2.08s}
+    .l3{animation-delay:2.16s}
+    .l4{animation-delay:2.24s}
+    .l5{animation-delay:2.32s}
+    .l6{animation-delay:2.4s}
+    .l7{animation-delay:2.48s}
     @keyframes appear{to{opacity:1}}
     @keyframes draw{to{stroke-dashoffset:0}}
-    @keyframes sweep{to{transform:scaleX(1)}}
     @keyframes label-in{to{opacity:.62}}
 
-    /* the halo breathes, slowly enough to be deniable */
+    /* the halo blooms with the spectrum, then breathes, slowly enough
+       to be deniable */
     .fan-glow{
-      animation:sweep 1.4s cubic-bezier(.22,.9,.3,1) 1.35s forwards,
-                breathe 7s ease-in-out 4s infinite alternate;
-    }
-    @keyframes breathe{from{opacity:.34}to{opacity:.46}}
-
-    .glint{
       opacity:0;
-      animation:appear .8s ease-out 1.25s forwards;
+      will-change:opacity;
+      animation:glow-in 1.15s var(--ease) 1.4s forwards,
+                breathe 7s ease-in-out 3.4s infinite alternate;
     }
+    @keyframes glow-in{to{opacity:.22}}
+    @keyframes breathe{from{opacity:.2}to{opacity:.26}}
 
     /* pointing at a band brings it forward, halo and all */
     .band,.label,.gband,.core{transition:opacity .35s ease}
@@ -167,20 +183,25 @@
       .art svg .label{display:none}
     }
 
-    /* ---------- the mobile legend ---------- */
-
-    .legend{display:none}
+    /* ---------- the tracklist ----------
+       The seven names also sit under the art, like the back print of a
+       sleeve. On wide screens they echo the names on the bands; on
+       narrow ones, where the bands' own labels are hidden, they carry
+       the names alone. */
+    .legend{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px 28px;
+      max-width:660px;
+      margin:0 auto;
+      padding:0 18px 16px;
+      font-size:12px;
+      letter-spacing:.24em;
+      text-transform:uppercase;
+    }
     @media (max-width:640px){
-      .legend{
-        display:flex;
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:4px 18px;
-        padding:0 18px 14px;
-        font-size:12px;
-        letter-spacing:.2em;
-        text-transform:uppercase;
-      }
+      .legend{gap:6px 18px;letter-spacing:.2em}
     }
 
     /* ---------- the bar ---------- */
@@ -212,15 +233,15 @@
     }
     .enter:hover,.enter:focus-visible{color:var(--bright)}
 
-    .bar-anim{opacity:0;animation:appear 1s ease-out 2.7s forwards}
+    .bar-anim{opacity:0;animation:appear 1s var(--ease) 2.4s forwards}
 
     @media (max-width:900px){ .caption{display:none} }
 
     @media (prefers-reduced-motion:reduce){
       .glass,.cone,.bar-anim{animation:none;opacity:1}
       .beam-line{animation:none;stroke-dashoffset:0}
-      .fan{animation:none;transform:none}
-      .fan-glow{animation:none;opacity:.38}
+      .fan{animation:none;opacity:1}
+      .fan-glow{animation:none;opacity:.22}
       .glint{animation:none;opacity:1}
       .label{animation:none;opacity:.62}
       .band,.label,.gband,.core,.enter,.nav a{transition:none}
@@ -310,7 +331,7 @@
           <feGaussianBlur stdDeviation="1.4"/>
         </filter>
         <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur stdDeviation="16"/>
+          <feGaussianBlur stdDeviation="7"/>
         </filter>
         <!-- light leaves the glass still white, and unmixes on the way out -->
         <linearGradient id="gcore" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="900" y2="350">
@@ -327,14 +348,10 @@
           <stop offset=".25" stop-color="#000" stop-opacity=".9"/>
           <stop offset="1" stop-color="#000" stop-opacity=".9"/>
         </linearGradient>
-        <filter id="grain">
-          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
-          <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0"/>
-        </filter>
       </defs>
 
       <!-- the halo under the light -->
-      <g class="fan fan-glow" filter="url(#glow)" opacity=".38" aria-hidden="true">
+      <g class="fan fan-glow" filter="url(#glow)" opacity=".22" aria-hidden="true">
         <polygon class="gband gb1" points="694,319 699.1,327.9 1400,233.57 1400,175"    fill="var(--c-1)"/>
         <polygon class="gband gb2" points="699.1,327.9 704.3,336.7 1400,292.14 1400,233.57" fill="var(--c-2)"/>
         <polygon class="gband gb3" points="704.3,336.7 709.4,345.6 1400,350.71 1400,292.14" fill="var(--c-3)"/>
@@ -381,14 +398,11 @@
         <text class="label l7" x="1372" y="555" transform="rotate(14.92 1372 555)">MODALITY PRIORS</text>
       </g>
 
-      <!-- the grain of the sleeve -->
-      <rect x="0" y="0" width="1400" height="760" filter="url(#grain)"
-            pointer-events="none" aria-hidden="true"/>
     </svg>
   </main>
 
-  <!-- narrow screens hide the printed names; this row carries them -->
-  <div class="legend" id="legend" aria-hidden="true"></div>
+  <!-- the seven names as a sleeve's back print, under the art -->
+  <div class="legend bar-anim" id="legend" aria-hidden="true"></div>
 
   <footer class="bar">
     <p class="caption bar-anim">These rays are the seven areas my research covers.</p>
