@@ -23,10 +23,10 @@
        The record sleeve.
 
        Black, one beam, one glass, one spectrum. Nothing moves once the
-       light is through. The seven names sit quietly at the ends of the
-       bands; pointing at a band brings it forward and lets the others
-       fall back into the dark. The lens words at the bottom swap what
-       the bands are called. The door is one small word.
+       light is through. The seven bands are the seven areas of my
+       research, named along their lengths; pointing at a band brings it
+       forward and lets the others fall back into the dark. The door is
+       one small word.
        =================================================================== -->
 
   <style>
@@ -186,9 +186,8 @@
     /* ---------- the bar ---------- */
 
     .bar{
-      display:grid;
-      grid-template-columns:1fr auto 1fr;
-      align-items:center;
+      display:flex;
+      align-items:baseline;
       gap:18px;
       padding:0 clamp(20px,4vw,48px) 26px;
       font-size:12px;
@@ -196,26 +195,7 @@
       text-transform:uppercase;
     }
 
-    .lens{display:flex;gap:22px;justify-self:start}
-    .lens-btn{
-      font-family:var(--sans);
-      font-weight:300;
-      font-size:12px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      color:var(--dimmer);
-      background:none;
-      border:0;
-      padding:4px 0;
-      cursor:pointer;
-      transition:color .25s ease;
-    }
-    .lens-btn:hover{color:var(--dim)}
-    .lens-btn.on{color:var(--bright)}
-
     .caption{
-      justify-self:center;
-      text-align:center;
       color:var(--dimmer);
       letter-spacing:.12em;
       text-transform:none;
@@ -224,7 +204,7 @@
     }
 
     .enter{
-      justify-self:end;
+      margin-left:auto;
       color:var(--dim);
       text-decoration:none;
       padding:4px 0;
@@ -235,9 +215,6 @@
     .bar-anim{opacity:0;animation:appear 1s ease-out 2.7s forwards}
 
     @media (max-width:900px){ .caption{display:none} }
-    @media (max-width:620px){
-      .bar{grid-template-columns:1fr auto;justify-items:start}
-    }
 
     @media (prefers-reduced-motion:reduce){
       .glass,.cone,.bar-anim{animation:none;opacity:1}
@@ -246,7 +223,7 @@
       .fan-glow{animation:none;opacity:.38}
       .glint{animation:none;opacity:1}
       .label{animation:none;opacity:.62}
-      .band,.label,.gband,.core,.lens-btn,.enter,.nav a{transition:none}
+      .band,.label,.gband,.core,.enter,.nav a{transition:none}
     }
   </style>
 
@@ -414,14 +391,7 @@
   <div class="legend" id="legend" aria-hidden="true"></div>
 
   <footer class="bar">
-    <div class="lens bar-anim" role="group" aria-label="Choose what the prism splits the beam into">
-      <button type="button" class="lens-btn on" data-mode="research" aria-pressed="true">Research</button>
-      <button type="button" class="lens-btn" data-mode="languages" aria-pressed="false">Languages</button>
-      <button type="button" class="lens-btn" data-mode="features" aria-pressed="false">Features</button>
-    </div>
-
-    <p class="caption bar-anim" id="lensCaption">These rays are the seven areas my research covers.</p>
-
+    <p class="caption bar-anim">These rays are the seven areas my research covers.</p>
     <a class="enter bar-anim" href="home.html">Enter</a>
   </footer>
 
@@ -430,57 +400,18 @@
       'use strict';
 
       var COLORS = ['#ef4230', '#f78a22', '#f7d334', '#4fb556', '#339bdf', '#5a62b8', '#a35bb4'];
+      var LABELS = ['Multilingual NLP', 'Interpretability', 'Counterfactuals',
+                    'On-policy distillation', 'Reinforcement learning', 'Memory', 'Modality priors'];
 
-      var MODES = {
-        research: {
-          caption: 'These rays are the seven areas my research covers.',
-          labels: ['Multilingual NLP', 'Interpretability', 'Counterfactuals',
-                   'On-policy distillation', 'Reinforcement learning', 'Memory', 'Modality priors']
-        },
-        languages: {
-          caption: 'I work on multilingual NLP: whether meaning stays the same across languages like these.',
-          labels: ['English', 'Deutsch', '中文', 'Français', 'Русский', '日本語', 'Español']
-        },
-        features: {
-          caption: 'I work with sparse autoencoders: they split dense activations into single-meaning features like these.',
-          labels: ['Golden Gate Bridge', 'Base64', 'DNA sequences', 'Legal boilerplate',
-                   'Sarcasm', 'Code comments', 'Citation format']
-        }
-      };
-
-      var mode = 'research';
-      var caption = document.getElementById('lensCaption');
       var legend = document.getElementById('legend');
-      var buttons = document.querySelectorAll('.lens-btn');
       var svg = document.querySelector('.art svg');
 
-      function render() {
-        caption.textContent = MODES[mode].caption;
-        MODES[mode].labels.forEach(function (label, i) {
-          var el = svg.querySelector('.l' + (i + 1));
-          if (el) el.textContent = label.toUpperCase();
-        });
-        legend.textContent = '';
-        MODES[mode].labels.forEach(function (label, i) {
-          var item = document.createElement('span');
-          item.style.color = COLORS[i];
-          item.textContent = label.toUpperCase();
-          legend.appendChild(item);
-        });
-      }
-
-      Array.prototype.forEach.call(buttons, function (btn) {
-        btn.addEventListener('click', function () {
-          var next = btn.getAttribute('data-mode');
-          if (!MODES[next] || next === mode) return;
-          mode = next;
-          Array.prototype.forEach.call(buttons, function (b) {
-            var on = b === btn;
-            b.classList.toggle('on', on);
-            b.setAttribute('aria-pressed', on ? 'true' : 'false');
-          });
-          render();
-        });
+      /* narrow screens hide the printed names; carry them in the legend */
+      LABELS.forEach(function (label, i) {
+        var item = document.createElement('span');
+        item.style.color = COLORS[i];
+        item.textContent = label.toUpperCase();
+        legend.appendChild(item);
       });
 
       /* pointing at a band brings it forward and lets the rest fall back */
@@ -509,8 +440,6 @@
         })(i);
       }
       svg.addEventListener('mouseleave', clearHot);
-
-      render();
     })();
   </script>
 </body>
