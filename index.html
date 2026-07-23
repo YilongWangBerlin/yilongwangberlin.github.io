@@ -9,7 +9,7 @@
   <meta property="og:title" content="Yilong Wang" />
   <meta property="og:description" content="Student researcher at TU Berlin. Interpretability, multilingual NLP, counterfactual explanations." />
   <meta property="og:type" content="profile" />
-  <meta name="theme-color" content="#06060c" />
+  <meta name="theme-color" content="#000000" />
 
   <!-- the prism as a stepped pixel pyramid, swapped for the tab bar's theme -->
   <link rel="icon" media="(prefers-color-scheme: light)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' shape-rendering='crispEdges'%3E%3Cpath fill='%23181818' d='M13 6h6v6h5v6h5v8H3v-8h5v-6h5z'/%3E%3C/svg%3E" />
@@ -17,9 +17,238 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/landing.css" />
+  <!-- ===================================================================
+       The record sleeve.
+
+       Black, one beam, one glass, one spectrum. Nothing moves once the
+       light is through. The seven names sit quietly at the ends of the
+       bands; pointing at a band brings it forward and lets the others
+       fall back into the dark. The lens words at the bottom swap what
+       the bands are called. The door is one small word.
+       =================================================================== -->
+
+  <style>
+    :root{
+      --bg:#000;
+      --dim:#8d8d93;
+      --dimmer:#55555b;
+      --bright:#f2f2f4;
+
+      --c-1:#ef4230;
+      --c-2:#f78a22;
+      --c-3:#f7d334;
+      --c-4:#4fb556;
+      --c-5:#339bdf;
+      --c-6:#5a62b8;
+      --c-7:#a35bb4;
+
+      --sans:'Jost',sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    html,body{height:100%}
+
+    body{
+      background:var(--bg);
+      color:var(--dim);
+      font-family:var(--sans);
+      font-weight:300;
+      display:flex;
+      flex-direction:column;
+      min-height:100svh;
+      overflow:hidden;
+    }
+
+    ::selection{background:var(--bright);color:var(--bg)}
+    a{color:inherit}
+    :focus-visible{outline:1px solid var(--bright);outline-offset:4px}
+
+    .sr-only{
+      position:absolute;
+      width:1px;height:1px;
+      padding:0;margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+
+    /* ---------- nav ---------- */
+
+    .nav{
+      display:flex;
+      align-items:baseline;
+      gap:26px;
+      padding:22px clamp(20px,4vw,48px) 0;
+      font-size:12px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+    }
+    .nav a{text-decoration:none;transition:color .25s ease}
+    .nav a:hover{color:var(--bright)}
+    .nav-brand{margin-right:auto;color:var(--dim)}
+    @media (max-width:620px){ .nav-list{display:none} }
+
+    /* ---------- the sleeve ---------- */
+
+    .art{
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:0;
+      padding:0 clamp(8px,2vw,30px);
+    }
+    .art svg{
+      width:100%;
+      height:100%;
+      max-height:78svh;
+      display:block;
+    }
+
+    .beam{filter:drop-shadow(0 0 6px rgba(255,255,255,.55))}
+    .glass{filter:drop-shadow(0 0 5px rgba(255,255,255,.3))}
+
+    /* entrance: glass, then light, then colour; then stillness */
+    .glass{
+      opacity:0;
+      animation:appear .9s ease-out .1s forwards;
+    }
+    .beam-line{
+      stroke-dasharray:1;
+      stroke-dashoffset:1;
+      animation:draw .9s ease-out .5s forwards;
+    }
+    .cone{
+      opacity:0;
+      animation:appear .7s ease-out 1.2s forwards;
+    }
+    .fan{
+      transform-box:fill-box;
+      transform-origin:left center;
+      transform:scaleX(0);
+      animation:sweep 1.4s cubic-bezier(.22,.9,.3,1) 1.35s forwards;
+    }
+    .label{
+      opacity:0;
+      animation:label-in .8s ease-out 2.5s forwards;
+    }
+    @keyframes appear{to{opacity:1}}
+    @keyframes draw{to{stroke-dashoffset:0}}
+    @keyframes sweep{to{transform:scaleX(1)}}
+    @keyframes label-in{to{opacity:.62}}
+
+    /* the halo breathes, slowly enough to be deniable */
+    .fan-glow{
+      animation:sweep 1.4s cubic-bezier(.22,.9,.3,1) 1.35s forwards,
+                breathe 7s ease-in-out 4s infinite alternate;
+    }
+    @keyframes breathe{from{opacity:.34}to{opacity:.46}}
+
+    .glint{
+      opacity:0;
+      animation:appear .8s ease-out 1.25s forwards;
+    }
+
+    /* pointing at a band brings it forward, halo and all */
+    .band,.label,.gband,.core{transition:opacity .35s ease}
+    svg.focus .band{opacity:.22}
+    svg.focus .label{opacity:.14}
+    svg.focus .gband{opacity:.12}
+    svg.focus .core{opacity:.15}
+    svg.focus .band.hot{opacity:1}
+    svg.focus .label.hot{opacity:1}
+    svg.focus .gband.hot{opacity:1}
+
+    @media (max-width:640px){
+      .art svg .label{display:none}
+    }
+
+    /* ---------- the mobile legend ---------- */
+
+    .legend{display:none}
+    @media (max-width:640px){
+      .legend{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:4px 18px;
+        padding:0 18px 14px;
+        font-size:12px;
+        letter-spacing:.2em;
+        text-transform:uppercase;
+      }
+    }
+
+    /* ---------- the bar ---------- */
+
+    .bar{
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+      gap:18px;
+      padding:0 clamp(20px,4vw,48px) 26px;
+      font-size:12px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+    }
+
+    .lens{display:flex;gap:22px;justify-self:start}
+    .lens-btn{
+      font-family:var(--sans);
+      font-weight:300;
+      font-size:12px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:var(--dimmer);
+      background:none;
+      border:0;
+      padding:4px 0;
+      cursor:pointer;
+      transition:color .25s ease;
+    }
+    .lens-btn:hover{color:var(--dim)}
+    .lens-btn.on{color:var(--bright)}
+
+    .caption{
+      justify-self:center;
+      text-align:center;
+      color:var(--dimmer);
+      letter-spacing:.12em;
+      text-transform:none;
+      font-size:13px;
+      max-width:52ch;
+    }
+
+    .enter{
+      justify-self:end;
+      color:var(--dim);
+      text-decoration:none;
+      padding:4px 0;
+      transition:color .25s ease;
+    }
+    .enter:hover,.enter:focus-visible{color:var(--bright)}
+
+    .bar-anim{opacity:0;animation:appear 1s ease-out 2.7s forwards}
+
+    @media (max-width:900px){ .caption{display:none} }
+    @media (max-width:620px){
+      .bar{grid-template-columns:1fr auto;justify-items:start}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .glass,.cone,.bar-anim{animation:none;opacity:1}
+      .beam-line{animation:none;stroke-dashoffset:0}
+      .fan{animation:none;transform:none}
+      .fan-glow{animation:none;opacity:.38}
+      .glint{animation:none;opacity:1}
+      .label{animation:none;opacity:.62}
+      .band,.label,.gband,.core,.lens-btn,.enter,.nav a{transition:none}
+    }
+  </style>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-96T3G6TNZH"></script>
@@ -31,54 +260,258 @@
   </script>
 </head>
 
-<!-- =====================================================================
-     The poster. One screen, one drawing, one door.
-
-     The prism scene is rendered at low resolution and scaled up with the
-     smoothing off. What the seven rays mean depends on the lens the
-     visitor picks: research directions, languages, or SAE features. Same
-     beam every time; only the reading changes, which is roughly the
-     thesis. The actual content lives in home.html.
-     ===================================================================== -->
 <body>
-  <div class="mesh" aria-hidden="true"></div>
-  <div class="scanlines" aria-hidden="true"></div>
+  <h1 class="sr-only">Yilong Wang</h1>
 
   <nav class="nav">
     <a class="nav-brand" href="index.html">Yilong Wang</a>
-    <div class="nav-list">
+    <span class="nav-list">
       <a href="home.html#about">About</a>
       <a href="home.html#research">Research</a>
       <a href="home.html#publications">Publications</a>
       <a href="home.html#contact">Contact</a>
-    </div>
+    </span>
   </nav>
 
-  <header class="hero" id="top">
-    <canvas class="spectrum" id="spectrum" aria-hidden="true"></canvas>
+  <main class="art">
+    <svg viewBox="0 0 1400 760" xmlns="http://www.w3.org/2000/svg" role="img"
+         aria-label="A beam of white light enters a glass prism on a black field and leaves as a fan of seven coloured bands.">
 
-    <div class="hero-inner">
-      <!-- On narrow screens the canvas has no room for ray labels, so the
-           same seven names appear here instead, filled in by landing.js
-           and swapped with the lens. Hidden on desktop. -->
-      <div class="ray-legend rise" id="rayLegend"></div>
+      <!-- the glass -->
+      <path class="glass" d="M 640 225 L 790 485 L 490 485 Z"
+            fill="rgba(255,255,255,.02)" stroke="#e8e8ec" stroke-width="2.2"
+            stroke-linejoin="miter"/>
 
-      <p class="eyebrow rise">Student researcher · TU Berlin</p>
-      <h1 class="hero-name rise">Yilong Wang</h1>
+      <!-- the beam -->
+      <g class="beam">
+        <line class="beam-line" x1="0" y1="430" x2="557" y2="368"
+              stroke="#f2f2f4" stroke-width="3" pathLength="1"/>
+      </g>
 
-      <p class="lens-caption rise" id="lensCaption">These rays are the seven areas my research covers.</p>
+      <!-- the light widening inside the glass -->
+      <path class="cone" d="M 557 368 L 694 319 L 730 381 Z"
+            fill="rgba(255,255,255,.10)"/>
 
-      <div class="lens rise" role="group" aria-label="Choose what the prism splits the beam into">
-        <span class="lens-label">Lens</span>
-        <button type="button" class="lens-btn on" data-mode="research" aria-pressed="true">Research</button>
-        <button type="button" class="lens-btn" data-mode="languages" aria-pressed="false">Languages</button>
-        <button type="button" class="lens-btn" data-mode="features" aria-pressed="false">Features</button>
-      </div>
+      <defs>
+        <!-- each band fades in from the glass and brightens outward -->
+        <linearGradient id="g1" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="1400" y2="350">
+          <stop offset="0" stop-color="var(--c-1)" stop-opacity=".35"/>
+          <stop offset=".4" stop-color="var(--c-1)" stop-opacity=".92"/>
+          <stop offset="1" stop-color="var(--c-1)"/>
+        </linearGradient>
+        <linearGradient id="g2" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="1400" y2="350">
+          <stop offset="0" stop-color="var(--c-2)" stop-opacity=".35"/>
+          <stop offset=".4" stop-color="var(--c-2)" stop-opacity=".92"/>
+          <stop offset="1" stop-color="var(--c-2)"/>
+        </linearGradient>
+        <linearGradient id="g3" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="1400" y2="350">
+          <stop offset="0" stop-color="var(--c-3)" stop-opacity=".35"/>
+          <stop offset=".4" stop-color="var(--c-3)" stop-opacity=".92"/>
+          <stop offset="1" stop-color="var(--c-3)"/>
+        </linearGradient>
+        <linearGradient id="g4" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="1400" y2="350">
+          <stop offset="0" stop-color="var(--c-4)" stop-opacity=".35"/>
+          <stop offset=".4" stop-color="var(--c-4)" stop-opacity=".92"/>
+          <stop offset="1" stop-color="var(--c-4)"/>
+        </linearGradient>
+        <linearGradient id="g5" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="1400" y2="350">
+          <stop offset="0" stop-color="var(--c-5)" stop-opacity=".35"/>
+          <stop offset=".4" stop-color="var(--c-5)" stop-opacity=".92"/>
+          <stop offset="1" stop-color="var(--c-5)"/>
+        </linearGradient>
+        <linearGradient id="g6" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="1400" y2="350">
+          <stop offset="0" stop-color="var(--c-6)" stop-opacity=".35"/>
+          <stop offset=".4" stop-color="var(--c-6)" stop-opacity=".92"/>
+          <stop offset="1" stop-color="var(--c-6)"/>
+        </linearGradient>
+        <linearGradient id="g7" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="1400" y2="350">
+          <stop offset="0" stop-color="var(--c-7)" stop-opacity=".35"/>
+          <stop offset=".4" stop-color="var(--c-7)" stop-opacity=".92"/>
+          <stop offset="1" stop-color="var(--c-7)"/>
+        </linearGradient>
+        <filter id="soften" x="-5%" y="-5%" width="110%" height="110%">
+          <feGaussianBlur stdDeviation="1.4"/>
+        </filter>
+        <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="16"/>
+        </filter>
+        <!-- light leaves the glass still white, and unmixes on the way out -->
+        <linearGradient id="gcore" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="900" y2="350">
+          <stop offset="0" stop-color="#fff" stop-opacity=".5"/>
+          <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+        <radialGradient id="gglint">
+          <stop offset="0" stop-color="#fff" stop-opacity=".45"/>
+          <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </radialGradient>
+        <!-- the seams fade in once the light has finished unmixing -->
+        <linearGradient id="gseam" gradientUnits="userSpaceOnUse" x1="780" y1="350" x2="1400" y2="350">
+          <stop offset="0" stop-color="#000" stop-opacity="0"/>
+          <stop offset=".25" stop-color="#000" stop-opacity=".9"/>
+          <stop offset="1" stop-color="#000" stop-opacity=".9"/>
+        </linearGradient>
+        <filter id="grain">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+          <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0"/>
+        </filter>
+      </defs>
 
-      <a class="enter rise" href="home.html">Enter <span aria-hidden="true">▸</span></a>
+      <!-- the halo under the light -->
+      <g class="fan fan-glow" filter="url(#glow)" opacity=".38" aria-hidden="true">
+        <polygon class="gband gb1" points="694,319 699.1,327.9 1400,233.57 1400,175"    fill="var(--c-1)"/>
+        <polygon class="gband gb2" points="699.1,327.9 704.3,336.7 1400,292.14 1400,233.57" fill="var(--c-2)"/>
+        <polygon class="gband gb3" points="704.3,336.7 709.4,345.6 1400,350.71 1400,292.14" fill="var(--c-3)"/>
+        <polygon class="gband gb4" points="709.4,345.6 714.6,354.4 1400,409.29 1400,350.71" fill="var(--c-4)"/>
+        <polygon class="gband gb5" points="714.6,354.4 719.7,363.3 1400,467.86 1400,409.29" fill="var(--c-5)"/>
+        <polygon class="gband gb6" points="719.7,363.3 724.9,372.1 1400,526.43 1400,467.86" fill="var(--c-6)"/>
+        <polygon class="gband gb7" points="724.9,372.1 730,381 1400,585 1400,526.43"    fill="var(--c-7)"/>
+      </g>
+
+      <!-- the spectrum, one slender fan of seven bands -->
+      <g class="fan" filter="url(#soften)">
+        <polygon class="band b1" points="694,319 699.1,327.9 1400,233.57 1400,175"    fill="url(#g1)"/>
+        <polygon class="band b2" points="699.1,327.9 704.3,336.7 1400,292.14 1400,233.57" fill="url(#g2)"/>
+        <polygon class="band b3" points="704.3,336.7 709.4,345.6 1400,350.71 1400,292.14" fill="url(#g3)"/>
+        <polygon class="band b4" points="709.4,345.6 714.6,354.4 1400,409.29 1400,350.71" fill="url(#g4)"/>
+        <polygon class="band b5" points="714.6,354.4 719.7,363.3 1400,467.86 1400,409.29" fill="url(#g5)"/>
+        <polygon class="band b6" points="719.7,363.3 724.9,372.1 1400,526.43 1400,467.86" fill="url(#g6)"/>
+        <polygon class="band b7" points="724.9,372.1 730,381 1400,585 1400,526.43"    fill="url(#g7)"/>
+        <!-- six hairline seams, screen-print style -->
+        <g stroke="url(#gseam)" stroke-width="2" fill="none" pointer-events="none" aria-hidden="true">
+          <line x1="780" y1="317.0" x2="1400" y2="233.57"/>
+          <line x1="780" y1="331.9" x2="1400" y2="292.14"/>
+          <line x1="780" y1="346.1" x2="1400" y2="350.71"/>
+          <line x1="780" y1="359.6" x2="1400" y2="409.29"/>
+          <line x1="780" y1="372.6" x2="1400" y2="467.86"/>
+          <line x1="780" y1="384.7" x2="1400" y2="526.43"/>
+        </g>
+        <!-- the unmixing white core -->
+        <polygon class="core" points="694,319 900,277 900,432.8 730,381" fill="url(#gcore)" pointer-events="none"/>
+      </g>
+
+      <!-- the touch of light where the beam meets the glass -->
+      <circle class="glint" cx="557" cy="368" r="26" fill="url(#gglint)" pointer-events="none"/>
+
+      <!-- the seven names, printed along their bands -->
+      <g font-family="Jost,sans-serif" font-size="20" letter-spacing="3"
+         text-anchor="end" fill="#050505">
+        <text class="label l1" x="1372" y="216" transform="rotate(-9.62 1372 216)">MULTILINGUAL NLP</text>
+        <text class="label l2" x="1372" y="273" transform="rotate(-5.68 1372 273)">INTERPRETABILITY</text>
+        <text class="label l3" x="1372" y="329" transform="rotate(-1.63 1372 329)">COUNTERFACTUALS</text>
+        <text class="label l4" x="1372" y="386" transform="rotate(2.50 1372 386)">ON-POLICY DISTILLATION</text>
+        <text class="label l5" x="1372" y="442" transform="rotate(6.66 1372 442)">REINFORCEMENT LEARNING</text>
+        <text class="label l6" x="1372" y="499" transform="rotate(10.81 1372 499)">MEMORY</text>
+        <text class="label l7" x="1372" y="555" transform="rotate(14.92 1372 555)">MODALITY PRIORS</text>
+      </g>
+
+      <!-- the grain of the sleeve -->
+      <rect x="0" y="0" width="1400" height="760" filter="url(#grain)"
+            pointer-events="none" aria-hidden="true"/>
+    </svg>
+  </main>
+
+  <!-- narrow screens hide the printed names; this row carries them -->
+  <div class="legend" id="legend" aria-hidden="true"></div>
+
+  <footer class="bar">
+    <div class="lens bar-anim" role="group" aria-label="Choose what the prism splits the beam into">
+      <button type="button" class="lens-btn on" data-mode="research" aria-pressed="true">Research</button>
+      <button type="button" class="lens-btn" data-mode="languages" aria-pressed="false">Languages</button>
+      <button type="button" class="lens-btn" data-mode="features" aria-pressed="false">Features</button>
     </div>
-  </header>
 
-  <script src="assets/js/landing.js"></script>
+    <p class="caption bar-anim" id="lensCaption">These rays are the seven areas my research covers.</p>
+
+    <a class="enter bar-anim" href="home.html">Enter</a>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var COLORS = ['#ef4230', '#f78a22', '#f7d334', '#4fb556', '#339bdf', '#5a62b8', '#a35bb4'];
+
+      var MODES = {
+        research: {
+          caption: 'These rays are the seven areas my research covers.',
+          labels: ['Multilingual NLP', 'Interpretability', 'Counterfactuals',
+                   'On-policy distillation', 'Reinforcement learning', 'Memory', 'Modality priors']
+        },
+        languages: {
+          caption: 'I work on multilingual NLP: whether meaning stays the same across languages like these.',
+          labels: ['English', 'Deutsch', '中文', 'Français', 'Русский', '日本語', 'Español']
+        },
+        features: {
+          caption: 'I work with sparse autoencoders: they split dense activations into single-meaning features like these.',
+          labels: ['Golden Gate Bridge', 'Base64', 'DNA sequences', 'Legal boilerplate',
+                   'Sarcasm', 'Code comments', 'Citation format']
+        }
+      };
+
+      var mode = 'research';
+      var caption = document.getElementById('lensCaption');
+      var legend = document.getElementById('legend');
+      var buttons = document.querySelectorAll('.lens-btn');
+      var svg = document.querySelector('.art svg');
+
+      function render() {
+        caption.textContent = MODES[mode].caption;
+        MODES[mode].labels.forEach(function (label, i) {
+          var el = svg.querySelector('.l' + (i + 1));
+          if (el) el.textContent = label.toUpperCase();
+        });
+        legend.textContent = '';
+        MODES[mode].labels.forEach(function (label, i) {
+          var item = document.createElement('span');
+          item.style.color = COLORS[i];
+          item.textContent = label.toUpperCase();
+          legend.appendChild(item);
+        });
+      }
+
+      Array.prototype.forEach.call(buttons, function (btn) {
+        btn.addEventListener('click', function () {
+          var next = btn.getAttribute('data-mode');
+          if (!MODES[next] || next === mode) return;
+          mode = next;
+          Array.prototype.forEach.call(buttons, function (b) {
+            var on = b === btn;
+            b.classList.toggle('on', on);
+            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+          render();
+        });
+      });
+
+      /* pointing at a band brings it forward and lets the rest fall back */
+      function clearHot() {
+        svg.classList.remove('focus');
+        Array.prototype.forEach.call(svg.querySelectorAll('.hot'), function (el) {
+          el.classList.remove('hot');
+        });
+      }
+
+      for (var i = 1; i <= 7; i++) {
+        (function (n) {
+          var band = svg.querySelector('.b' + n);
+          var label = svg.querySelector('.l' + n);
+          var halo = svg.querySelector('.gb' + n);
+          function focus() {
+            clearHot();
+            svg.classList.add('focus');
+            band.classList.add('hot');
+            if (label) label.classList.add('hot');
+            if (halo) halo.classList.add('hot');
+          }
+          band.addEventListener('mouseenter', focus);
+          band.addEventListener('click', focus);
+          if (label) label.addEventListener('mouseenter', focus);
+        })(i);
+      }
+      svg.addEventListener('mouseleave', clearHot);
+
+      render();
+    })();
+  </script>
 </body>
 </html>

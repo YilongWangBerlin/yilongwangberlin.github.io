@@ -208,8 +208,8 @@ a{color:inherit;text-decoration:none}
   display:flex;
   flex-wrap:wrap;
   align-items:center;
-  gap:12px;
-  margin-bottom:26px;
+  gap:14px;
+  margin-bottom:28px;
 }
 .lens-label{
   font-size:16px;
@@ -218,9 +218,18 @@ a{color:inherit;text-decoration:none}
   color:var(--fg-3);
   margin-right:2px;
 }
-.lens-btn{
-  padding:4px 14px;
+
+/* One widget, three segments: a shared 2px frame with dividers, sitting on
+   a hard shadow like every other raised thing on this page. */
+.lens-group{
+  display:inline-flex;
   border:2px solid var(--rule);
+  background:var(--surface);
+  box-shadow:4px 4px 0 var(--rule-2);
+}
+.lens-btn{
+  padding:6px 16px 8px;
+  border:0;
   background:transparent;
   color:var(--fg-2);
   font-family:var(--mono);
@@ -228,29 +237,31 @@ a{color:inherit;text-decoration:none}
   letter-spacing:.1em;
   text-transform:uppercase;
   cursor:pointer;
-  transition:transform .15s var(--steps),box-shadow .15s var(--steps),
-             color .15s var(--steps),border-color .15s var(--steps),
-             background-color .15s var(--steps);
+  transition:color .15s var(--steps),background-color .15s var(--steps),
+             box-shadow .15s var(--steps);
 }
+.lens-btn + .lens-btn{border-left:2px solid var(--rule)}
 .lens-btn:hover{
   color:var(--fg);
-  border-color:var(--fg-2);
-  transform:translate(-2px,-2px);
-  box-shadow:4px 4px 0 var(--rule-2);
+  background:var(--rule-2);
 }
+.lens-btn:focus-visible{outline-offset:-4px}
+/* the pressed segment lights up, and carries its own ray colour along the
+   bottom edge: each lens tints the reading */
 .lens-btn.on{
   color:var(--bg);
   background:var(--fg);
-  border-color:var(--fg);
-  transform:none;
-  box-shadow:none;
 }
+.lens-btn[data-mode="research"].on{box-shadow:inset 0 -4px 0 var(--c-5)}
+.lens-btn[data-mode="languages"].on{box-shadow:inset 0 -4px 0 var(--c-4)}
+.lens-btn[data-mode="features"].on{box-shadow:inset 0 -4px 0 var(--c-7)}
 
 /* ---------- the door ---------- */
 
 .enter{
+  position:relative;
   display:inline-block;
-  padding:10px 26px;
+  padding:12px 30px 14px;
   border:2px solid var(--fg);
   background:var(--surface);
   font-family:var(--display);
@@ -262,12 +273,32 @@ a{color:inherit;text-decoration:none}
   transition:transform .15s var(--steps),box-shadow .15s var(--steps),
              color .15s var(--steps),background-color .15s var(--steps);
 }
+/* the spectrum leaking out under the door: seven hard-stop bands, no blend */
+.enter::after{
+  content:"";
+  position:absolute;
+  left:-2px;right:-2px;bottom:-2px;
+  height:4px;
+  background:linear-gradient(90deg,
+    var(--c-1) 0 14.28%,
+    var(--c-2) 0 28.57%,
+    var(--c-3) 0 42.85%,
+    var(--c-4) 0 57.14%,
+    var(--c-5) 0 71.42%,
+    var(--c-6) 0 85.71%,
+    var(--c-7) 0 100%);
+}
+.enter span{
+  display:inline-block;
+  transition:transform .15s var(--steps);
+}
 .enter:hover,.enter:focus-visible{
   color:var(--bg);
   background:var(--fg);
   transform:translate(-2px,-2px);
   box-shadow:8px 8px 0 var(--rule-2);
 }
+.enter:hover span,.enter:focus-visible span{transform:translateX(4px)}
 .enter:active{transform:none;box-shadow:4px 4px 0 var(--rule-2)}
 
 /* ---------- reveal ---------- */

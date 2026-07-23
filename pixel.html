@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yilong Wang</title>
+  <meta name="description" content="Yilong Wang, MSc student at TU Berlin, working on the interpretability of multilingual language models." />
+  <meta name="author" content="Yilong Wang" />
+  <meta property="og:title" content="Yilong Wang" />
+  <meta property="og:description" content="Student researcher at TU Berlin. Interpretability, multilingual NLP, counterfactual explanations." />
+  <meta property="og:type" content="profile" />
+  <meta name="theme-color" content="#06060c" />
+
+  <!-- the prism as a stepped pixel pyramid, swapped for the tab bar's theme -->
+  <link rel="icon" media="(prefers-color-scheme: light)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' shape-rendering='crispEdges'%3E%3Cpath fill='%23181818' d='M13 6h6v6h5v6h5v8H3v-8h5v-6h5z'/%3E%3C/svg%3E" />
+  <link rel="icon" media="(prefers-color-scheme: dark)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' shape-rendering='crispEdges'%3E%3Cpath fill='%23f0f0ec' d='M13 6h6v6h5v6h5v8H3v-8h5v-6h5z'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/landing.css" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-96T3G6TNZH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-96T3G6TNZH');
+  </script>
+</head>
+
+<!-- =====================================================================
+     The poster. One screen, one drawing, one door.
+
+     The prism scene is rendered at low resolution and scaled up with the
+     smoothing off. What the seven rays mean depends on the lens the
+     visitor picks: research directions, languages, or SAE features. Same
+     beam every time; only the reading changes, which is roughly the
+     thesis. The actual content lives in home.html.
+     ===================================================================== -->
+<body>
+  <div class="mesh" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <a class="nav-brand" href="index.html">Yilong Wang</a>
+    <div class="nav-list">
+      <a href="home.html#about">About</a>
+      <a href="home.html#research">Research</a>
+      <a href="home.html#publications">Publications</a>
+      <a href="home.html#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <canvas class="spectrum" id="spectrum" aria-hidden="true"></canvas>
+
+    <div class="hero-inner">
+      <!-- On narrow screens the canvas has no room for ray labels, so the
+           same seven names appear here instead, filled in by landing.js
+           and swapped with the lens. Hidden on desktop. -->
+      <div class="ray-legend rise" id="rayLegend"></div>
+
+      <p class="eyebrow rise">Student researcher · TU Berlin</p>
+      <h1 class="hero-name rise">Yilong Wang</h1>
+
+      <p class="lens-caption rise" id="lensCaption">These rays are the seven areas my research covers.</p>
+
+      <div class="lens rise" role="group" aria-label="Choose what the prism splits the beam into">
+        <span class="lens-label">Lens</span>
+        <span class="lens-group">
+          <button type="button" class="lens-btn on" data-mode="research" aria-pressed="true">Research</button>
+          <button type="button" class="lens-btn" data-mode="languages" aria-pressed="false">Languages</button>
+          <button type="button" class="lens-btn" data-mode="features" aria-pressed="false">Features</button>
+        </span>
+      </div>
+
+      <a class="enter rise" href="home.html">Enter <span aria-hidden="true">▸</span></a>
+    </div>
+  </header>
+
+  <script src="assets/js/landing.js"></script>
+</body>
+</html>
