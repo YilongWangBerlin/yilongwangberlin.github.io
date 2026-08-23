@@ -17,16 +17,16 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <!-- ===================================================================
-       The record sleeve.
+       The record sleeve, now on a turntable.
 
-       Black, one beam, one glass, one spectrum. Nothing moves once the
-       light is through. The seven bands are the seven areas of my
-       research, named along their lengths; pointing at a band brings it
-       forward and lets the others fall back into the dark. The door is
-       one small word.
+       It opens as the sleeve is printed: black, one beam, one glass, one
+       spectrum, and not a word on the artwork. Then scrolling turns the
+       glass. The fan of seven bands sweeps with it, and whichever band
+       comes to rest level with the reader is the one being talked about.
+       Nine resting positions: the sleeve, the seven areas, and the door.
        =================================================================== -->
 
   <style>
@@ -45,24 +45,23 @@
       --c-7:#a35bb4;
 
       --sans:'Jost',sans-serif;
-
-      /* one silky deceleration, shared by the whole entrance */
       --ease:cubic-bezier(.16,1,.3,1);
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
 
-    html,body{height:100%}
+    html{
+      background:var(--bg);
+      scroll-snap-type:y proximity;
+    }
 
     body{
       background:var(--bg);
       color:var(--dim);
       font-family:var(--sans);
       font-weight:300;
-      display:flex;
-      flex-direction:column;
-      min-height:100svh;
-      overflow:hidden;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
     }
 
     ::selection{background:var(--bright);color:var(--bg)}
@@ -82,171 +81,264 @@
     /* ---------- nav ---------- */
 
     .nav{
+      position:fixed;
+      top:0;left:0;right:0;
+      z-index:6;
       display:flex;
       align-items:baseline;
       gap:26px;
-      padding:22px clamp(20px,4vw,48px) 0;
+      padding:22px clamp(20px,4vw,48px);
       font-size:12px;
       letter-spacing:.28em;
       text-transform:uppercase;
+      pointer-events:none;
     }
-    .nav a{text-decoration:none;transition:color .25s ease}
+    .nav a{text-decoration:none;transition:color .25s ease;pointer-events:auto}
     .nav a:hover{color:var(--bright)}
     .nav-brand{margin-right:auto;color:var(--dim)}
-    @media (max-width:620px){ .nav-list{display:none} }
+    @media (max-width:720px){ .nav-list{display:none} }
 
-    /* ---------- the sleeve ---------- */
+    /* ---------- the stage ----------
+       One sticky viewport. Everything below it is empty height, there only
+       so the wheel has something to turn. */
 
-    .art{
-      flex:1;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:0;
-      padding:0 clamp(8px,2vw,30px);
+    .scroller{position:relative}
+
+    .stage{
+      position:sticky;
+      top:0;
+      height:100svh;
+      /* it is pinned scenery, not content: the negative margin hands its
+         height back so one spacer is worth exactly one resting position,
+         and the snap points land where the script expects them */
+      margin-bottom:-100svh;
+      overflow:hidden;
+      z-index:1;
     }
-    .art svg{
+
+    /* the art is the whole stage. Its viewBox is centred vertically, so the
+       band that has come to rest is always level with the middle of the
+       screen, which is exactly where the words are waiting. */
+    .stage-art{
+      position:absolute;
+      inset:0;
+    }
+    .stage-art svg{
       width:100%;
       height:100%;
-      max-height:78svh;
       display:block;
     }
 
     .beam{filter:drop-shadow(0 0 6px rgba(255,255,255,.55))}
-    .glass{filter:drop-shadow(0 0 5px rgba(255,255,255,.3))}
+    #glass{filter:drop-shadow(0 0 5px rgba(255,255,255,.28))}
 
-    /* entrance: one continuous gesture — the glass settles, the beam
-       arrives, the core widens, the spectrum blooms, the names land.
-       Everything reveals through opacity, so the blurred layers are
-       never re-rasterised mid-flight and the whole thing stays smooth. */
-    .glass{
-      opacity:0;
-      animation:appear 1s var(--ease) .15s forwards;
+    /* ---------- the reading column ---------- */
+
+    .stage-text{
+      position:absolute;
+      top:0;bottom:0;
+      left:67%;
+      right:clamp(20px,4vw,72px);
     }
+
+    .panel{
+      display:flex;
+      align-items:center;
+      padding-block:80px;
+    }
+    .js .panel{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      pointer-events:none;
+      will-change:opacity;
+    }
+    .js .panel.is-live{pointer-events:auto}
+
+    .panel-in{max-width:34ch}
+
+    .kicker{
+      font-size:11px;
+      letter-spacing:.34em;
+      text-transform:uppercase;
+      color:var(--dimmer);
+      margin-bottom:18px;
+    }
+    .kicker .num{color:var(--k,var(--dim))}
+
+    .term{
+      font-size:clamp(28px,3.4vw,44px);
+      font-weight:300;
+      line-height:1.08;
+      letter-spacing:.01em;
+      color:var(--bright);
+      margin-bottom:18px;
+    }
+    /* the band prints its own name on wide screens, so the column keeps
+       quiet there and only speaks up when the printing is hidden */
+    @media (min-width:1001px){ .panel .term{display:none} }
+
+    .gloss{
+      font-size:clamp(16px,1.35vw,19px);
+      line-height:1.62;
+      color:#c9c9ce;
+      letter-spacing:.005em;
+    }
+
+    .aside{
+      margin-top:26px;
+      font-size:12px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+    }
+    .aside a{
+      text-decoration:none;
+      color:var(--dimmer);
+      border-bottom:1px solid rgba(255,255,255,.14);
+      padding-bottom:3px;
+      transition:color .25s ease,border-color .25s ease;
+    }
+    .aside a:hover{color:var(--bright);border-color:var(--k,var(--bright))}
+
+    /* cover */
+    .cover-name{
+      font-size:clamp(30px,3.3vw,56px);
+      font-weight:300;
+      line-height:1.02;
+      color:var(--bright);
+      letter-spacing:.005em;
+    }
+    .cover-role{
+      margin-top:16px;
+      font-size:12px;
+      letter-spacing:.3em;
+      text-transform:uppercase;
+    }
+    .hint{
+      margin-top:44px;
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      font-size:11px;
+      letter-spacing:.32em;
+      text-transform:uppercase;
+      color:var(--dimmer);
+    }
+    .hint i{
+      width:1px;height:34px;
+      background:linear-gradient(#55555b,transparent);
+      animation:drip 2.6s ease-in-out infinite;
+      transform-origin:top;
+    }
+    @keyframes drip{
+      0%,100%{transform:scaleY(.35);opacity:.4}
+      50%{transform:scaleY(1);opacity:1}
+    }
+
+    /* outro */
+    .enter{
+      display:inline-block;
+      margin-top:30px;
+      font-size:12px;
+      letter-spacing:.3em;
+      text-transform:uppercase;
+      text-decoration:none;
+      color:var(--dim);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:2px;
+      padding:13px 30px;
+      transition:color .3s ease,border-color .3s ease,background .3s ease;
+    }
+    .enter:hover,.enter:focus-visible{
+      color:#000;
+      background:var(--bright);
+      border-color:var(--bright);
+    }
+
+    /* ---------- the rail ----------
+       Nine ticks down the left edge. The seven in the middle carry the
+       spectrum, in order, because of course they do. */
+
+    .rail{
+      position:fixed;
+      left:clamp(14px,2.4vw,30px);
+      top:50%;
+      transform:translateY(-50%);
+      z-index:5;
+      display:flex;
+      flex-direction:column;
+      gap:11px;
+      align-items:center;
+    }
+    .rail button{
+      appearance:none;
+      border:0;
+      background:none;
+      padding:6px 5px;
+      cursor:pointer;
+      display:block;
+      line-height:0;
+    }
+    .rail button span{
+      display:block;
+      width:14px;height:2px;
+      background:currentColor;
+      opacity:.24;
+      border-radius:2px;
+      transition:opacity .35s ease,width .35s var(--ease);
+    }
+    .rail button.on span{opacity:1;width:26px}
+    .rail button:hover span{opacity:.75}
+    @media (max-width:720px){ .rail{display:none} }
+
+    /* ---------- stacked, for narrow screens ---------- */
+
+    @media (max-width:1000px){
+      .stage-art{inset:0 0 42% 0}
+      .stage-art #labelLayer{display:none}
+      .stage-text{
+        top:auto;
+        bottom:0;
+        height:42%;
+        left:clamp(22px,7vw,46px);
+        right:clamp(22px,7vw,46px);
+      }
+      .panel{align-items:flex-start;padding-block:0}
+      .panel-in{max-width:46ch}
+      .kicker{margin-bottom:12px}
+      .term{margin-bottom:12px}
+      .hint{margin-top:28px}
+    }
+
+    /* ---------- entrance ----------
+       One continuous gesture on first paint: the glass settles, the beam
+       arrives, the spectrum blooms. After that the scroll has the floor. */
+
+    #glass{opacity:0;animation:appear 1s var(--ease) .15s forwards}
     .beam-line{
       stroke-dasharray:1;
       stroke-dashoffset:1;
-      animation:draw 1.05s var(--ease) .5s forwards;
+      animation:draw 1.05s var(--ease) .45s forwards;
     }
-    .cone{
-      opacity:0;
-      animation:appear .9s var(--ease) 1.15s forwards;
-    }
-    .glint{
-      opacity:0;
-      animation:appear .9s var(--ease) 1.2s forwards;
-    }
-    .fan{
-      opacity:0;
-      will-change:opacity;
-      animation:appear 1.15s var(--ease) 1.3s forwards;
-    }
-    .label{
-      opacity:0;
-      animation:label-in .8s var(--ease) forwards;
-    }
-    /* the names settle one after another, as if the light reaches each
-       band in turn */
-    .l1{animation-delay:2s}
-    .l2{animation-delay:2.08s}
-    .l3{animation-delay:2.16s}
-    .l4{animation-delay:2.24s}
-    .l5{animation-delay:2.32s}
-    .l6{animation-delay:2.4s}
-    .l7{animation-delay:2.48s}
-    @keyframes appear{to{opacity:1}}
+    #fan{opacity:0;animation:appear 1.15s var(--ease) 1.15s forwards}
+    .nav,.rail,.stage-text{animation:appear .9s var(--ease) 1.6s backwards}
+    @keyframes appear{from{opacity:0}to{opacity:1}}
     @keyframes draw{to{stroke-dashoffset:0}}
-    @keyframes label-in{to{opacity:.62}}
-
-    /* the halo blooms with the spectrum, then breathes, slowly enough
-       to be deniable */
-    .fan-glow{
-      opacity:0;
-      will-change:opacity;
-      animation:glow-in 1.15s var(--ease) 1.4s forwards,
-                breathe 7s ease-in-out 3.4s infinite alternate;
-    }
-    @keyframes glow-in{to{opacity:.22}}
-    @keyframes breathe{from{opacity:.2}to{opacity:.26}}
-
-    /* pointing at a band brings it forward, halo and all */
-    .band,.label,.gband,.core{transition:opacity .35s ease}
-    svg.focus .band{opacity:.22}
-    svg.focus .label{opacity:.14}
-    svg.focus .gband{opacity:.12}
-    svg.focus .core{opacity:.15}
-    svg.focus .band.hot{opacity:1}
-    svg.focus .label.hot{opacity:1}
-    svg.focus .gband.hot{opacity:1}
-
-    @media (max-width:640px){
-      .art svg .label{display:none}
-    }
-
-    /* ---------- the tracklist ----------
-       The seven names also sit under the art, like the back print of a
-       sleeve. On wide screens they echo the names on the bands; on
-       narrow ones, where the bands' own labels are hidden, they carry
-       the names alone. */
-    .legend{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:10px 28px;
-      max-width:660px;
-      margin:0 auto;
-      padding:0 18px 16px;
-      font-size:12px;
-      letter-spacing:.24em;
-      text-transform:uppercase;
-    }
-    @media (max-width:640px){
-      .legend{gap:6px 18px;letter-spacing:.2em}
-    }
-
-    /* ---------- the bar ---------- */
-
-    .bar{
-      display:flex;
-      align-items:baseline;
-      gap:18px;
-      padding:0 clamp(20px,4vw,48px) 26px;
-      font-size:12px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-    }
-
-    .caption{
-      color:var(--dimmer);
-      letter-spacing:.12em;
-      text-transform:none;
-      font-size:13px;
-      max-width:52ch;
-    }
-
-    .enter{
-      margin-left:auto;
-      color:var(--dim);
-      text-decoration:none;
-      padding:4px 0;
-      transition:color .25s ease;
-    }
-    .enter:hover,.enter:focus-visible{color:var(--bright)}
-
-    .bar-anim{opacity:0;animation:appear 1s var(--ease) 2.4s forwards}
-
-    @media (max-width:900px){ .caption{display:none} }
 
     @media (prefers-reduced-motion:reduce){
-      .glass,.cone,.bar-anim{animation:none;opacity:1}
+      html{scroll-snap-type:none}
+      #glass,#fan,.nav,.rail,.stage-text{animation:none;opacity:1}
       .beam-line{animation:none;stroke-dashoffset:0}
-      .fan{animation:none;opacity:1}
-      .fan-glow{animation:none;opacity:.22}
-      .glint{animation:none;opacity:1}
-      .label{animation:none;opacity:.62}
-      .band,.label,.gband,.core,.enter,.nav a{transition:none}
+      .hint i{animation:none;opacity:.7}
     }
   </style>
+
+  <script>
+    document.documentElement.className += ' js';
+    /* a reload should hand back the sleeve, not whichever band the reader
+       happened to leave the glass on */
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  </script>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-96T3G6TNZH"></script>
@@ -271,189 +363,371 @@
     </span>
   </nav>
 
-  <main class="art">
-    <svg viewBox="0 0 1400 760" xmlns="http://www.w3.org/2000/svg" role="img"
-         aria-label="A beam of white light enters a glass prism on a black field and leaves as a fan of seven coloured bands.">
+  <nav class="rail" id="rail" aria-label="Sections"></nav>
 
-      <!-- the glass -->
-      <path class="glass" d="M 640 225 L 790 485 L 490 485 Z"
-            fill="rgba(255,255,255,.02)" stroke="#e8e8ec" stroke-width="2.2"
-            stroke-linejoin="miter"/>
+  <div class="scroller" id="scroller">
+    <div class="stage">
 
-      <!-- the beam -->
-      <g class="beam">
-        <line class="beam-line" x1="0" y1="430" x2="557" y2="368"
-              stroke="#f2f2f4" stroke-width="3" pathLength="1"/>
-      </g>
+      <!-- ============================ the art ============================ -->
+      <div class="stage-art">
+        <svg id="prism" viewBox="0 0 1500 900" xmlns="http://www.w3.org/2000/svg"
+             preserveAspectRatio="xMidYMid meet" role="img"
+             aria-label="A beam of white light enters a glass prism on a black field and leaves as a fan of seven coloured bands. Scrolling turns the prism.">
 
-      <!-- the light widening inside the glass -->
-      <path class="cone" d="M 557 368 L 694 319 L 730 381 Z"
-            fill="rgba(255,255,255,.10)"/>
+          <defs>
+            <filter id="soften" x="-10%" y="-10%" width="120%" height="120%">
+              <feGaussianBlur stdDeviation="1.3"/>
+            </filter>
+            <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur stdDeviation="9"/>
+            </filter>
+            <radialGradient id="gglint" cx="340" cy="450" r="360" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#fff" stop-opacity=".14"/>
+              <stop offset=".45" stop-color="#fff" stop-opacity=".045"/>
+              <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+            </radialGradient>
+            <!-- gradients for the bands and the seams are written by script,
+                 all centred on the fan's origin so the rotation cannot
+                 smear them -->
+            <g id="gradients"></g>
+          </defs>
 
-      <defs>
-        <!-- each band fades in from the glass and brightens outward -->
-        <linearGradient id="g1" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="1400" y2="350">
-          <stop offset="0" stop-color="var(--c-1)" stop-opacity=".35"/>
-          <stop offset=".4" stop-color="var(--c-1)" stop-opacity=".92"/>
-          <stop offset="1" stop-color="var(--c-1)"/>
-        </linearGradient>
-        <linearGradient id="g2" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="1400" y2="350">
-          <stop offset="0" stop-color="var(--c-2)" stop-opacity=".35"/>
-          <stop offset=".4" stop-color="var(--c-2)" stop-opacity=".92"/>
-          <stop offset="1" stop-color="var(--c-2)"/>
-        </linearGradient>
-        <linearGradient id="g3" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="1400" y2="350">
-          <stop offset="0" stop-color="var(--c-3)" stop-opacity=".35"/>
-          <stop offset=".4" stop-color="var(--c-3)" stop-opacity=".92"/>
-          <stop offset="1" stop-color="var(--c-3)"/>
-        </linearGradient>
-        <linearGradient id="g4" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="1400" y2="350">
-          <stop offset="0" stop-color="var(--c-4)" stop-opacity=".35"/>
-          <stop offset=".4" stop-color="var(--c-4)" stop-opacity=".92"/>
-          <stop offset="1" stop-color="var(--c-4)"/>
-        </linearGradient>
-        <linearGradient id="g5" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="1400" y2="350">
-          <stop offset="0" stop-color="var(--c-5)" stop-opacity=".35"/>
-          <stop offset=".4" stop-color="var(--c-5)" stop-opacity=".92"/>
-          <stop offset="1" stop-color="var(--c-5)"/>
-        </linearGradient>
-        <linearGradient id="g6" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="1400" y2="350">
-          <stop offset="0" stop-color="var(--c-6)" stop-opacity=".35"/>
-          <stop offset=".4" stop-color="var(--c-6)" stop-opacity=".92"/>
-          <stop offset="1" stop-color="var(--c-6)"/>
-        </linearGradient>
-        <linearGradient id="g7" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="1400" y2="350">
-          <stop offset="0" stop-color="var(--c-7)" stop-opacity=".35"/>
-          <stop offset=".4" stop-color="var(--c-7)" stop-opacity=".92"/>
-          <stop offset="1" stop-color="var(--c-7)"/>
-        </linearGradient>
-        <filter id="soften" x="-5%" y="-5%" width="110%" height="110%">
-          <feGaussianBlur stdDeviation="1.4"/>
-        </filter>
-        <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur stdDeviation="7"/>
-        </filter>
-        <!-- light leaves the glass still white, and unmixes on the way out -->
-        <linearGradient id="gcore" gradientUnits="userSpaceOnUse" x1="694" y1="350" x2="900" y2="350">
-          <stop offset="0" stop-color="#fff" stop-opacity=".5"/>
-          <stop offset="1" stop-color="#fff" stop-opacity="0"/>
-        </linearGradient>
-        <radialGradient id="gglint">
-          <stop offset="0" stop-color="#fff" stop-opacity=".45"/>
-          <stop offset="1" stop-color="#fff" stop-opacity="0"/>
-        </radialGradient>
-        <!-- the seams fade in once the light has finished unmixing -->
-        <linearGradient id="gseam" gradientUnits="userSpaceOnUse" x1="780" y1="350" x2="1400" y2="350">
-          <stop offset="0" stop-color="#000" stop-opacity="0"/>
-          <stop offset=".25" stop-color="#000" stop-opacity=".9"/>
-          <stop offset="1" stop-color="#000" stop-opacity=".9"/>
-        </linearGradient>
-      </defs>
+          <!-- light caught in the glass, showing only as an aura -->
+          <circle id="glint" cx="340" cy="450" r="360" fill="url(#gglint)" pointer-events="none"/>
 
-      <!-- the halo under the light -->
-      <g class="fan fan-glow" filter="url(#glow)" opacity=".22" aria-hidden="true">
-        <polygon class="gband gb1" points="694,319 699.1,327.9 1400,233.57 1400,175"    fill="var(--c-1)"/>
-        <polygon class="gband gb2" points="699.1,327.9 704.3,336.7 1400,292.14 1400,233.57" fill="var(--c-2)"/>
-        <polygon class="gband gb3" points="704.3,336.7 709.4,345.6 1400,350.71 1400,292.14" fill="var(--c-3)"/>
-        <polygon class="gband gb4" points="709.4,345.6 714.6,354.4 1400,409.29 1400,350.71" fill="var(--c-4)"/>
-        <polygon class="gband gb5" points="714.6,354.4 719.7,363.3 1400,467.86 1400,409.29" fill="var(--c-5)"/>
-        <polygon class="gband gb6" points="719.7,363.3 724.9,372.1 1400,526.43 1400,467.86" fill="var(--c-6)"/>
-        <polygon class="gband gb7" points="724.9,372.1 730,381 1400,585 1400,526.43"    fill="var(--c-7)"/>
-      </g>
+          <!-- the beam, raking in from the upper left onto the near face -->
+          <g class="beam">
+            <line class="beam-line" x1="-420" y1="316" x2="340" y2="450"
+                  stroke="#f2f2f4" stroke-width="3" pathLength="1"/>
+          </g>
 
-      <!-- the spectrum, one slender fan of seven bands -->
-      <g class="fan" filter="url(#soften)">
-        <polygon class="band b1" points="694,319 699.1,327.9 1400,233.57 1400,175"    fill="url(#g1)"/>
-        <polygon class="band b2" points="699.1,327.9 704.3,336.7 1400,292.14 1400,233.57" fill="url(#g2)"/>
-        <polygon class="band b3" points="704.3,336.7 709.4,345.6 1400,350.71 1400,292.14" fill="url(#g3)"/>
-        <polygon class="band b4" points="709.4,345.6 714.6,354.4 1400,409.29 1400,350.71" fill="url(#g4)"/>
-        <polygon class="band b5" points="714.6,354.4 719.7,363.3 1400,467.86 1400,409.29" fill="url(#g5)"/>
-        <polygon class="band b6" points="719.7,363.3 724.9,372.1 1400,526.43 1400,467.86" fill="url(#g6)"/>
-        <polygon class="band b7" points="724.9,372.1 730,381 1400,585 1400,526.43"    fill="url(#g7)"/>
-        <!-- six hairline seams, screen-print style -->
-        <g stroke="url(#gseam)" stroke-width="2" fill="none" pointer-events="none" aria-hidden="true">
-          <line x1="780" y1="317.0" x2="1400" y2="233.57"/>
-          <line x1="780" y1="331.9" x2="1400" y2="292.14"/>
-          <line x1="780" y1="346.1" x2="1400" y2="350.71"/>
-          <line x1="780" y1="359.6" x2="1400" y2="409.29"/>
-          <line x1="780" y1="372.6" x2="1400" y2="467.86"/>
-          <line x1="780" y1="384.7" x2="1400" y2="526.43"/>
-        </g>
-        <!-- the unmixing white core -->
-        <polygon class="core" points="694,319 900,277 900,432.8 730,381" fill="url(#gcore)" pointer-events="none"/>
-      </g>
+          <!-- the spectrum: halo, bands, seams, and the names printed
+               along the bands, which stay dark until the scroll starts -->
+          <g id="fan">
+            <g id="glowLayer" filter="url(#glow)" opacity=".24" aria-hidden="true"></g>
+            <g id="bandLayer" filter="url(#soften)"></g>
+            <g id="seamLayer" stroke-width="2" fill="none" pointer-events="none" aria-hidden="true"></g>
+            <g id="labelLayer" font-family="Jost,sans-serif" font-size="23"
+               font-weight="400" letter-spacing="3" text-anchor="end"
+               fill="#060606" pointer-events="none" aria-hidden="true"></g>
+          </g>
 
-      <!-- the touch of light where the beam meets the glass -->
-      <circle class="glint" cx="557" cy="368" r="26" fill="url(#gglint)" pointer-events="none"/>
+          <!-- the glass, opaque, so the bands only exist once they are out -->
+          <g id="glass">
+            <path id="glassPath" d="M 340 235 L 526.2 557.5 L 153.8 557.5 Z"
+                  fill="#000" stroke="#e8e8ec" stroke-width="2.6" stroke-linejoin="miter"/>
+          </g>
+        </svg>
+      </div>
 
-      <!-- the seven names, printed along their bands -->
-      <g font-family="Jost,sans-serif" font-size="20" letter-spacing="3"
-         text-anchor="end" fill="#050505">
-        <text class="label l1" x="1372" y="216" transform="rotate(-9.62 1372 216)">MULTILINGUAL NLP</text>
-        <text class="label l2" x="1372" y="273" transform="rotate(-5.68 1372 273)">INTERPRETABILITY</text>
-        <text class="label l3" x="1372" y="329" transform="rotate(-1.63 1372 329)">COUNTERFACTUALS</text>
-        <text class="label l4" x="1372" y="386" transform="rotate(2.50 1372 386)">ON-POLICY DISTILLATION</text>
-        <text class="label l5" x="1372" y="442" transform="rotate(6.66 1372 442)">REINFORCEMENT LEARNING</text>
-        <text class="label l6" x="1372" y="499" transform="rotate(10.81 1372 499)">MEMORY</text>
-        <text class="label l7" x="1372" y="555" transform="rotate(14.92 1372 555)">MODALITY PRIORS</text>
-      </g>
+      <!-- ============================ the words ============================ -->
+      <div class="stage-text" id="panels">
 
-    </svg>
-  </main>
+        <article class="panel" data-k="0">
+          <div class="panel-in">
+            <p class="cover-name">Yilong Wang</p>
+            <p class="cover-role">Student researcher · TU Berlin</p>
+            <p class="hint"><i></i> Scroll to turn the glass</p>
+          </div>
+        </article>
 
-  <!-- the seven names as a sleeve's back print, under the art -->
-  <div class="legend bar-anim" id="legend" aria-hidden="true"></div>
+        <article class="panel" data-k="1" style="--k:var(--c-1)">
+          <div class="panel-in">
+            <p class="kicker"><span class="num">01</span> / 07 · Research</p>
+            <h2 class="term">Multilingual NLP</h2>
+            <p class="gloss">Whether a concept lives in the same place inside a model, no matter which language asks for it.</p>
+            <p class="aside"><a href="home.html#publications">Macro, EMNLP 2026 ↗</a></p>
+          </div>
+        </article>
 
-  <footer class="bar">
-    <p class="caption bar-anim">These rays are the seven areas my research covers.</p>
-    <a class="enter bar-anim" href="home.html">Enter</a>
-  </footer>
+        <article class="panel" data-k="2" style="--k:var(--c-2)">
+          <div class="panel-in">
+            <p class="kicker"><span class="num">02</span> / 07 · Research</p>
+            <h2 class="term">Interpretability</h2>
+            <p class="gloss">Pulling a dense representation apart into sparse, individually legible features, most often with a sparse autoencoder.</p>
+            <p class="aside"><a href="home.html#about">How I got here ↗</a></p>
+          </div>
+        </article>
+
+        <article class="panel" data-k="3" style="--k:var(--c-3)">
+          <div class="panel-in">
+            <p class="kicker"><span class="num">03</span> / 07 · Research</p>
+            <h2 class="term">Counterfactuals</h2>
+            <p class="gloss">The smallest edit that flips a prediction, and everything that edit gives away.</p>
+            <p class="aside"><a href="home.html#publications">iFlip, EMNLP 2026 ↗</a></p>
+          </div>
+        </article>
+
+        <article class="panel" data-k="4" style="--k:var(--c-4)">
+          <div class="panel-in">
+            <p class="kicker"><span class="num">04</span> / 07 · Research</p>
+            <h2 class="term">On-policy distillation</h2>
+            <p class="gloss">Teaching a small model on the trajectories it actually walks, rather than the ones its teacher would have.</p>
+          </div>
+        </article>
+
+        <article class="panel" data-k="5" style="--k:var(--c-5)">
+          <div class="panel-in">
+            <p class="kicker"><span class="num">05</span> / 07 · Research</p>
+            <h2 class="term">Reinforcement learning</h2>
+            <p class="gloss">A reward is a rough map. Someone still has to walk the route.</p>
+          </div>
+        </article>
+
+        <article class="panel" data-k="6" style="--k:var(--c-6)">
+          <div class="panel-in">
+            <p class="kicker"><span class="num">06</span> / 07 · Research</p>
+            <h2 class="term">Memory</h2>
+            <p class="gloss">What a model should carry between turns, and what it is better off forgetting.</p>
+          </div>
+        </article>
+
+        <article class="panel" data-k="7" style="--k:var(--c-7)">
+          <div class="panel-in">
+            <p class="kicker"><span class="num">07</span> / 07 · Research</p>
+            <h2 class="term">Modality priors</h2>
+            <p class="gloss">Every modality arrives already holding assumptions about what it is looking at.</p>
+          </div>
+        </article>
+
+        <article class="panel" data-k="8">
+          <div class="panel-in">
+            <p class="kicker">Seven bands, one beam</p>
+            <h2 class="term" style="display:block">The rest of it</h2>
+            <p class="gloss">Those are the seven areas my research covers. The papers, the news and the contact details live one click away, on a page with rather more daylight.</p>
+            <a class="enter" href="home.html">Enter</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- empty height, one screen per resting position -->
+    <div id="spacers" aria-hidden="true"></div>
+  </div>
 
   <script>
     (function () {
       'use strict';
 
-      var COLORS = ['#ef4230', '#f78a22', '#f7d334', '#4fb556', '#339bdf', '#5a62b8', '#a35bb4'];
-      var LABELS = ['Multilingual NLP', 'Interpretability', 'Counterfactuals',
-                    'On-policy distillation', 'Reinforcement learning', 'Memory', 'Modality priors'];
+      /* ---------------- the seven, in spectrum order ---------------- */
 
-      var legend = document.getElementById('legend');
-      var svg = document.querySelector('.art svg');
+      var AREAS = [
+        {c:'#ef4230', name:'MULTILINGUAL NLP'},
+        {c:'#f78a22', name:'INTERPRETABILITY'},
+        {c:'#f7d334', name:'COUNTERFACTUALS'},
+        {c:'#4fb556', name:'ON-POLICY DISTILLATION'},
+        {c:'#339bdf', name:'REINFORCEMENT LEARNING'},
+        {c:'#5a62b8', name:'MEMORY'},
+        {c:'#a35bb4', name:'MODALITY PRIORS'}
+      ];
 
-      /* narrow screens hide the printed names; carry them in the legend */
-      LABELS.forEach(function (label, i) {
-        var item = document.createElement('span');
-        item.style.color = COLORS[i];
-        item.textContent = label.toUpperCase();
-        legend.appendChild(item);
+      /* ---------------- geometry ----------------
+         Everything radiates from one point inside the glass, so the only
+         thing the scroll has to change is how far the whole fan has turned. */
+
+      var EX = 340, EY = 450;   /* where the light leaves the glass */
+      var R0 = 24, R1 = 620;    /* the bands run from here to here */
+      var LR = R1 - 18;         /* the printed names end just inside R1 */
+      var STEP = 6;             /* degrees between one band and the next */
+      var NS = 'http://www.w3.org/2000/svg';
+
+      /* Nine resting positions. The first is the sleeve as printed: glass
+         upright, spectrum down and to the right, not a word on it. After
+         that the glass turns, and each band in turn comes level with the
+         reader and says its piece. */
+      var SLEEVE = 21;
+      var STOPS = [SLEEVE, 18, 12, 6, 0, -6, -12, -18, -21];
+      var LAST = STOPS.length - 1;
+
+      function px(d, r) { return EX + r * Math.cos(d * Math.PI / 180); }
+      function py(d, r) { return EY + r * Math.sin(d * Math.PI / 180); }
+      function pt(d, r) { return px(d, r).toFixed(2) + ',' + py(d, r).toFixed(2); }
+      function el(name, attrs) {
+        var n = document.createElementNS(NS, name);
+        for (var k in attrs) n.setAttribute(k, attrs[k]);
+        return n;
+      }
+      function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+      function lerp(a, b, u) { return a + (b - a) * u; }
+      function ease(u) { return u * u * (3 - 2 * u); }
+      function ramp(v, a, b) { return ease(clamp((v - a) / (b - a), 0, 1)); }
+
+      /* ---------------- build the fan ---------------- */
+
+      var defs = document.getElementById('gradients');
+      var glowLayer = document.getElementById('glowLayer');
+      var bandLayer = document.getElementById('bandLayer');
+      var seamLayer = document.getElementById('seamLayer');
+      var labelLayer = document.getElementById('labelLayer');
+
+      /* the seams fade in only once the light has finished unmixing */
+      var seamGrad = el('radialGradient', {
+        id:'gseam', gradientUnits:'userSpaceOnUse', cx:EX, cy:EY, r:R1
+      });
+      [[0,'0'],[0.32,'.85'],[1,'.85']].forEach(function (s) {
+        seamGrad.appendChild(el('stop', {offset:s[0], 'stop-color':'#000', 'stop-opacity':s[1]}));
+      });
+      defs.appendChild(seamGrad);
+
+      var bands = [], halos = [], labels = [];
+
+      AREAS.forEach(function (a, i) {
+        var mid = (i - 3) * STEP;
+        var a0 = mid - STEP / 2, a1 = mid + STEP / 2;
+        var poly = [pt(a0, R0), pt(a1, R0), pt(a1, R1), pt(a0, R1)].join(' ');
+
+        /* each band dims towards the glass and reaches full colour outward */
+        var g = el('radialGradient', {
+          id:'gb' + i, gradientUnits:'userSpaceOnUse', cx:EX, cy:EY, r:R1
+        });
+        [[0,'.3'],[0.42,'.92'],[1,'1']].forEach(function (s) {
+          g.appendChild(el('stop', {offset:s[0], 'stop-color':a.c, 'stop-opacity':s[1]}));
+        });
+        defs.appendChild(g);
+
+        halos.push(glowLayer.appendChild(el('polygon', {points:poly, fill:a.c})));
+        bands.push(bandLayer.appendChild(el('polygon', {points:poly, fill:'url(#gb' + i + ')'})));
+
+        if (i < AREAS.length - 1) {
+          seamLayer.appendChild(el('line', {
+            x1:px(a1, 200).toFixed(2), y1:py(a1, 200).toFixed(2),
+            x2:px(a1, R1).toFixed(2),  y2:py(a1, R1).toFixed(2),
+            stroke:'url(#gseam)'
+          }));
+        }
+
+        /* the name, printed dark along its own band, sleeve fashion */
+        var t = el('text', {
+          x:EX + LR, y:EY + 8,
+          transform:'rotate(' + mid + ' ' + EX + ' ' + EY + ')',
+          opacity:0
+        });
+        t.textContent = a.name;
+        labels.push(labelLayer.appendChild(t));
       });
 
-      /* pointing at a band brings it forward and lets the rest fall back */
-      function clearHot() {
-        svg.classList.remove('focus');
-        Array.prototype.forEach.call(svg.querySelectorAll('.hot'), function (el) {
-          el.classList.remove('hot');
+      /* ---------------- the rail and the empty height ---------------- */
+
+      var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+      var rail = document.getElementById('rail');
+      var spacers = document.getElementById('spacers');
+      var ticks = [];
+
+      STOPS.forEach(function (_, k) {
+        var s = document.createElement('div');
+        s.style.height = '100svh';
+        s.style.scrollSnapAlign = 'start';
+        spacers.appendChild(s);
+
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', k === 0 ? 'Cover'
+          : k === LAST ? 'Enter the site' : AREAS[k - 1].name.toLowerCase());
+        b.style.color = (k === 0 || k === LAST) ? '#8d8d93' : AREAS[k - 1].c;
+        b.appendChild(document.createElement('span'));
+        b.addEventListener('click', function () {
+          window.scrollTo({top: k * unit(), behavior:'smooth'});
         });
+        ticks.push(rail.appendChild(b));
+      });
+
+      function unit() {
+        var range = document.documentElement.scrollHeight - window.innerHeight;
+        return range / LAST;
       }
 
-      for (var i = 1; i <= 7; i++) {
-        (function (n) {
-          var band = svg.querySelector('.b' + n);
-          var label = svg.querySelector('.l' + n);
-          var halo = svg.querySelector('.gb' + n);
-          function focus() {
-            clearHot();
-            svg.classList.add('focus');
-            band.classList.add('hot');
-            if (label) label.classList.add('hot');
-            if (halo) halo.classList.add('hot');
-          }
-          band.addEventListener('mouseenter', focus);
-          band.addEventListener('click', focus);
-          if (label) label.addEventListener('mouseenter', focus);
-        })(i);
+      /* ---------------- framing ----------------
+         Wide, the art has the whole stage and must leave the right third to
+         the words. Stacked, it has a short box of its own and crops in to
+         it. Both keep y=450 in the middle, so the band that has come to rest
+         stays level with the text either way. */
+
+      var svg = document.getElementById('prism');
+      var wide = window.matchMedia('(min-width:1001px)');
+
+      function reframe() {
+        svg.setAttribute('viewBox', wide.matches ? '0 0 1500 900' : '105 20 990 858');
       }
-      svg.addEventListener('mouseleave', clearHot);
+
+      /* ---------------- the render ---------------- */
+
+      var fan = document.getElementById('fan');
+      var glass = document.getElementById('glass');
+
+      var target = 0, shown = -1, raf = 0, last = 0;
+      var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+      function read() {
+        var range = document.documentElement.scrollHeight - window.innerHeight;
+        target = range > 0 ? clamp(window.scrollY / range, 0, 1) * LAST : 0;
+        if (!raf) raf = requestAnimationFrame(frame);
+      }
+
+      function frame(now) {
+        raf = 0;
+        /* The scroll moves at once, the glass takes its time catching up.
+           Measured against the clock rather than counted in frames, so a
+           throttled or slow display drifts at the same speed as a fast one
+           instead of crawling. */
+        var dt = last ? Math.min((now - last) / 1000, 0.25) : 1 / 60;
+        last = now;
+        if (reduce || shown < 0) shown = target;
+        else {
+          shown += (target - shown) * (1 - Math.exp(-dt / 0.09));
+          if (Math.abs(target - shown) < 0.0004) shown = target;
+        }
+        draw(shown);
+        if (shown !== target) raf = requestAnimationFrame(frame);
+        else last = 0;
+      }
+
+      function draw(t) {
+        var i = Math.floor(t), u = t - i;
+        if (i >= LAST) { i = LAST - 1; u = 1; }
+        var theta = lerp(STOPS[i], STOPS[i + 1], ease(u));
+
+        fan.setAttribute('transform', 'rotate(' + theta.toFixed(3) + ' ' + EX + ' ' + EY + ')');
+        /* the glass starts square on, as printed, and turns against the
+           light it is steering. Not optics, but legible. */
+        glass.setAttribute('transform',
+          'rotate(' + ((SLEEVE - theta) * 0.85).toFixed(3) + ' ' + EX + ' ' + EY + ')');
+
+        /* full spectrum at either end, one band at a time in between */
+        var focus = Math.min(ramp(t, 0.2, 1), ramp(LAST - t, 0.15, 1));
+
+        for (var n = 0; n < 7; n++) {
+          var w = ease(clamp(1 - Math.abs(t - (n + 1)), 0, 1));
+          bands[n].setAttribute('opacity', lerp(1, 0.14 + 0.86 * w, focus).toFixed(3));
+          halos[n].setAttribute('opacity', lerp(1, 0.1 + 0.9 * w, focus).toFixed(3));
+          labels[n].setAttribute('opacity', (w * focus).toFixed(3));
+        }
+
+        /* the words: one panel at a time, drifting a little as it arrives */
+        for (var m = 0; m <= LAST; m++) {
+          var d = t - m;
+          var o = ease(clamp(1 - Math.abs(d) * 1.75, 0, 1));
+          var p = panels[m];
+          p.style.opacity = o.toFixed(3);
+          p.style.visibility = o < 0.01 ? 'hidden' : 'visible';
+          p.firstElementChild.style.transform = 'translate3d(0,' + (d * 26).toFixed(1) + 'px,0)';
+          p.classList.toggle('is-live', o > 0.55);
+        }
+
+        var near = Math.round(t);
+        for (var q = 0; q <= LAST; q++) ticks[q].classList.toggle('on', q === near);
+      }
+
+      /* ---------------- wire it up ---------------- */
+
+      (wide.addEventListener ? wide.addEventListener('change', reframe)
+                             : wide.addListener(reframe));
+      window.addEventListener('scroll', read, {passive:true});
+      window.addEventListener('resize', read);
+      reframe();
+      read();
+      draw(target);
+      shown = target;
     })();
   </script>
 </body>
