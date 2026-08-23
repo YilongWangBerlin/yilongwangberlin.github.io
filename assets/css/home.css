@@ -103,21 +103,49 @@ a{color:inherit;text-decoration:none}
   position:fixed;
   top:0;left:0;bottom:0;
   z-index:35;
-  width:5px;
+  width:52px;
   pointer-events:none;
-  background:var(--rule-2);
+  color:var(--ink-3);
 }
-.rail::after{
-  content:"";
+
+/* the glass itself, sitting clear of the nav and turning with --read */
+.rail-glass{
+  position:absolute;
+  top:66px;left:0;
+  width:52px;height:60px;
+  overflow:visible;
+  filter:drop-shadow(0 1px 3px rgba(63,58,42,.10));
+}
+.rail-beam{opacity:.45}
+.rail-tri{
+  transform-box:fill-box;
+  transform-origin:50% 62%;
+  transform:rotate(calc(-9deg + var(--read,0) * 24deg));
+  opacity:.7;
+}
+
+/* the light that left it, running the height of the page */
+.rail-track{
+  position:absolute;
+  top:108px;bottom:0;left:23.5px;
+  width:5px;
+  border-radius:var(--r-pill);
+  background:var(--rule-2);
+  overflow:hidden;
+}
+.rail-fill{
   position:absolute;
   top:0;left:0;right:0;
   height:calc(var(--read,0) * 100%);
-  border-radius:0 var(--r-pill) var(--r-pill) 0;
+  border-radius:var(--r-pill);
   background:linear-gradient(180deg,
     var(--c-1),var(--c-2),var(--c-3),var(--c-4),
     var(--c-5),var(--c-6),var(--c-7));
-  background-size:100% 100vh;
+  /* the whole spectrum always fits the light that has been thrown so far,
+     so it stretches as the page is read rather than repeating */
+  background-size:100% 100%;
 }
+@media (prefers-reduced-motion:reduce){ .rail-tri{transform:none} }
 @media (max-width:900px){ .rail{display:none} }
 
 /* ---------- nav ----------
@@ -168,8 +196,6 @@ a{color:inherit;text-decoration:none}
   color:var(--ink);
   background:color-mix(in srgb,var(--ink) 7%,transparent);
 }
-.nav-back{color:var(--ink-3)}
-
 /* Where you are in the page, tinted with that section's own band. */
 .nav-list a.is-here{
   color:color-mix(in srgb,var(--sc,var(--ink)) 80%,var(--ink));
@@ -182,7 +208,7 @@ a{color:inherit;text-decoration:none}
   .nav-list a[href="#open-source"]{display:none}
 }
 @media (max-width:760px){
-  .nav-list a:not(.nav-back){display:none}
+  .nav-list a:not([href="#publications"]):not([href="#contact"]){display:none}
 }
 
 /* ---------- masthead ----------

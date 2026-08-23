@@ -4,341 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yilong Wang</title>
-  <meta name="description" content="Yilong Wang, MSc student at TU Berlin, working on the interpretability of multilingual language models." />
+  <meta name="description" content="Yilong Wang, MSc student at TU Berlin, working on the interpretability of multilingual language models. Publications, research interests, and contact." />
   <meta name="author" content="Yilong Wang" />
   <meta property="og:title" content="Yilong Wang" />
   <meta property="og:description" content="Student researcher at TU Berlin. Interpretability, multilingual NLP, counterfactual explanations." />
   <meta property="og:type" content="profile" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#eae8e2" />
 
-  <!-- the prism as a stepped pixel pyramid, swapped for the tab bar's theme -->
-  <link rel="icon" media="(prefers-color-scheme: light)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' shape-rendering='crispEdges'%3E%3Cpath fill='%23181818' d='M13 6h6v6h5v6h5v8H3v-8h5v-6h5z'/%3E%3C/svg%3E" />
-  <link rel="icon" media="(prefers-color-scheme: dark)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' shape-rendering='crispEdges'%3E%3Cpath fill='%23f0f0ec' d='M13 6h6v6h5v6h5v8H3v-8h5v-6h5z'/%3E%3C/svg%3E" />
+  <!-- minimal monogram: a charcoal tile with a stroked Y, matching the page -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2326272a'/%3E%3Cpath d='M10 9L16 17L22 9M16 17V24' fill='none' stroke='%23eae8e2' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- ===================================================================
-       The record sleeve, now on a turntable.
-
-       It opens as the sleeve is printed: black, one beam, one glass, one
-       spectrum, and not a word on the artwork. Then scrolling turns the
-       glass. The fan of seven bands sweeps with it, and whichever band
-       comes to rest level with the reader is the one being talked about.
-       Nine resting positions: the sleeve, the seven areas, and the door.
-       =================================================================== -->
-
-  <style>
-    :root{
-      --bg:#000;
-      --dim:#8d8d93;
-      --dimmer:#55555b;
-      --bright:#f2f2f4;
-
-      --c-1:#ef4230;
-      --c-2:#f78a22;
-      --c-3:#f7d334;
-      --c-4:#4fb556;
-      --c-5:#339bdf;
-      --c-6:#5a62b8;
-      --c-7:#a35bb4;
-
-      --sans:'Jost',sans-serif;
-      --ease:cubic-bezier(.16,1,.3,1);
-    }
-
-    *{box-sizing:border-box;margin:0;padding:0}
-
-    html{
-      background:var(--bg);
-      scroll-snap-type:y proximity;
-    }
-
-    body{
-      background:var(--bg);
-      color:var(--dim);
-      font-family:var(--sans);
-      font-weight:300;
-      -webkit-font-smoothing:antialiased;
-      overflow-x:hidden;
-    }
-
-    ::selection{background:var(--bright);color:var(--bg)}
-    a{color:inherit}
-    :focus-visible{outline:1px solid var(--bright);outline-offset:4px}
-
-    .sr-only{
-      position:absolute;
-      width:1px;height:1px;
-      padding:0;margin:-1px;
-      overflow:hidden;
-      clip:rect(0,0,0,0);
-      white-space:nowrap;
-      border:0;
-    }
-
-    /* ---------- nav ---------- */
-
-    .nav{
-      position:fixed;
-      top:0;left:0;right:0;
-      z-index:6;
-      display:flex;
-      align-items:baseline;
-      gap:26px;
-      padding:22px clamp(20px,4vw,48px);
-      font-size:12px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      pointer-events:none;
-    }
-    .nav a{text-decoration:none;transition:color .25s ease;pointer-events:auto}
-    .nav a:hover{color:var(--bright)}
-    .nav-brand{margin-right:auto;color:var(--dim)}
-    @media (max-width:720px){ .nav-list{display:none} }
-
-    /* ---------- the stage ----------
-       One sticky viewport. Everything below it is empty height, there only
-       so the wheel has something to turn. */
-
-    .scroller{position:relative}
-
-    .stage{
-      position:sticky;
-      top:0;
-      height:100svh;
-      /* it is pinned scenery, not content: the negative margin hands its
-         height back so one spacer is worth exactly one resting position,
-         and the snap points land where the script expects them */
-      margin-bottom:-100svh;
-      overflow:hidden;
-      z-index:1;
-    }
-
-    /* the art is the whole stage. Its viewBox is centred vertically, so the
-       band that has come to rest is always level with the middle of the
-       screen, which is exactly where the words are waiting. */
-    .stage-art{
-      position:absolute;
-      inset:0;
-    }
-    .stage-art svg{
-      width:100%;
-      height:100%;
-      display:block;
-    }
-
-    .beam{filter:drop-shadow(0 0 6px rgba(255,255,255,.55))}
-    #glass{filter:drop-shadow(0 0 5px rgba(255,255,255,.28))}
-
-    /* ---------- the reading column ---------- */
-
-    .stage-text{
-      position:absolute;
-      top:0;bottom:0;
-      left:67%;
-      right:clamp(20px,4vw,72px);
-    }
-
-    .panel{
-      display:flex;
-      align-items:center;
-      padding-block:80px;
-    }
-    .js .panel{
-      position:absolute;
-      inset:0;
-      opacity:0;
-      pointer-events:none;
-      will-change:opacity;
-    }
-    .js .panel.is-live{pointer-events:auto}
-
-    .panel-in{max-width:34ch}
-
-    .kicker{
-      font-size:11px;
-      letter-spacing:.34em;
-      text-transform:uppercase;
-      color:var(--dimmer);
-      margin-bottom:18px;
-    }
-    .kicker .num{color:var(--k,var(--dim))}
-
-    .term{
-      font-size:clamp(28px,3.4vw,44px);
-      font-weight:300;
-      line-height:1.08;
-      letter-spacing:.01em;
-      color:var(--bright);
-      margin-bottom:18px;
-    }
-    /* the band prints its own name on wide screens, so the column keeps
-       quiet there and only speaks up when the printing is hidden */
-    @media (min-width:1001px){ .panel .term{display:none} }
-
-    .gloss{
-      font-size:clamp(16px,1.35vw,19px);
-      line-height:1.62;
-      color:#c9c9ce;
-      letter-spacing:.005em;
-    }
-
-    .aside{
-      margin-top:26px;
-      font-size:12px;
-      letter-spacing:.2em;
-      text-transform:uppercase;
-    }
-    .aside a{
-      text-decoration:none;
-      color:var(--dimmer);
-      border-bottom:1px solid rgba(255,255,255,.14);
-      padding-bottom:3px;
-      transition:color .25s ease,border-color .25s ease;
-    }
-    .aside a:hover{color:var(--bright);border-color:var(--k,var(--bright))}
-
-    /* cover */
-    .cover-name{
-      font-size:clamp(30px,3.3vw,56px);
-      font-weight:300;
-      line-height:1.02;
-      color:var(--bright);
-      letter-spacing:.005em;
-    }
-    .cover-role{
-      margin-top:16px;
-      font-size:12px;
-      letter-spacing:.3em;
-      text-transform:uppercase;
-    }
-    .hint{
-      margin-top:44px;
-      display:inline-flex;
-      align-items:center;
-      gap:12px;
-      font-size:11px;
-      letter-spacing:.32em;
-      text-transform:uppercase;
-      color:var(--dimmer);
-    }
-    .hint i{
-      width:1px;height:34px;
-      background:linear-gradient(#55555b,transparent);
-      animation:drip 2.6s ease-in-out infinite;
-      transform-origin:top;
-    }
-    @keyframes drip{
-      0%,100%{transform:scaleY(.35);opacity:.4}
-      50%{transform:scaleY(1);opacity:1}
-    }
-
-    /* outro */
-    .enter{
-      display:inline-block;
-      margin-top:30px;
-      font-size:12px;
-      letter-spacing:.3em;
-      text-transform:uppercase;
-      text-decoration:none;
-      color:var(--dim);
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:2px;
-      padding:13px 30px;
-      transition:color .3s ease,border-color .3s ease,background .3s ease;
-    }
-    .enter:hover,.enter:focus-visible{
-      color:#000;
-      background:var(--bright);
-      border-color:var(--bright);
-    }
-
-    /* ---------- the rail ----------
-       Nine ticks down the left edge. The seven in the middle carry the
-       spectrum, in order, because of course they do. */
-
-    .rail{
-      position:fixed;
-      left:clamp(14px,2.4vw,30px);
-      top:50%;
-      transform:translateY(-50%);
-      z-index:5;
-      display:flex;
-      flex-direction:column;
-      gap:11px;
-      align-items:center;
-    }
-    .rail button{
-      appearance:none;
-      border:0;
-      background:none;
-      padding:6px 5px;
-      cursor:pointer;
-      display:block;
-      line-height:0;
-    }
-    .rail button span{
-      display:block;
-      width:14px;height:2px;
-      background:currentColor;
-      opacity:.24;
-      border-radius:2px;
-      transition:opacity .35s ease,width .35s var(--ease);
-    }
-    .rail button.on span{opacity:1;width:26px}
-    .rail button:hover span{opacity:.75}
-    @media (max-width:720px){ .rail{display:none} }
-
-    /* ---------- stacked, for narrow screens ---------- */
-
-    @media (max-width:1000px){
-      .stage-art{inset:0 0 42% 0}
-      .stage-art #labelLayer{display:none}
-      .stage-text{
-        top:auto;
-        bottom:0;
-        height:42%;
-        left:clamp(22px,7vw,46px);
-        right:clamp(22px,7vw,46px);
-      }
-      .panel{align-items:flex-start;padding-block:0}
-      .panel-in{max-width:46ch}
-      .kicker{margin-bottom:12px}
-      .term{margin-bottom:12px}
-      .hint{margin-top:28px}
-    }
-
-    /* ---------- entrance ----------
-       One continuous gesture on first paint: the glass settles, the beam
-       arrives, the spectrum blooms. After that the scroll has the floor. */
-
-    #glass{opacity:0;animation:appear 1s var(--ease) .15s forwards}
-    .beam-line{
-      stroke-dasharray:1;
-      stroke-dashoffset:1;
-      animation:draw 1.05s var(--ease) .45s forwards;
-    }
-    #fan{opacity:0;animation:appear 1.15s var(--ease) 1.15s forwards}
-    .nav,.rail,.stage-text{animation:appear .9s var(--ease) 1.6s backwards}
-    @keyframes appear{from{opacity:0}to{opacity:1}}
-    @keyframes draw{to{stroke-dashoffset:0}}
-
-    @media (prefers-reduced-motion:reduce){
-      html{scroll-snap-type:none}
-      #glass,#fan,.nav,.rail,.stage-text{animation:none;opacity:1}
-      .beam-line{animation:none;stroke-dashoffset:0}
-      .hint i{animation:none;opacity:.7}
-    }
-  </style>
-
-  <script>
-    document.documentElement.className += ' js';
-    /* a reload should hand back the sleeve, not whichever band the reader
-       happened to leave the glass on */
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  </script>
+  <link rel="stylesheet" href="assets/css/home.css" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-96T3G6TNZH"></script>
@@ -350,385 +30,387 @@
   </script>
 </head>
 
+<!-- =====================================================================
+     The readable page. Warm paper, serif body, soft light. The prism is
+     the only piece of the old record sleeve still standing: it sits at the
+     top of the left edge, turns as you read, and the seven bands leaving it
+     run down the page as the progress rail. The scenery below is drawn by
+     hand in that same palette. -->
 <body>
-  <h1 class="sr-only">Yilong Wang</h1>
-
-  <nav class="nav">
-    <a class="nav-brand" href="index.html">Yilong Wang</a>
-    <span class="nav-list">
-      <a href="home.html#about">About</a>
-      <a href="home.html#research">Research</a>
-      <a href="home.html#publications">Publications</a>
-      <a href="home.html#contact">Contact</a>
-    </span>
-  </nav>
-
-  <nav class="rail" id="rail" aria-label="Sections"></nav>
-
-  <div class="scroller" id="scroller">
-    <div class="stage">
-
-      <!-- ============================ the art ============================ -->
-      <div class="stage-art">
-        <svg id="prism" viewBox="0 0 1500 900" xmlns="http://www.w3.org/2000/svg"
-             preserveAspectRatio="xMidYMid meet" role="img"
-             aria-label="A beam of white light enters a glass prism on a black field and leaves as a fan of seven coloured bands. Scrolling turns the prism.">
-
-          <defs>
-            <filter id="soften" x="-10%" y="-10%" width="120%" height="120%">
-              <feGaussianBlur stdDeviation="1.3"/>
-            </filter>
-            <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
-              <feGaussianBlur stdDeviation="9"/>
-            </filter>
-            <radialGradient id="gglint" cx="340" cy="450" r="360" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stop-color="#fff" stop-opacity=".14"/>
-              <stop offset=".45" stop-color="#fff" stop-opacity=".045"/>
-              <stop offset="1" stop-color="#fff" stop-opacity="0"/>
-            </radialGradient>
-            <!-- gradients for the bands and the seams are written by script,
-                 all centred on the fan's origin so the rotation cannot
-                 smear them -->
-            <g id="gradients"></g>
-          </defs>
-
-          <!-- light caught in the glass, showing only as an aura -->
-          <circle id="glint" cx="340" cy="450" r="360" fill="url(#gglint)" pointer-events="none"/>
-
-          <!-- the beam, raking in from the upper left onto the near face -->
-          <g class="beam">
-            <line class="beam-line" x1="-420" y1="316" x2="340" y2="450"
-                  stroke="#f2f2f4" stroke-width="3" pathLength="1"/>
-          </g>
-
-          <!-- the spectrum: halo, bands, seams, and the names printed
-               along the bands, which stay dark until the scroll starts -->
-          <g id="fan">
-            <g id="glowLayer" filter="url(#glow)" opacity=".24" aria-hidden="true"></g>
-            <g id="bandLayer" filter="url(#soften)"></g>
-            <g id="seamLayer" stroke-width="2" fill="none" pointer-events="none" aria-hidden="true"></g>
-            <g id="labelLayer" font-family="Jost,sans-serif" font-size="23"
-               font-weight="400" letter-spacing="3" text-anchor="end"
-               fill="#060606" pointer-events="none" aria-hidden="true"></g>
-          </g>
-
-          <!-- the glass, opaque, so the bands only exist once they are out -->
-          <g id="glass">
-            <path id="glassPath" d="M 340 235 L 526.2 557.5 L 153.8 557.5 Z"
-                  fill="#000" stroke="#e8e8ec" stroke-width="2.6" stroke-linejoin="miter"/>
-          </g>
-        </svg>
-      </div>
-
-      <!-- ============================ the words ============================ -->
-      <div class="stage-text" id="panels">
-
-        <article class="panel" data-k="0">
-          <div class="panel-in">
-            <p class="cover-name">Yilong Wang</p>
-            <p class="cover-role">Student researcher · TU Berlin</p>
-            <p class="hint"><i></i> Scroll to turn the glass</p>
-          </div>
-        </article>
-
-        <article class="panel" data-k="1" style="--k:var(--c-1)">
-          <div class="panel-in">
-            <p class="kicker"><span class="num">01</span> / 07 · Research</p>
-            <h2 class="term">Multilingual NLP</h2>
-            <p class="gloss">Whether a concept lives in the same place inside a model, no matter which language asks for it.</p>
-            <p class="aside"><a href="home.html#publications">Macro, EMNLP 2026 ↗</a></p>
-          </div>
-        </article>
-
-        <article class="panel" data-k="2" style="--k:var(--c-2)">
-          <div class="panel-in">
-            <p class="kicker"><span class="num">02</span> / 07 · Research</p>
-            <h2 class="term">Interpretability</h2>
-            <p class="gloss">Pulling a dense representation apart into sparse, individually legible features, most often with a sparse autoencoder.</p>
-            <p class="aside"><a href="home.html#about">How I got here ↗</a></p>
-          </div>
-        </article>
-
-        <article class="panel" data-k="3" style="--k:var(--c-3)">
-          <div class="panel-in">
-            <p class="kicker"><span class="num">03</span> / 07 · Research</p>
-            <h2 class="term">Counterfactuals</h2>
-            <p class="gloss">The smallest edit that flips a prediction, and everything that edit gives away.</p>
-            <p class="aside"><a href="home.html#publications">iFlip, EMNLP 2026 ↗</a></p>
-          </div>
-        </article>
-
-        <article class="panel" data-k="4" style="--k:var(--c-4)">
-          <div class="panel-in">
-            <p class="kicker"><span class="num">04</span> / 07 · Research</p>
-            <h2 class="term">On-policy distillation</h2>
-            <p class="gloss">Teaching a small model on the trajectories it actually walks, rather than the ones its teacher would have.</p>
-          </div>
-        </article>
-
-        <article class="panel" data-k="5" style="--k:var(--c-5)">
-          <div class="panel-in">
-            <p class="kicker"><span class="num">05</span> / 07 · Research</p>
-            <h2 class="term">Reinforcement learning</h2>
-            <p class="gloss">A reward is a rough map. Someone still has to walk the route.</p>
-          </div>
-        </article>
-
-        <article class="panel" data-k="6" style="--k:var(--c-6)">
-          <div class="panel-in">
-            <p class="kicker"><span class="num">06</span> / 07 · Research</p>
-            <h2 class="term">Memory</h2>
-            <p class="gloss">What a model should carry between turns, and what it is better off forgetting.</p>
-          </div>
-        </article>
-
-        <article class="panel" data-k="7" style="--k:var(--c-7)">
-          <div class="panel-in">
-            <p class="kicker"><span class="num">07</span> / 07 · Research</p>
-            <h2 class="term">Modality priors</h2>
-            <p class="gloss">Every modality arrives already holding assumptions about what it is looking at.</p>
-          </div>
-        </article>
-
-        <article class="panel" data-k="8">
-          <div class="panel-in">
-            <p class="kicker">Seven bands, one beam</p>
-            <h2 class="term" style="display:block">The rest of it</h2>
-            <p class="gloss">Those are the seven areas my research covers. The papers, the news and the contact details live one click away, on a page with rather more daylight.</p>
-            <a class="enter" href="home.html">Enter</a>
-          </div>
-        </article>
-
-      </div>
-    </div>
-
-    <!-- empty height, one screen per resting position -->
-    <div id="spacers" aria-hidden="true"></div>
+  <!-- The prism, the one piece of the old sleeve still standing. A beam
+       rakes in from the upper left, the glass turns as the page is read,
+       and the seven bands it throws run down the edge as the progress rail. -->
+  <div class="rail" aria-hidden="true">
+    <svg class="rail-glass" viewBox="0 0 52 60" fill="none" focusable="false">
+      <path class="rail-beam" d="M3 11 L18.75 29" stroke="currentColor"
+            stroke-width="1.2" stroke-linecap="round" />
+      <path class="rail-tri"
+            d="M28.44 20.37 L38.06 37.63 Q40.5 42 35.5 42 L16.5 42 Q11.5 42 13.94 37.63
+               L23.56 20.37 Q26 16 28.44 20.37 Z"
+            fill="var(--paper-2)" stroke="currentColor" stroke-width="1.4" />
+    </svg>
+    <div class="rail-track"><i class="rail-fill"></i></div>
   </div>
 
-  <script>
-    (function () {
-      'use strict';
+  <nav class="nav">
+    <a class="nav-brand" href="#content">Yilong Wang</a>
+    <div class="nav-list">
+      <a href="#about">About</a>
+      <a href="#news">News</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#open-source">Code</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-      /* ---------------- the seven, in spectrum order ---------------- */
+  <main id="content">
+    <!-- ============================ masthead ============================ -->
+    <header class="mast">
+      <figure class="mast-portrait">
+        <img src="image/image.jpg" alt="Portrait of Yilong Wang" width="1097" height="1434" />
+      </figure>
+      <div class="mast-body">
+        <h1 class="mast-name">Yilong Wang</h1>
+        <p class="mast-role">Student researcher · TU Berlin</p>
+        <p class="mast-line">
+          Interpretability · multilingual NLP · counterfactual explanations
+        </p>
+        <!-- Each link carries one band of the spectrum. -->
+        <div class="chips mast-links">
+          <a class="chip" href="mailto:yilong.wang.berlin@gmail.com" style="--k:var(--c-1)">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <rect x="1.6" y="3.4" width="12.8" height="9.2" rx="2.6" />
+              <path d="M2.8 5.6 8 9.2l5.2-3.6" />
+            </svg>
+            Email
+          </a>
+          <a class="chip" href="https://scholar.google.com/citations?user=nwUJ_P8AAAAJ" target="_blank" rel="noopener noreferrer" style="--k:var(--c-5)">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M8 2.4 15 6l-7 3.6L1 6z" />
+              <path d="M4.2 7.6v3.1c0 1.1 1.7 2 3.8 2s3.8-.9 3.8-2V7.6" />
+              <path d="M14.4 6.4v3.8" />
+            </svg>
+            Google Scholar
+          </a>
+          <a class="chip" href="https://github.com/YilongWangBerlin" target="_blank" rel="noopener noreferrer" style="--k:var(--c-7)">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <circle cx="4.6" cy="3.6" r="1.9" />
+              <circle cx="4.6" cy="12.4" r="1.9" />
+              <circle cx="11.6" cy="3.6" r="1.9" />
+              <path d="M4.6 5.5v5" />
+              <path d="M11.6 5.5v1.1c0 2.1-1.9 3.2-4 3.4" />
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </header>
 
-      var AREAS = [
-        {c:'#ef4230', name:'MULTILINGUAL NLP'},
-        {c:'#f78a22', name:'INTERPRETABILITY'},
-        {c:'#f7d334', name:'COUNTERFACTUALS'},
-        {c:'#4fb556', name:'ON-POLICY DISTILLATION'},
-        {c:'#339bdf', name:'REINFORCEMENT LEARNING'},
-        {c:'#5a62b8', name:'MEMORY'},
-        {c:'#a35bb4', name:'MODALITY PRIORS'}
-      ];
+    <!-- ============================ about ============================
+         Each section carries one band of the spectrum in --sc; the small
+         square in front of its title is where that band shows up. -->
+    <section class="band" id="about" style="--sc:var(--c-1)">
+      <p class="band-mark" aria-hidden="true"></p>
+      <div class="band-body rise">
+        <h2 class="band-title">About</h2>
+        <div class="about">
+          <div class="about-body">
+            <p>
+              I am a master's student in computer science at <strong>TU Berlin</strong>,
+              supervised by
+              <a href="https://home.qiaw99.workers.dev/" target="_blank" rel="noopener noreferrer">Qianli Wang</a>.
+              I wrote my bachelor's thesis with Qianli Wang and
+              <a href="https://nfelnlp.github.io/" target="_blank" rel="noopener noreferrer">Nils Feldhus</a>.
+            </p>
+            <p>
+              My recent research focuses on the interpretability of
+              multilingual language models: whether a concept is represented
+              consistently across languages, and what a model actually relies
+              on when it makes a prediction. Much of my work uses counterfactual
+              explanations, minimal edits to an input that flip a model's
+              prediction. Lately I have also been working with sparse
+              autoencoders, and my recent papers improve self-generated
+              counterfactuals through preference optimization in the
+              multilingual setting and through iterative feedback at
+              inference time.
+            </p>
+            <div class="seeking">
+              <p>
+                Looking for <strong>internship</strong> and <strong>PhD</strong>
+                positions starting in 2027. Feel free to reach out by
+                <a href="mailto:yilong.wang.berlin@gmail.com">email</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      /* ---------------- geometry ----------------
-         Everything radiates from one point inside the glass, so the only
-         thing the scroll has to change is how far the whole fan has turned. */
+    <!-- ============================ news ============================ -->
+    <section class="band" id="news" style="--sc:var(--c-2)">
+      <p class="band-mark" aria-hidden="true"></p>
+      <div class="band-body rise">
+        <h2 class="band-title">Recently</h2>
+        <ul class="news">
+          <li>
+            <time datetime="2026-08">Aug 2026</time>
+            <p>Two papers were accepted to Findings of EMNLP 2026.</p>
+          </li>
+          <li>
+            <time datetime="2026-07">Jul 2026</time>
+            <p>Completed my contribution to Apache SystemDS.</p>
+          </li>
+          <li>
+            <time datetime="2026-05">May 2026</time>
+            <p>One paper on multilingual counterfactual explanations is in submission.</p>
+          </li>
+          <li>
+            <time datetime="2026-01">Jan 2026</time>
+            <p>One paper on counterfactual generation is in submission.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-      var EX = 340, EY = 450;   /* where the light leaves the glass */
-      var R0 = 24, R1 = 620;    /* the bands run from here to here */
-      var LR = R1 - 18;         /* the printed names end just inside R1 */
-      var STEP = 6;             /* degrees between one band and the next */
-      var NS = 'http://www.w3.org/2000/svg';
+    <!-- ============================ research ============================ -->
+    <section class="band" id="research" style="--sc:var(--c-3)">
+      <p class="band-mark" aria-hidden="true"></p>
+      <div class="band-body rise">
+        <h2 class="band-title">Research interests</h2>
+        <ul class="themes">
+          <li style="--c:var(--c-1)">
+            <p class="theme-term">Multilingual NLP</p>
+            <p class="theme-gloss">Whether a concept lives in the same place inside a model, no matter which language asks for it.</p>
+          </li>
+          <li style="--c:var(--c-2)">
+            <p class="theme-term">Interpretability</p>
+            <p class="theme-gloss">Pulling a dense representation apart into sparse, individually legible features, most often with a sparse autoencoder.</p>
+          </li>
+          <li style="--c:var(--c-3)">
+            <p class="theme-term">Counterfactuals</p>
+            <p class="theme-gloss">The smallest edit that flips a prediction, and everything that edit gives away.</p>
+          </li>
+          <li style="--c:var(--c-4)">
+            <p class="theme-term">On-policy distillation</p>
+            <p class="theme-gloss">Teaching a small model on the trajectories it actually walks, rather than the ones its teacher would have.</p>
+          </li>
+          <li style="--c:var(--c-5)">
+            <p class="theme-term">Reinforcement learning</p>
+            <p class="theme-gloss">A reward is a rough map. Someone still has to walk the route.</p>
+          </li>
+          <li style="--c:var(--c-6)">
+            <p class="theme-term">Memory</p>
+            <p class="theme-gloss">What a model should carry between turns, and what it is better off forgetting.</p>
+          </li>
+          <li style="--c:var(--c-7)">
+            <p class="theme-term">Modality priors</p>
+            <p class="theme-gloss">Every modality arrives already holding assumptions about what it is looking at.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-      /* Nine resting positions. The first is the sleeve as printed: glass
-         upright, spectrum down and to the right, not a word on it. After
-         that the glass turns, and each band in turn comes level with the
-         reader and says its piece. */
-      var SLEEVE = 21;
-      var STOPS = [SLEEVE, 18, 12, 6, 0, -6, -12, -18, -21];
-      var LAST = STOPS.length - 1;
+    <!-- ============================ publications ============================
+         Excerpts are the opening of each paper's own abstract, verbatim. -->
+    <section class="band" id="publications" style="--sc:var(--c-4)">
+      <p class="band-mark" aria-hidden="true"></p>
+      <div class="band-body rise">
+        <h2 class="band-title">Publications</h2>
 
-      function px(d, r) { return EX + r * Math.cos(d * Math.PI / 180); }
-      function py(d, r) { return EY + r * Math.sin(d * Math.PI / 180); }
-      function pt(d, r) { return px(d, r).toFixed(2) + ',' + py(d, r).toFixed(2); }
-      function el(name, attrs) {
-        var n = document.createElementNS(NS, name);
-        for (var k in attrs) n.setAttribute(k, attrs[k]);
-        return n;
-      }
-      function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
-      function lerp(a, b, u) { return a + (b - a) * u; }
-      function ease(u) { return u * u * (3 - 2 * u); }
-      function ramp(v, a, b) { return ease(clamp((v - a) / (b - a), 0, 1)); }
+        <article class="paper">
+          <button class="paper-thumb" type="button"
+                  data-full="assets/thumbs/macro-overview.png"
+                  data-cap="Macro · method overview"
+                  aria-label="Enlarge the method overview figure from Macro">
+            <img src="assets/thumbs/macro-overview.png" width="1100" height="779"
+                 alt="Method overview diagram from the Macro paper"
+                 loading="lazy" decoding="async" />
+          </button>
+          <div class="paper-body">
+          <p class="paper-venue">Findings of EMNLP 2026</p>
+          <h3 class="paper-title">
+            <a href="https://arxiv.org/abs/2605.11632" target="_blank" rel="noopener noreferrer">Macro: Enhancing Multilingual Counterfactual Explanations through Alignment-as-Preference Optimization</a>
+          </h3>
+          <p class="paper-authors">
+            <span class="me">Yilong Wang</span>*, Qianli Wang*, Bohao Chu, Yihong Liu, Jing Yang, Simon Ostermann
+            <span class="paper-note">* equal contribution</span>
+          </p>
+          <div class="abstract">
+            <p class="abstract-label">From the abstract</p>
+            <p>Self-generated counterfactual explanations (SCEs) are minimally modified inputs (minimality) generated by large language models (LLMs) that flip their own predictions (validity) <span class="cut">[…]</span></p>
+          </div>
+          <div class="chips">
+            <a class="chip" href="https://arxiv.org/abs/2605.11632" target="_blank" rel="noopener noreferrer">arXiv ↗</a>
+            <button class="chip" type="button" data-bibtex="@inproceedings{wang2026macro,&#10;  title={Macro: Enhancing Multilingual Counterfactual Explanations through Alignment-as-Preference Optimization},&#10;  author={Wang, Yilong and Wang, Qianli and Chu, Bohao and Liu, Yihong and Yang, Jing and Ostermann, Simon},&#10;  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2026},&#10;  year={2026}&#10;}">BibTeX</button>
+          </div>
+          </div>
+        </article>
 
-      /* ---------------- build the fan ---------------- */
+        <article class="paper">
+          <button class="paper-thumb" type="button"
+                  data-full="assets/thumbs/iflip-overview.png"
+                  data-cap="iFlip · method overview"
+                  aria-label="Enlarge the method overview figure from iFlip">
+            <img src="assets/thumbs/iflip-overview.png" width="1100" height="416"
+                 alt="Method overview diagram from the iFlip paper"
+                 loading="lazy" decoding="async" />
+          </button>
+          <div class="paper-body">
+          <p class="paper-venue">Findings of EMNLP 2026</p>
+          <h3 class="paper-title">
+            <a href="https://arxiv.org/abs/2601.01446" target="_blank" rel="noopener noreferrer">iFlip: Iterative Feedback-driven Counterfactual Example Refinement</a>
+          </h3>
+          <p class="paper-authors">
+            <span class="me">Yilong Wang</span>*, Qianli Wang*, Nils Feldhus
+            <span class="paper-note">* equal contribution</span>
+          </p>
+          <div class="abstract">
+            <p class="abstract-label">From the abstract</p>
+            <p>Counterfactual examples are minimal edits to an input that alter a model's prediction. They are widely employed in explainable AI to probe model behavior and in natural language processing (NLP) to augment training data. <span class="cut">[…]</span></p>
+          </div>
+          <div class="chips">
+            <a class="chip" href="https://arxiv.org/abs/2601.01446" target="_blank" rel="noopener noreferrer">arXiv ↗</a>
+            <button class="chip" type="button" data-bibtex="@inproceedings{wang2026iflip,&#10;  title={iFlip: Iterative Feedback-driven Counterfactual Example Refinement},&#10;  author={Wang, Yilong and Wang, Qianli and Feldhus, Nils},&#10;  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2026},&#10;  year={2026}&#10;}">BibTeX</button>
+          </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-      var defs = document.getElementById('gradients');
-      var glowLayer = document.getElementById('glowLayer');
-      var bandLayer = document.getElementById('bandLayer');
-      var seamLayer = document.getElementById('seamLayer');
-      var labelLayer = document.getElementById('labelLayer');
+    <!-- ============================ reports ============================ -->
+    <section class="band" id="reports" style="--sc:var(--c-5)">
+      <p class="band-mark" aria-hidden="true"></p>
+      <div class="band-body rise">
+        <h2 class="band-title">Coursework</h2>
 
-      /* the seams fade in only once the light has finished unmixing */
-      var seamGrad = el('radialGradient', {
-        id:'gseam', gradientUnits:'userSpaceOnUse', cx:EX, cy:EY, r:R1
-      });
-      [[0,'0'],[0.32,'.85'],[1,'.85']].forEach(function (s) {
-        seamGrad.appendChild(el('stop', {offset:s[0], 'stop-color':'#000', 'stop-opacity':s[1]}));
-      });
-      defs.appendChild(seamGrad);
+        <article class="paper">
+          <button class="paper-thumb" type="button"
+                  data-full="assets/thumbs/aia-report-page.png"
+                  data-cap="Rethinking Feature Quality · first page"
+                  aria-label="Enlarge the first page of the report">
+            <img src="assets/thumbs/aia-report-page.png" width="1081" height="1400"
+                 alt="First page of the report on frozen ViT versus HOG features"
+                 loading="lazy" decoding="async" />
+          </button>
+          <div class="paper-body">
+          <p class="paper-venue">TU Berlin · course report</p>
+          <h3 class="paper-title">
+            <a href="pdf/AIA_Group_18_Rethinking_Feature_Quality__Frozen_VIT_versus_HOG_under_Linear_SVM_and_k_NN_Evaluation_on_STL_10_AIA_Project.pdf" target="_blank" rel="noopener noreferrer">Rethinking Feature Quality: Frozen ViT versus HOG under Linear SVM and k-NN Evaluation on STL-10</a>
+          </h3>
+          <p class="paper-authors">
+            <span class="me">Yilong Wang</span>, Lingxuan Zhu, Mingxin Jiang, Junyi Li
+          </p>
+          <div class="abstract">
+            <p class="abstract-label">From the abstract</p>
+            <p>We study how much labelled data self-supervised pretraining can save on STL-10, comparing a classical HOG baseline against frozen ViT features from DINOv3 under an identical linear SVM evaluation across varying training-data fractions. <span class="cut">[…]</span></p>
+          </div>
+          <div class="chips">
+            <a class="chip" href="pdf/AIA_Group_18_Rethinking_Feature_Quality__Frozen_VIT_versus_HOG_under_Linear_SVM_and_k_NN_Evaluation_on_STL_10_AIA_Project.pdf" target="_blank" rel="noopener noreferrer">PDF ↗</a>
+            <a class="chip" href="https://github.com/YilongWangBerlin/hog-vs-vit-stl10" target="_blank" rel="noopener noreferrer">Code ↗</a>
+          </div>
+          </div>
+        </article>
 
-      var bands = [], halos = [], labels = [];
+        <article class="paper">
+          <button class="paper-thumb" type="button"
+                  data-full="assets/thumbs/report-page.png"
+                  data-cap="Sentiment Analysis of Financial News Headlines · first page"
+                  aria-label="Enlarge the first page of the report">
+            <img src="assets/thumbs/report-page.png" width="680" height="879"
+                 alt="First page of the report on financial news headline sentiment"
+                 loading="lazy" decoding="async" />
+          </button>
+          <div class="paper-body">
+          <p class="paper-venue">TU Berlin · course report</p>
+          <h3 class="paper-title">
+            <a href="pdf/Sentiment%20Analysis%20of%20Financial%20News%20Headlines.pdf" target="_blank" rel="noopener noreferrer">Sentiment Analysis of Financial News Headlines</a>
+          </h3>
+          <p class="paper-authors">
+            <span class="me">Yilong Wang</span>*, Linda Li*
+            <span class="paper-note">* equal contribution</span>
+          </p>
+          <div class="abstract">
+            <p class="abstract-label">From the introduction</p>
+            <p>Financial sentiment analysis differs from general opinion mining in a fundamental way: sentiment is rarely conveyed through explicit evaluative words <span class="cut">[…]</span></p>
+          </div>
+          <div class="chips">
+            <a class="chip" href="pdf/Sentiment%20Analysis%20of%20Financial%20News%20Headlines.pdf" target="_blank" rel="noopener noreferrer">PDF ↗</a>
+          </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-      AREAS.forEach(function (a, i) {
-        var mid = (i - 3) * STEP;
-        var a0 = mid - STEP / 2, a1 = mid + STEP / 2;
-        var poly = [pt(a0, R0), pt(a1, R0), pt(a1, R1), pt(a0, R1)].join(' ');
+    <!-- ============================ photographs ============================
+         Content lives in assets/js/photos.js. Add a line there, not here.
+         The section stays hidden while that list is empty. -->
+    <section class="band" id="photographs" hidden style="--sc:var(--c-6)">
+      <p class="band-mark" aria-hidden="true"></p>
+      <div class="band-body rise">
+        <h2 class="band-title">Photographs</h2>
+        <p class="band-intro">Evidence that I occasionally leave the building.</p>
+        <div class="photos" id="photoGrid"></div>
+      </div>
+    </section>
 
-        /* each band dims towards the glass and reaches full colour outward */
-        var g = el('radialGradient', {
-          id:'gb' + i, gradientUnits:'userSpaceOnUse', cx:EX, cy:EY, r:R1
-        });
-        [[0,'.3'],[0.42,'.92'],[1,'1']].forEach(function (s) {
-          g.appendChild(el('stop', {offset:s[0], 'stop-color':a.c, 'stop-opacity':s[1]}));
-        });
-        defs.appendChild(g);
+    <!-- ============================ open source ============================ -->
+    <section class="band" id="open-source" style="--sc:var(--c-6)">
+      <p class="band-mark" aria-hidden="true"></p>
+      <div class="band-body rise">
+        <h2 class="band-title">Open source</h2>
+        <div class="oss">
+          <p class="oss-meta">
+            <span class="done">Completed</span>
+            <span>Contributor · May to July 2026</span>
+          </p>
+          <h3 class="oss-name">
+            <a href="https://github.com/apache/systemds" target="_blank" rel="noopener noreferrer">Apache SystemDS</a>
+          </h3>
+          <p>
+            I contributed to <strong>LLM-assisted generation of data augmentation
+            pipelines</strong>, building a harness that compared published
+            augmentation baselines against LLM-generated strategies across
+            datasets of different modalities.
+          </p>
+          <div class="chips">
+            <a class="chip" href="https://github.com/apache/systemds" target="_blank" rel="noopener noreferrer">Repository ↗</a>
+            <a class="chip" href="https://issues.apache.org/jira/browse/SYSTEMDS-3942" target="_blank" rel="noopener noreferrer">SYSTEMDS-3942 ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        halos.push(glowLayer.appendChild(el('polygon', {points:poly, fill:a.c})));
-        bands.push(bandLayer.appendChild(el('polygon', {points:poly, fill:'url(#gb' + i + ')'})));
+    <!-- ============================ contact ============================ -->
+    <section class="band" id="contact" style="--sc:var(--c-7)">
+      <p class="band-mark" aria-hidden="true"></p>
+      <div class="band-body rise">
+        <h2 class="band-title">Get in touch</h2>
+        <a class="mailto" href="mailto:yilong.wang.berlin@gmail.com">yilong.wang.berlin@gmail.com</a>
+        <div class="chips">
+          <a class="chip" href="https://scholar.google.com/citations?user=nwUJ_P8AAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a>
+          <a class="chip" href="https://github.com/YilongWangBerlin" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        if (i < AREAS.length - 1) {
-          seamLayer.appendChild(el('line', {
-            x1:px(a1, 200).toFixed(2), y1:py(a1, 200).toFixed(2),
-            x2:px(a1, R1).toFixed(2),  y2:py(a1, R1).toFixed(2),
-            stroke:'url(#gseam)'
-          }));
-        }
+  <footer class="site-foot">
+    <p>© 2026 Yilong Wang · Berlin</p>
+  </footer>
 
-        /* the name, printed dark along its own band, sleeve fashion */
-        var t = el('text', {
-          x:EX + LR, y:EY + 8,
-          transform:'rotate(' + mid + ' ' + EX + ' ' + EY + ')',
-          opacity:0
-        });
-        t.textContent = a.name;
-        labels.push(labelLayer.appendChild(t));
-      });
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" type="button">Close ✕</button>
+    <figure class="lightbox-frame">
+      <img id="lightboxImg" src="" alt="" />
+      <figcaption id="lightboxCap"></figcaption>
+    </figure>
+  </div>
 
-      /* ---------------- the rail and the empty height ---------------- */
-
-      var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
-      var rail = document.getElementById('rail');
-      var spacers = document.getElementById('spacers');
-      var ticks = [];
-
-      STOPS.forEach(function (_, k) {
-        var s = document.createElement('div');
-        s.style.height = '100svh';
-        s.style.scrollSnapAlign = 'start';
-        spacers.appendChild(s);
-
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.setAttribute('aria-label', k === 0 ? 'Cover'
-          : k === LAST ? 'Enter the site' : AREAS[k - 1].name.toLowerCase());
-        b.style.color = (k === 0 || k === LAST) ? '#8d8d93' : AREAS[k - 1].c;
-        b.appendChild(document.createElement('span'));
-        b.addEventListener('click', function () {
-          window.scrollTo({top: k * unit(), behavior:'smooth'});
-        });
-        ticks.push(rail.appendChild(b));
-      });
-
-      function unit() {
-        var range = document.documentElement.scrollHeight - window.innerHeight;
-        return range / LAST;
-      }
-
-      /* ---------------- framing ----------------
-         Wide, the art has the whole stage and must leave the right third to
-         the words. Stacked, it has a short box of its own and crops in to
-         it. Both keep y=450 in the middle, so the band that has come to rest
-         stays level with the text either way. */
-
-      var svg = document.getElementById('prism');
-      var wide = window.matchMedia('(min-width:1001px)');
-
-      function reframe() {
-        svg.setAttribute('viewBox', wide.matches ? '0 0 1500 900' : '105 20 990 858');
-      }
-
-      /* ---------------- the render ---------------- */
-
-      var fan = document.getElementById('fan');
-      var glass = document.getElementById('glass');
-
-      var target = 0, shown = -1, raf = 0, last = 0;
-      var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-
-      function read() {
-        var range = document.documentElement.scrollHeight - window.innerHeight;
-        target = range > 0 ? clamp(window.scrollY / range, 0, 1) * LAST : 0;
-        if (!raf) raf = requestAnimationFrame(frame);
-      }
-
-      function frame(now) {
-        raf = 0;
-        /* The scroll moves at once, the glass takes its time catching up.
-           Measured against the clock rather than counted in frames, so a
-           throttled or slow display drifts at the same speed as a fast one
-           instead of crawling. */
-        var dt = last ? Math.min((now - last) / 1000, 0.25) : 1 / 60;
-        last = now;
-        if (reduce || shown < 0) shown = target;
-        else {
-          shown += (target - shown) * (1 - Math.exp(-dt / 0.09));
-          if (Math.abs(target - shown) < 0.0004) shown = target;
-        }
-        draw(shown);
-        if (shown !== target) raf = requestAnimationFrame(frame);
-        else last = 0;
-      }
-
-      function draw(t) {
-        var i = Math.floor(t), u = t - i;
-        if (i >= LAST) { i = LAST - 1; u = 1; }
-        var theta = lerp(STOPS[i], STOPS[i + 1], ease(u));
-
-        fan.setAttribute('transform', 'rotate(' + theta.toFixed(3) + ' ' + EX + ' ' + EY + ')');
-        /* the glass starts square on, as printed, and turns against the
-           light it is steering. Not optics, but legible. */
-        glass.setAttribute('transform',
-          'rotate(' + ((SLEEVE - theta) * 0.85).toFixed(3) + ' ' + EX + ' ' + EY + ')');
-
-        /* full spectrum at either end, one band at a time in between */
-        var focus = Math.min(ramp(t, 0.2, 1), ramp(LAST - t, 0.15, 1));
-
-        for (var n = 0; n < 7; n++) {
-          var w = ease(clamp(1 - Math.abs(t - (n + 1)), 0, 1));
-          bands[n].setAttribute('opacity', lerp(1, 0.14 + 0.86 * w, focus).toFixed(3));
-          halos[n].setAttribute('opacity', lerp(1, 0.1 + 0.9 * w, focus).toFixed(3));
-          labels[n].setAttribute('opacity', (w * focus).toFixed(3));
-        }
-
-        /* the words: one panel at a time, drifting a little as it arrives */
-        for (var m = 0; m <= LAST; m++) {
-          var d = t - m;
-          var o = ease(clamp(1 - Math.abs(d) * 1.75, 0, 1));
-          var p = panels[m];
-          p.style.opacity = o.toFixed(3);
-          p.style.visibility = o < 0.01 ? 'hidden' : 'visible';
-          p.firstElementChild.style.transform = 'translate3d(0,' + (d * 26).toFixed(1) + 'px,0)';
-          p.classList.toggle('is-live', o > 0.55);
-        }
-
-        var near = Math.round(t);
-        for (var q = 0; q <= LAST; q++) ticks[q].classList.toggle('on', q === near);
-      }
-
-      /* ---------------- wire it up ---------------- */
-
-      (wide.addEventListener ? wide.addEventListener('change', reframe)
-                             : wide.addListener(reframe));
-      window.addEventListener('scroll', read, {passive:true});
-      window.addEventListener('resize', read);
-      reframe();
-      read();
-      draw(target);
-      shown = target;
-    })();
-  </script>
+  <script src="assets/js/photos.js"></script>
+  <script src="assets/js/home.js"></script>
 </body>
 </html>
