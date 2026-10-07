@@ -1,0 +1,1302 @@
+{
+  "daily" : [
+    {
+      "date" : "2026-07-09",
+      "messages" : 246,
+      "model" : "claude-sonnet-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 38880115,
+        "cache_write" : 293613,
+        "input" : 32678,
+        "output" : 137168,
+        "total" : 39343574
+      }
+    },
+    {
+      "date" : "2026-07-12",
+      "messages" : 116,
+      "model" : "claude-sonnet-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 38256101,
+        "cache_write" : 335085,
+        "input" : 8661,
+        "output" : 54084,
+        "total" : 38653931
+      }
+    },
+    {
+      "date" : "2026-07-21",
+      "messages" : 145,
+      "model" : "claude-opus-4-8",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 15897658,
+        "cache_write" : 320844,
+        "input" : 274,
+        "output" : 74175,
+        "total" : 16292951
+      }
+    },
+    {
+      "date" : "2026-07-22",
+      "messages" : 82,
+      "model" : "claude-opus-4-8",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 8336554,
+        "cache_write" : 369671,
+        "input" : 154,
+        "output" : 31817,
+        "total" : 8738196
+      }
+    },
+    {
+      "date" : "2026-07-23",
+      "messages" : 238,
+      "model" : "claude-opus-4-8",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 46980413,
+        "cache_write" : 3510491,
+        "input" : 441,
+        "output" : 206439,
+        "total" : 50697784
+      }
+    },
+    {
+      "date" : "2026-07-29",
+      "messages" : 142,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 21775812,
+        "cache_write" : 404153,
+        "input" : 268,
+        "output" : 126725,
+        "total" : 22306958
+      }
+    },
+    {
+      "date" : "2026-07-30",
+      "messages" : 5,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 180600,
+        "cache_write" : 20233,
+        "input" : 10,
+        "output" : 780,
+        "total" : 201623
+      }
+    },
+    {
+      "date" : "2026-08-01",
+      "messages" : 19,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 777582,
+        "cache_write" : 40716,
+        "input" : 36,
+        "output" : 7985,
+        "total" : 826319
+      }
+    },
+    {
+      "date" : "2026-08-03",
+      "messages" : 202,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 54579410,
+        "cache_write" : 1933575,
+        "input" : 378,
+        "output" : 329687,
+        "total" : 56843050
+      }
+    },
+    {
+      "date" : "2026-08-05",
+      "messages" : 9,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 587727,
+        "cache_write" : 72614,
+        "input" : 18,
+        "output" : 20678,
+        "total" : 681037
+      }
+    },
+    {
+      "date" : "2026-08-06",
+      "messages" : 72,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 31295060,
+        "cache_write" : 1574257,
+        "input" : 187,
+        "output" : 46332,
+        "total" : 32915836
+      }
+    },
+    {
+      "date" : "2026-08-09",
+      "messages" : 26,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 4322290,
+        "cache_write" : 290860,
+        "input" : 49,
+        "output" : 85194,
+        "total" : 4698393
+      }
+    },
+    {
+      "date" : "2026-08-22",
+      "messages" : 190,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 25990915,
+        "cache_write" : 994043,
+        "input" : 577,
+        "output" : 253748,
+        "total" : 27239283
+      }
+    },
+    {
+      "date" : "2026-08-23",
+      "messages" : 123,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 11664253,
+        "cache_write" : 311884,
+        "input" : 246,
+        "output" : 93209,
+        "total" : 12069592
+      }
+    },
+    {
+      "date" : "2026-08-24",
+      "messages" : 78,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 19743998,
+        "cache_write" : 979891,
+        "input" : 156,
+        "output" : 86989,
+        "total" : 20811034
+      }
+    },
+    {
+      "date" : "2026-08-25",
+      "messages" : 101,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 38089673,
+        "cache_write" : 403293,
+        "input" : 202,
+        "output" : 71588,
+        "total" : 38564756
+      }
+    },
+    {
+      "date" : "2026-08-29",
+      "messages" : 203,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 54404174,
+        "cache_write" : 1249927,
+        "input" : 406,
+        "output" : 233220,
+        "total" : 55887727
+      }
+    },
+    {
+      "date" : "2026-08-30",
+      "messages" : 73,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 35730107,
+        "cache_write" : 949749,
+        "input" : 146,
+        "output" : 56448,
+        "total" : 36736450
+      }
+    },
+    {
+      "date" : "2026-09-01",
+      "messages" : 97,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 14526329,
+        "cache_write" : 416460,
+        "input" : 194,
+        "output" : 124370,
+        "total" : 15067353
+      }
+    },
+    {
+      "date" : "2026-09-02",
+      "messages" : 319,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 55644117,
+        "cache_write" : 809333,
+        "input" : 638,
+        "output" : 348248,
+        "total" : 56802336
+      }
+    },
+    {
+      "date" : "2026-09-03",
+      "messages" : 56,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 18786331,
+        "cache_write" : 714580,
+        "input" : 112,
+        "output" : 137694,
+        "total" : 19638717
+      }
+    },
+    {
+      "date" : "2026-09-04",
+      "messages" : 200,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 34199032,
+        "cache_write" : 627902,
+        "input" : 400,
+        "output" : 276109,
+        "total" : 35103443
+      }
+    },
+    {
+      "date" : "2026-09-05",
+      "messages" : 57,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 4641280,
+        "cache_write" : 276168,
+        "input" : 114,
+        "output" : 70266,
+        "total" : 4987828
+      }
+    },
+    {
+      "date" : "2026-09-07",
+      "messages" : 26,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 2947357,
+        "cache_write" : 140082,
+        "input" : 52,
+        "output" : 24767,
+        "total" : 3112258
+      }
+    },
+    {
+      "date" : "2026-09-07",
+      "messages" : 9,
+      "model" : "gpt-5.6-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 1426816,
+        "cache_write" : 0,
+        "input" : 170224,
+        "output" : 7852,
+        "total" : 1604892
+      }
+    },
+    {
+      "date" : "2026-09-07",
+      "messages" : 103,
+      "model" : "gpt-6-astra",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 12081408,
+        "cache_write" : 0,
+        "input" : 1089364,
+        "output" : 119290,
+        "total" : 13290062
+      }
+    },
+    {
+      "date" : "2026-09-08",
+      "messages" : 135,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 40081370,
+        "cache_write" : 864683,
+        "input" : 270,
+        "output" : 179272,
+        "total" : 41125595
+      }
+    },
+    {
+      "date" : "2026-09-08",
+      "messages" : 3,
+      "model" : "codex-auto-review",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 14592,
+        "cache_write" : 0,
+        "input" : 63847,
+        "output" : 503,
+        "total" : 78942
+      }
+    },
+    {
+      "date" : "2026-09-08",
+      "messages" : 80,
+      "model" : "gpt-6-astra",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 9354112,
+        "cache_write" : 0,
+        "input" : 705020,
+        "output" : 46707,
+        "total" : 10105839
+      }
+    },
+    {
+      "date" : "2026-09-09",
+      "messages" : 35,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 16009167,
+        "cache_write" : 882070,
+        "input" : 70,
+        "output" : 49937,
+        "total" : 16941244
+      }
+    },
+    {
+      "date" : "2026-09-09",
+      "messages" : 120,
+      "model" : "gpt-6-astra",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 16953728,
+        "cache_write" : 0,
+        "input" : 1656644,
+        "output" : 105968,
+        "total" : 18716340
+      }
+    },
+    {
+      "date" : "2026-09-10",
+      "messages" : 4,
+      "model" : "codex-auto-review",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 23552,
+        "cache_write" : 0,
+        "input" : 23905,
+        "output" : 713,
+        "total" : 48170
+      }
+    },
+    {
+      "date" : "2026-09-10",
+      "messages" : 8,
+      "model" : "gpt-5.6-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 248320,
+        "cache_write" : 0,
+        "input" : 37364,
+        "output" : 1163,
+        "total" : 286847
+      }
+    },
+    {
+      "date" : "2026-09-10",
+      "messages" : 33,
+      "model" : "gpt-6-astra",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 2376704,
+        "cache_write" : 0,
+        "input" : 272074,
+        "output" : 12873,
+        "total" : 2661651
+      }
+    },
+    {
+      "date" : "2026-09-11",
+      "messages" : 54,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 4409106,
+        "cache_write" : 123230,
+        "input" : 108,
+        "output" : 28110,
+        "total" : 4560554
+      }
+    },
+    {
+      "date" : "2026-09-11",
+      "messages" : 5,
+      "model" : "codex-auto-review",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 66304,
+        "cache_write" : 0,
+        "input" : 34444,
+        "output" : 857,
+        "total" : 101605
+      }
+    },
+    {
+      "date" : "2026-09-11",
+      "messages" : 129,
+      "model" : "gpt-5.6-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 15761536,
+        "cache_write" : 0,
+        "input" : 815446,
+        "output" : 53179,
+        "total" : 16630161
+      }
+    },
+    {
+      "date" : "2026-09-11",
+      "messages" : 65,
+      "model" : "gpt-6-astra",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 7618816,
+        "cache_write" : 0,
+        "input" : 667969,
+        "output" : 66053,
+        "total" : 8352838
+      }
+    },
+    {
+      "date" : "2026-09-12",
+      "messages" : 8,
+      "model" : "claude-haiku-4-5-20251001",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 108263,
+        "cache_write" : 34557,
+        "input" : 72,
+        "output" : 14939,
+        "total" : 157831
+      }
+    },
+    {
+      "date" : "2026-09-12",
+      "messages" : 95,
+      "model" : "gpt-6-astra",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 10471424,
+        "cache_write" : 0,
+        "input" : 572398,
+        "output" : 46062,
+        "total" : 11089884
+      }
+    },
+    {
+      "date" : "2026-09-13",
+      "messages" : 4,
+      "model" : "codex-auto-review",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 128000,
+        "cache_write" : 0,
+        "input" : 70261,
+        "output" : 744,
+        "total" : 199005
+      }
+    },
+    {
+      "date" : "2026-09-13",
+      "messages" : 148,
+      "model" : "gpt-6-astra",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 19371648,
+        "cache_write" : 0,
+        "input" : 846482,
+        "output" : 114284,
+        "total" : 20332414
+      }
+    },
+    {
+      "date" : "2026-09-14",
+      "messages" : 5,
+      "model" : "gpt-6-astra",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 1010304,
+        "cache_write" : 0,
+        "input" : 6079,
+        "output" : 1483,
+        "total" : 1017866
+      }
+    },
+    {
+      "date" : "2026-09-17",
+      "messages" : 2,
+      "model" : "claude-opus-4-6",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 55295,
+        "cache_write" : 65566,
+        "input" : 4,
+        "output" : 2546,
+        "total" : 123411
+      }
+    },
+    {
+      "date" : "2026-09-17",
+      "messages" : 38,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 4316416,
+        "cache_write" : 103025,
+        "input" : 76,
+        "output" : 27841,
+        "total" : 4447358
+      }
+    },
+    {
+      "date" : "2026-09-17",
+      "messages" : 33,
+      "model" : "claude-sonnet-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 4864433,
+        "cache_write" : 141194,
+        "input" : 66,
+        "output" : 72938,
+        "total" : 5078631
+      }
+    },
+    {
+      "date" : "2026-09-17",
+      "messages" : 3,
+      "model" : "codex-auto-review",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 30976,
+        "cache_write" : 0,
+        "input" : 34441,
+        "output" : 522,
+        "total" : 65939
+      }
+    },
+    {
+      "date" : "2026-09-17",
+      "messages" : 143,
+      "model" : "gpt-5.6-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 16409088,
+        "cache_write" : 0,
+        "input" : 594544,
+        "output" : 109140,
+        "total" : 17112772
+      }
+    },
+    {
+      "date" : "2026-09-17",
+      "messages" : 11,
+      "model" : "gpt-6-astra",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 1833344,
+        "cache_write" : 0,
+        "input" : 452667,
+        "output" : 6233,
+        "total" : 2292244
+      }
+    },
+    {
+      "date" : "2026-09-18",
+      "messages" : 27,
+      "model" : "claude-opus-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 4334995,
+        "cache_write" : 142480,
+        "input" : 54,
+        "output" : 19594,
+        "total" : 4497123
+      }
+    },
+    {
+      "date" : "2026-09-18",
+      "messages" : 158,
+      "model" : "gpt-5.6-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 19025536,
+        "cache_write" : 0,
+        "input" : 974589,
+        "output" : 100162,
+        "total" : 20100287
+      }
+    },
+    {
+      "date" : "2026-09-19",
+      "messages" : 8,
+      "model" : "codex-auto-review",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 131072,
+        "cache_write" : 0,
+        "input" : 88041,
+        "output" : 1360,
+        "total" : 220473
+      }
+    },
+    {
+      "date" : "2026-09-19",
+      "messages" : 154,
+      "model" : "gpt-5.6-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 17748096,
+        "cache_write" : 0,
+        "input" : 682786,
+        "output" : 64820,
+        "total" : 18495702
+      }
+    },
+    {
+      "date" : "2026-09-20",
+      "messages" : 14,
+      "model" : "claude-opus-4-8",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 1462802,
+        "cache_write" : 100250,
+        "input" : 28,
+        "output" : 42036,
+        "total" : 1605116
+      }
+    },
+    {
+      "date" : "2026-09-20",
+      "messages" : 4,
+      "model" : "codex-auto-review",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 51200,
+        "cache_write" : 0,
+        "input" : 37653,
+        "output" : 436,
+        "total" : 89289
+      }
+    },
+    {
+      "date" : "2026-09-20",
+      "messages" : 183,
+      "model" : "gpt-5.6-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 23565824,
+        "cache_write" : 0,
+        "input" : 1165571,
+        "output" : 121002,
+        "total" : 24852397
+      }
+    },
+    {
+      "date" : "2026-09-20",
+      "messages" : 56,
+      "model" : "gpt-6-astra",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 5646848,
+        "cache_write" : 0,
+        "input" : 808638,
+        "output" : 54846,
+        "total" : 6510332
+      }
+    },
+    {
+      "date" : "2026-09-21",
+      "messages" : 2,
+      "model" : "codex-auto-review",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 36352,
+        "cache_write" : 0,
+        "input" : 45124,
+        "output" : 285,
+        "total" : 81761
+      }
+    },
+    {
+      "date" : "2026-09-21",
+      "messages" : 242,
+      "model" : "gpt-5.6-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 30140672,
+        "cache_write" : 0,
+        "input" : 2015882,
+        "output" : 142970,
+        "total" : 32299524
+      }
+    },
+    {
+      "date" : "2026-09-21",
+      "messages" : 119,
+      "model" : "gpt-6-astra",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 14164736,
+        "cache_write" : 0,
+        "input" : 1333645,
+        "output" : 88167,
+        "total" : 15586548
+      }
+    },
+    {
+      "date" : "2026-09-22",
+      "messages" : 49,
+      "model" : "gpt-5.6-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 5392768,
+        "cache_write" : 0,
+        "input" : 534852,
+        "output" : 33456,
+        "total" : 5961076
+      }
+    },
+    {
+      "date" : "2026-09-23",
+      "messages" : 120,
+      "model" : "claude-opus-5-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 30061494,
+        "cache_write" : 658481,
+        "input" : 240,
+        "output" : 258441,
+        "total" : 30978656
+      }
+    },
+    {
+      "date" : "2026-09-23",
+      "messages" : 1,
+      "model" : "codex-auto-review",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 4864,
+        "cache_write" : 0,
+        "input" : 20663,
+        "output" : 170,
+        "total" : 25697
+      }
+    },
+    {
+      "date" : "2026-09-23",
+      "messages" : 167,
+      "model" : "gpt-5.6-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 21482240,
+        "cache_write" : 0,
+        "input" : 1619351,
+        "output" : 130037,
+        "total" : 23231628
+      }
+    },
+    {
+      "date" : "2026-09-24",
+      "messages" : 148,
+      "model" : "claude-opus-5-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 65784027,
+        "cache_write" : 422437,
+        "input" : 296,
+        "output" : 284037,
+        "total" : 66490797
+      }
+    },
+    {
+      "date" : "2026-09-25",
+      "messages" : 35,
+      "model" : "claude-opus-5-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 16495412,
+        "cache_write" : 477560,
+        "input" : 70,
+        "output" : 41344,
+        "total" : 17014386
+      }
+    },
+    {
+      "date" : "2026-09-26",
+      "messages" : 2,
+      "model" : "codex-auto-review",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 9728,
+        "cache_write" : 0,
+        "input" : 33338,
+        "output" : 264,
+        "total" : 43330
+      }
+    },
+    {
+      "date" : "2026-09-26",
+      "messages" : 36,
+      "model" : "gpt-5.6-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 2692992,
+        "cache_write" : 0,
+        "input" : 325490,
+        "output" : 9350,
+        "total" : 3027832
+      }
+    },
+    {
+      "date" : "2026-09-26",
+      "messages" : 254,
+      "model" : "gpt-6-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 23190784,
+        "cache_write" : 0,
+        "input" : 1177367,
+        "output" : 107430,
+        "total" : 24475581
+      }
+    },
+    {
+      "date" : "2026-09-27",
+      "messages" : 11,
+      "model" : "gpt-6-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 333312,
+        "cache_write" : 0,
+        "input" : 68322,
+        "output" : 1510,
+        "total" : 403144
+      }
+    },
+    {
+      "date" : "2026-09-28",
+      "messages" : 191,
+      "model" : "claude-opus-5-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 67066193,
+        "cache_write" : 907799,
+        "input" : 384,
+        "output" : 302991,
+        "total" : 68277367
+      }
+    },
+    {
+      "date" : "2026-09-28",
+      "messages" : 3,
+      "model" : "codex-auto-review",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 35072,
+        "cache_write" : 0,
+        "input" : 25257,
+        "output" : 401,
+        "total" : 60730
+      }
+    },
+    {
+      "date" : "2026-09-28",
+      "messages" : 102,
+      "model" : "gpt-6-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 14430208,
+        "cache_write" : 0,
+        "input" : 229391,
+        "output" : 77483,
+        "total" : 14737082
+      }
+    },
+    {
+      "date" : "2026-09-29",
+      "messages" : 51,
+      "model" : "claude-opus-5-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 16326909,
+        "cache_write" : 637706,
+        "input" : 102,
+        "output" : 46458,
+        "total" : 17011175
+      }
+    },
+    {
+      "date" : "2026-09-30",
+      "messages" : 2,
+      "model" : "claude-opus-5-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 72686,
+        "cache_write" : 376058,
+        "input" : 4,
+        "output" : 1984,
+        "total" : 450732
+      }
+    },
+    {
+      "date" : "2026-09-30",
+      "messages" : 8,
+      "model" : "gpt-6-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 390144,
+        "cache_write" : 0,
+        "input" : 55574,
+        "output" : 4701,
+        "total" : 450419
+      }
+    },
+    {
+      "date" : "2026-10-01",
+      "messages" : 16,
+      "model" : "claude-opus-5-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 1081502,
+        "cache_write" : 40615,
+        "input" : 32,
+        "output" : 5548,
+        "total" : 1127697
+      }
+    },
+    {
+      "date" : "2026-10-02",
+      "messages" : 4,
+      "model" : "codex-auto-review",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 61440,
+        "cache_write" : 0,
+        "input" : 25291,
+        "output" : 598,
+        "total" : 87329
+      }
+    },
+    {
+      "date" : "2026-10-02",
+      "messages" : 54,
+      "model" : "gpt-6.1-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 4000000,
+        "cache_write" : 0,
+        "input" : 209422,
+        "output" : 14699,
+        "total" : 4224121
+      }
+    },
+    {
+      "date" : "2026-10-03",
+      "messages" : 67,
+      "model" : "gpt-6.1-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 8484480,
+        "cache_write" : 0,
+        "input" : 426775,
+        "output" : 27603,
+        "total" : 8938858
+      }
+    },
+    {
+      "date" : "2026-10-04",
+      "messages" : 111,
+      "model" : "codex-auto-review",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 6161664,
+        "cache_write" : 0,
+        "input" : 607542,
+        "output" : 11206,
+        "total" : 6780412
+      }
+    },
+    {
+      "date" : "2026-10-04",
+      "messages" : 495,
+      "model" : "gpt-6.1-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 60818944,
+        "cache_write" : 0,
+        "input" : 3349018,
+        "output" : 435661,
+        "total" : 64603623
+      }
+    },
+    {
+      "date" : "2026-10-05",
+      "messages" : 273,
+      "model" : "claude-opus-5-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 145869064,
+        "cache_write" : 1806774,
+        "input" : 546,
+        "output" : 466236,
+        "total" : 148142620
+      }
+    },
+    {
+      "date" : "2026-10-05",
+      "messages" : 118,
+      "model" : "codex-auto-review",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 7941632,
+        "cache_write" : 0,
+        "input" : 2818447,
+        "output" : 16247,
+        "total" : 10776326
+      }
+    },
+    {
+      "date" : "2026-10-05",
+      "messages" : 262,
+      "model" : "gpt-6.1-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 35684096,
+        "cache_write" : 0,
+        "input" : 1640000,
+        "output" : 332519,
+        "total" : 37656615
+      }
+    },
+    {
+      "date" : "2026-10-07",
+      "messages" : 462,
+      "model" : "claude-opus-5-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 130482972,
+        "cache_write" : 2733477,
+        "input" : 932,
+        "output" : 291835,
+        "total" : 133509216
+      }
+    },
+    {
+      "date" : "2026-10-07",
+      "messages" : 8,
+      "model" : "codex-auto-review",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 180224,
+        "cache_write" : 0,
+        "input" : 73413,
+        "output" : 997,
+        "total" : 254634
+      }
+    },
+    {
+      "date" : "2026-10-07",
+      "messages" : 186,
+      "model" : "gpt-6.1-sol",
+      "source" : "codex",
+      "tokens" : {
+        "cache_read" : 28353664,
+        "cache_write" : 0,
+        "input" : 1374945,
+        "output" : 210033,
+        "total" : 29938642
+      }
+    },
+    {
+      "date" : "2026-10-08",
+      "messages" : 295,
+      "model" : "claude-opus-5-5",
+      "source" : "claude_code",
+      "tokens" : {
+        "cache_read" : 99011871,
+        "cache_write" : 725198,
+        "input" : 590,
+        "output" : 504333,
+        "total" : 100241992
+      }
+    }
+  ],
+  "generated_at" : "2026-10-07T23:51:00Z",
+  "generated_on" : "2026-10-08",
+  "schema" : "agentdeck.usage/v1",
+  "sources" : [
+    "claude_code",
+    "codex"
+  ],
+  "summaries" : {
+    "30d" : {
+      "all" : {
+        "active_days" : 27,
+        "favorite_model" : "claude-opus-5-5",
+        "messages" : 5441,
+        "peak_hour" : 0,
+        "sessions" : 64,
+        "tokens" : {
+          "cache_read" : 1030274943,
+          "cache_write" : 10378477,
+          "input" : 27854779,
+          "output" : 4968835,
+          "total" : 1073477034
+        }
+      },
+      "claude_code" : {
+        "active_days" : 16,
+        "favorite_model" : "claude-opus-5-5",
+        "messages" : 1804,
+        "peak_hour" : 0,
+        "sessions" : 20,
+        "tokens" : {
+          "cache_read" : 607812607,
+          "cache_write" : 10378477,
+          "input" : 3674,
+          "output" : 2461148,
+          "total" : 620655906
+        }
+      },
+      "codex" : {
+        "active_days" : 22,
+        "favorite_model" : "gpt-5.6-sol",
+        "messages" : 3637,
+        "peak_hour" : 15,
+        "sessions" : 44,
+        "tokens" : {
+          "cache_read" : 422462336,
+          "cache_write" : 0,
+          "input" : 27851105,
+          "output" : 2507687,
+          "total" : 452821128
+        }
+      }
+    },
+    "7d" : {
+      "all" : {
+        "active_days" : 6,
+        "favorite_model" : "claude-opus-5-5",
+        "messages" : 2335,
+        "peak_hour" : 1,
+        "sessions" : 16,
+        "tokens" : {
+          "cache_read" : 527050051,
+          "cache_write" : 5265449,
+          "input" : 10526921,
+          "output" : 2311967,
+          "total" : 545154388
+        }
+      },
+      "claude_code" : {
+        "active_days" : 3,
+        "favorite_model" : "claude-opus-5-5",
+        "messages" : 1030,
+        "peak_hour" : 0,
+        "sessions" : 4,
+        "tokens" : {
+          "cache_read" : 375363907,
+          "cache_write" : 5265449,
+          "input" : 2068,
+          "output" : 1262404,
+          "total" : 381893828
+        }
+      },
+      "codex" : {
+        "active_days" : 5,
+        "favorite_model" : "gpt-6.1-sol",
+        "messages" : 1305,
+        "peak_hour" : 1,
+        "sessions" : 12,
+        "tokens" : {
+          "cache_read" : 151686144,
+          "cache_write" : 0,
+          "input" : 10524853,
+          "output" : 1049563,
+          "total" : 163260560
+        }
+      }
+    },
+    "all" : {
+      "all" : {
+        "active_days" : 52,
+        "favorite_model" : "claude-opus-5-5",
+        "messages" : 8596,
+        "peak_hour" : 0,
+        "sessions" : 91,
+        "tokens" : {
+          "cache_read" : 1671470129,
+          "cache_write" : 28282584,
+          "input" : 29929901,
+          "output" : 8220179,
+          "total" : 1737902793
+        }
+      },
+      "claude_code" : {
+        "active_days" : 41,
+        "favorite_model" : "claude-opus-5-5",
+        "messages" : 4764,
+        "peak_hour" : 0,
+        "sessions" : 46,
+        "tokens" : {
+          "cache_read" : 1226130865,
+          "cache_write" : 28282584,
+          "input" : 50341,
+          "output" : 5538140,
+          "total" : 1260001930
+        }
+      },
+      "codex" : {
+        "active_days" : 24,
+        "favorite_model" : "gpt-5.6-sol",
+        "messages" : 3832,
+        "peak_hour" : 15,
+        "sessions" : 45,
+        "tokens" : {
+          "cache_read" : 445339264,
+          "cache_write" : 0,
+          "input" : 29879560,
+          "output" : 2682039,
+          "total" : 477900863
+        }
+      }
+    }
+  }
+}
