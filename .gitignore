@@ -5,7 +5,7 @@
 # Local Claude Code / preview tooling
 .claude/
 
-# Paper-figure source PDFs — only their rendered PNGs in assets/thumbs/ are
+# Paper-figure source PDFs: only their rendered PNGs in assets/thumbs/ are
 # used on the site, so we keep these locally but don't track them.
 pdf/macro_overview.pdf
 pdf/iflip_overview.pdf

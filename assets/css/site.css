@@ -1,0 +1,189 @@
+/* =========================================================================
+   One white page in the spirit of Jon Barron's template. A single amber
+   accent carries links, date tags and venue badges; field names get a
+   marker with an underline, project names a highlighter swipe.
+   ========================================================================= */
+
+:root{
+  --ink:#1d1d1f;
+  --ink-2:#5a5c62;
+  --ink-3:#8d8f95;
+  --rule:#ececec;
+  --paper:#ffffff;
+  --acc:#b8761f;
+  --acc-text:#8f5d12;   /* amber for text: 4.6:1 or better on every background here */
+  --acc-soft:#fbf6ec;
+  --acc-line:#ead9bd;
+  --hl:#ffe7a8;
+
+  --sans:"Lato",system-ui,-apple-system,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--acc-text);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+b,strong{font-weight:700}
+ul{list-style:none}
+
+.wrap{max-width:900px;margin:0 auto;padding:56px 22px 48px}
+
+/* ---------- header ---------- */
+
+.head{display:grid;grid-template-columns:1fr 160px;gap:48px;align-items:start}
+.head h1{font-size:36px;font-weight:400;letter-spacing:-.005em;margin-bottom:4px}
+.role{color:var(--ink-2);margin-bottom:18px}
+.head p + p{margin-top:12px}
+.seeking{margin-top:16px;padding:10px 14px;border-radius:10px;background:var(--acc-soft);border:1px solid var(--acc-line)}
+.photo{width:160px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.07);margin-top:6px}
+.links{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:20px;padding-top:16px;border-top:1px solid var(--rule)}
+.links a{display:inline-flex;align-items:center;gap:6px}
+.links svg{width:15px;height:15px;flex:none}
+
+/* ---------- section headings ---------- */
+
+h2{display:inline-block;font-size:24px;font-weight:400;margin:56px 0 18px;padding-bottom:2px;
+   background:linear-gradient(var(--acc),var(--acc)) left bottom/100% 2px no-repeat}
+
+/* ---------- research fields ---------- */
+
+/* a field name: soft marker underneath, accent rule along the baseline */
+.field{
+  font-weight:700;color:var(--ink);padding:0 .12em;white-space:nowrap;
+  background:linear-gradient(transparent 58%,var(--hl) 58%,var(--hl) 92%,transparent 92%);
+  text-decoration:underline;text-decoration-color:var(--acc);
+  text-decoration-thickness:2px;text-underline-offset:4px;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+}
+
+/* ---------- dated rows: a small timeline ----------
+   Date on the left (month in amber small caps, year in tabular figures),
+   then a hairline rail with one dot per entry. The newest dot is filled. */
+
+.timeline{position:relative;--date:104px;--gap:34px}
+.timeline::before{
+  content:"";position:absolute;top:16px;bottom:16px;
+  left:calc(var(--date) + var(--gap) / 2 - .75px);width:1.5px;border-radius:2px;
+  background:linear-gradient(var(--acc),var(--acc-line) 40%,var(--acc-line));
+}
+.timeline li{
+  position:relative;display:grid;grid-template-columns:var(--date) 1fr;column-gap:var(--gap);
+  padding:7px 0;align-items:baseline;
+}
+.timeline li::before{
+  content:"";position:absolute;top:15px;left:calc(var(--date) + var(--gap) / 2 - 5px);
+  width:10px;height:10px;border-radius:50%;box-sizing:border-box;
+  background:#fff;border:2px solid var(--acc);
+}
+.timeline li:first-child::before{background:var(--acc);box-shadow:0 0 0 4px var(--acc-soft)}
+.when{
+  text-align:right;white-space:nowrap;
+  font-size:15px;font-variant-numeric:tabular-nums;color:var(--ink-2);letter-spacing:.01em;
+}
+.when .m,.when .now{
+  font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc-text);
+}
+.when .m{margin-right:5px}
+.when .to{color:var(--ink-3);margin:0 4px;font-size:13px}
+.timeline .deg{font-weight:700}
+
+/* ---------- names: venues and projects ---------- */
+
+/* a venue is a two-part badge: who and when on the dark half, what kind on
+   the light half. It sits on the links row, after the authors. */
+.badge{
+  display:inline-flex;align-items:stretch;vertical-align:middle;
+  font-size:11.5px;font-weight:700;line-height:1;letter-spacing:.03em;white-space:nowrap;
+  border-radius:7px;overflow:hidden;box-shadow:0 0 0 1px var(--b-line,var(--acc-line));
+}
+.badge .k{padding:5px 8px 4px;background:var(--b-dark,var(--acc-text));color:#fff;text-transform:uppercase;letter-spacing:.07em}
+.badge .v{padding:5px 9px 4px;background:var(--b-soft,var(--acc-soft));color:var(--b-dark,var(--acc-text))}
+.badge.pre{--b-dark:#5f6168;--b-soft:#f3f3f4;--b-line:#e1e1e4}
+.badge.course{--b-dark:#3f6f8c;--b-soft:#eef4f8;--b-line:#cfe0ea}
+.badge.solo .k{padding:5px 9px 4px}
+.badge.sm{font-size:11px;margin:0 1px;vertical-align:1px}
+.badge.sm .k,.badge.sm .v{padding:4px 7px 3px}
+.acts .badge{margin-right:6px}
+
+/* a project name gets a highlighter swipe */
+.name{
+  font-weight:900;color:var(--ink);padding:0 .18em;margin:0 -.06em;border-radius:.3em;
+  background:linear-gradient(100deg,transparent 2%,var(--hl) 6%,var(--hl) 94%,transparent 98%) 0 62%/100% 58% no-repeat;
+}
+
+/* ---------- publications and projects ---------- */
+
+.note{color:var(--ink-2);margin-bottom:12px}
+
+.pub{display:grid;grid-template-columns:180px 1fr;gap:24px;padding:20px 18px;border-radius:14px;margin:0 -18px 6px}
+.thumb{all:unset;cursor:zoom-in;align-self:start;border-radius:9px}
+.thumb img{width:180px;border-radius:9px;border:1px solid var(--rule);background:#fff;transition:transform .25s}
+.thumb:hover img{transform:scale(1.03)}
+.thumb:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.pub-title{font-size:16.5px;font-weight:700;line-height:1.45;margin:0 0 4px}
+.pub-title a{color:var(--ink)}
+.pub-title a:hover{color:var(--acc-text)}
+.authors{color:var(--ink)}
+.authors .me{font-weight:700;text-decoration:underline;text-decoration-color:var(--acc);text-decoration-thickness:2px;text-underline-offset:3px}
+.authors .eq{color:var(--ink-2);font-size:14px}
+.acts{margin-top:10px;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.acts a,.acts button{
+  font:700 13px var(--sans);color:var(--acc-text);background:none;border:0;cursor:pointer;padding:0;
+}
+.acts .sep{color:var(--ink-3)}
+.acts button:hover{text-decoration:underline;text-underline-offset:3px}
+
+.bib{display:none;position:relative;margin-top:10px}
+.bib.open{display:block}
+.bib pre{
+  font:12.5px/1.55 var(--mono);color:var(--ink);white-space:pre;overflow-x:auto;
+  background:#fff;border:1px solid var(--rule);border-radius:10px;padding:12px 14px;
+}
+.bib .copy{
+  position:absolute;right:8px;top:8px;font:700 12px var(--sans);color:var(--acc-text);
+  background:#fff;border:1px solid var(--acc-line);border-radius:7px;padding:2px 9px;cursor:pointer;
+}
+.bib .copy:hover{border-color:var(--acc)}
+
+/* ---------- open source ---------- */
+
+.oss{border:1px solid var(--rule);border-radius:14px;padding:18px 20px}
+.oss-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:6px}
+.oss-head .name{font-size:18px}
+.oss-when{color:var(--ink-2);font-size:14px}
+
+/* ---------- footer ---------- */
+
+.foot{margin-top:64px;padding-top:16px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--ink-3);font-size:13px}
+
+/* ---------- lightbox ---------- */
+
+.lightbox{position:fixed;inset:0;z-index:50;display:none;place-items:center;padding:24px;background:rgba(255,255,255,.94)}
+.lightbox[open]{display:grid}
+.lightbox figure{max-width:min(1200px,100%);text-align:center}
+.lightbox img{max-height:84vh;width:auto;margin:0 auto;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.12)}
+.lightbox figcaption{margin-top:12px;color:var(--ink-2);font-size:14px}
+.lightbox-close{position:absolute;right:20px;top:16px;font:700 14px var(--sans);color:var(--ink);background:none;border:0;cursor:pointer}
+
+/* ---------- small screens ---------- */
+
+@media (max-width:720px){
+  .wrap{padding:36px 16px 40px}
+  .head{grid-template-columns:1fr;gap:20px}
+  .photo{order:-1;width:130px;margin:0}
+  .pub{grid-template-columns:1fr;gap:12px;margin:0 -12px 6px;padding:16px 12px}
+  .thumb img{width:100%}
+  .timeline{--date:64px;--gap:26px}
+  .when{font-size:14px;white-space:normal;line-height:1.3}
+  .when .m{display:block;margin:0}
+  .when .to{margin:0 3px 0 0}
+  .when .to::before{content:"\A";white-space:pre}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .thumb img{transition:none}
+}
