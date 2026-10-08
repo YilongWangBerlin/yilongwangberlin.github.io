@@ -1146,19 +1146,19 @@
     },
     {
       "date" : "2026-10-08",
-      "messages" : 295,
+      "messages" : 619,
       "model" : "claude-opus-5-5",
       "source" : "claude_code",
       "tokens" : {
-        "cache_read" : 99011871,
-        "cache_write" : 725198,
-        "input" : 590,
-        "output" : 504333,
-        "total" : 100241992
+        "cache_read" : 209647924,
+        "cache_write" : 3533588,
+        "input" : 1238,
+        "output" : 838779,
+        "total" : 214021529
       }
     }
   ],
-  "generated_at" : "2026-10-07T23:51:00Z",
+  "generated_at" : "2026-10-08T10:15:00Z",
   "generated_on" : "2026-10-08",
   "schema" : "agentdeck.usage/v1",
   "sources" : [
@@ -1170,29 +1170,29 @@
       "all" : {
         "active_days" : 27,
         "favorite_model" : "claude-opus-5-5",
-        "messages" : 5441,
+        "messages" : 5765,
         "peak_hour" : 0,
-        "sessions" : 64,
+        "sessions" : 66,
         "tokens" : {
-          "cache_read" : 1030274943,
-          "cache_write" : 10378477,
-          "input" : 27854779,
-          "output" : 4968835,
-          "total" : 1073477034
+          "cache_read" : 1140910996,
+          "cache_write" : 13186867,
+          "input" : 27855427,
+          "output" : 5303281,
+          "total" : 1187256571
         }
       },
       "claude_code" : {
         "active_days" : 16,
         "favorite_model" : "claude-opus-5-5",
-        "messages" : 1804,
+        "messages" : 2128,
         "peak_hour" : 0,
-        "sessions" : 20,
+        "sessions" : 22,
         "tokens" : {
-          "cache_read" : 607812607,
-          "cache_write" : 10378477,
-          "input" : 3674,
-          "output" : 2461148,
-          "total" : 620655906
+          "cache_read" : 718448660,
+          "cache_write" : 13186867,
+          "input" : 4322,
+          "output" : 2795594,
+          "total" : 734435443
         }
       },
       "codex" : {
@@ -1214,29 +1214,29 @@
       "all" : {
         "active_days" : 6,
         "favorite_model" : "claude-opus-5-5",
-        "messages" : 2335,
+        "messages" : 2659,
         "peak_hour" : 1,
-        "sessions" : 16,
+        "sessions" : 18,
         "tokens" : {
-          "cache_read" : 527050051,
-          "cache_write" : 5265449,
-          "input" : 10526921,
-          "output" : 2311967,
-          "total" : 545154388
+          "cache_read" : 637686104,
+          "cache_write" : 8073839,
+          "input" : 10527569,
+          "output" : 2646413,
+          "total" : 658933925
         }
       },
       "claude_code" : {
         "active_days" : 3,
         "favorite_model" : "claude-opus-5-5",
-        "messages" : 1030,
-        "peak_hour" : 0,
-        "sessions" : 4,
+        "messages" : 1354,
+        "peak_hour" : 4,
+        "sessions" : 6,
         "tokens" : {
-          "cache_read" : 375363907,
-          "cache_write" : 5265449,
-          "input" : 2068,
-          "output" : 1262404,
-          "total" : 381893828
+          "cache_read" : 485999960,
+          "cache_write" : 8073839,
+          "input" : 2716,
+          "output" : 1596850,
+          "total" : 495673365
         }
       },
       "codex" : {
@@ -1258,29 +1258,29 @@
       "all" : {
         "active_days" : 52,
         "favorite_model" : "claude-opus-5-5",
-        "messages" : 8596,
+        "messages" : 8920,
         "peak_hour" : 0,
-        "sessions" : 91,
+        "sessions" : 93,
         "tokens" : {
-          "cache_read" : 1671470129,
-          "cache_write" : 28282584,
-          "input" : 29929901,
-          "output" : 8220179,
-          "total" : 1737902793
+          "cache_read" : 1782106182,
+          "cache_write" : 31090974,
+          "input" : 29930549,
+          "output" : 8554625,
+          "total" : 1851682330
         }
       },
       "claude_code" : {
         "active_days" : 41,
         "favorite_model" : "claude-opus-5-5",
-        "messages" : 4764,
+        "messages" : 5088,
         "peak_hour" : 0,
-        "sessions" : 46,
+        "sessions" : 48,
         "tokens" : {
-          "cache_read" : 1226130865,
-          "cache_write" : 28282584,
-          "input" : 50341,
-          "output" : 5538140,
-          "total" : 1260001930
+          "cache_read" : 1336766918,
+          "cache_write" : 31090974,
+          "input" : 50989,
+          "output" : 5872586,
+          "total" : 1373781467
         }
       },
       "codex" : {
