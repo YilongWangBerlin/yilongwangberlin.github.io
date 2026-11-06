@@ -90,6 +90,14 @@ h2{display:inline-block;font-size:24px;font-weight:400;margin:56px 0 18px;paddin
 .when .to{color:var(--ink-3);margin:0 4px;font-size:13px}
 .timeline .deg{font-weight:700}
 
+/* undated rows: an amber dot instead of a date */
+.roles li{position:relative;padding:7px 0 7px 22px}
+.roles li::before{
+  content:"";position:absolute;top:15px;left:2px;width:8px;height:8px;border-radius:50%;
+  box-sizing:border-box;border:2px solid var(--acc);
+}
+.roles .deg{font-weight:700}
+
 /* ---------- names: venues and projects ---------- */
 
 /* a venue is a two-part badge: who and when on the dark half, what kind on
